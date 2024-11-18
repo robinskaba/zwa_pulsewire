@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+    --primary-color: #c00202;
+    --secondary-color: #5c001e;
+    --terciary-color: #2B2024;
+    --background-color: #ffffff;
+
+    --primary-font-family: "Playfair Display", "Times New Roman", serif;
+
+    --thick-border-width: 0.15em;
+    --thin-border-width: 0.01em;
+}
+
+/* Basic values for all tags */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--primary-font-family);
+    color: var(--primary-color);
+    margin: 0;
+}
+h1 {
+    font-family: var(--primary-font-family);
+    margin: 0;
+    font-size: 250%;
+}
+h2 {
+    font-size: 225%;
+}
+h3 {
+    font-size: 175%;
+}
+h4 {
+    font-size: 150%;
+}
+h5 {
+    font-size: 125%;
+}
+h6 {
+    font-size: 110%;
+}
+a, p, span {
+    font-family: var(--primary-font-family);
+}
+a {
+    color: var(--primary-color);
+}
+p {
+    color: black;
+    margin: 0;
+}
+hr {
+    border-width: var(--thin-border-width);
+    border-style: solid;
+    border-color: var(--primary-color);
+    width: 100%;
+}
+textarea {
+    resize: none;
+}
+
+/* Centering items in divs */
+.cv {
+    display: flex;
+    align-items: center;
+}
+.hv {
+    display: flex;
+    justify-content: center;
+}
+.so {
+    display: flex;
+    justify-content: space-between;
+}
+.db {
+    display: block;
+}
+.jr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+}
+.hidden {
+    display: none;
+}
+
+/* Text aligns */
+.tr {
+    text-align: right;
+}
+
+/* Anchors */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* General page structure */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 1.5em 0;
+}
+.inner-content {
+    width: 70%;
+    padding: 1.5em;
+    background-color: var(--background-color);
+
+    /* stin */
+    transition: box-shadow ease;
+    box-shadow: 0.8em 0.8em 0.8em rgba(170, 0, 0, 0.164);
+
+    border: var(--thick-border-width) solid var(--primary-color);
+}
+
+form > span.error-hint {
+    font-size: 90%;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+@media print {
+    .inner-content {
+        width: 97.5%;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .inner-content {
+        width: 80%;
+    }
+}
+@media (max-width: 720px) {
+    .inner-content {
+        width: 90%;
+    }
+}

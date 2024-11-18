@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Register for PulseWire</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/register_form_validation.js" defer></script>
+        <script src="../js/side_menu.js" defer></script>
+
+        <link rel="icon" type="image/x-icon" href="../src/favicon.ico">
+        <link rel="stylesheet" href="../css/form.css">
+
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/common.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="top-bar">
+                    <div class="cv">
+                        <a href="index.html">
+                            <img src="../src/logo_64x64.png" alt="pulsewire logo" id="page-logo">
+                        </a>
+                        <a class="page-title" href="index.html">PulseWire</a>
+                    </div>
+                    <div class="account-actions">
+                        <a class="account-action" href="admin_page.html">Admin</a>
+                        <a class="account-action" href="write_article.html">Write</a>
+                        <a class="account-action" href="profile.html">Profile</a>
+                        <a class="account-action" href="login.html">Login</a>
+                        <a class="account-action" href="register.html">Register</a>
+                    </div>
+                    <img src="../src/menu-icon.png" alt="open category menu" id="category-menu">
+                </div>
+                <div class="bottom-bar">
+                    <a class="category" href="">Crime</a>
+                    <a class="category" href="">Celebrities</a>
+                    <a class="category" href="">World</a>
+                    <a class="category" href="">Politics</a>
+                    <a class="category" href="">Economics</a>
+                    <a class="category" href="">Lifestyle</a>
+                    <a class="category" href="">Sport</a>
+                    <a class="category" href="">Weather</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="inner-content">
+                <div class="form-heading">
+                    <h2 class="form-headline">Register for</h2>
+                    <img src="../src/logo_128x128.png" alt="page logo">
+                    <h1 class="page-title">PulseWire</h1>
+                </div>
+
+                <div class="form-wrap">
+                    <form action="" method="POST">
+                        <span id="required-fields-hint">* marked fields are required</span>
+
+                        <label>Username *
+                            <input type="text" name="username" placeholder="username" id="username">
+                        </label>
+                        <div>
+                            <label>First Name *
+                                <input type="text" name="first_name" placeholder="First Name" id="first_name">
+                            </label>
+                            <label>Second Name *
+                                <input type="text" name="second_name" placeholder="Second Name" id="second_name">
+                            </label>
+                        </div>
+                        <label>Password *
+                            <input type="password" name="password_1" placeholder="Password" id="password_1">
+                        </label>
+                        <label>Password again *
+                            <input type="password" name="password_2" placeholder="Password again" id="password_2">
+                        </label>
+                        <span id="error-hint" class="hidden"></span>
+                        <input class="submitButton" type="submit" value="Register" name="submit">
+                    </form>
+                </div>
+                
+                <span>Do you already have an account? 
+                     <a href="login.html">Login</a>
+                </span>
+            </div>
+
+            <div class="side-menu">
+                <a class="account-action" href="admin_page.html">Admin</a>
+                <a class="account-action" href="write_article.html">Write</a>
+                <a class="account-action" href="profile.html">Profile</a>
+                <a class="account-action" href="login.html">Login</a>
+                <a class="account-action" href="register.html">Register</a>
+
+                <hr>
+
+                <a class="category" href="search_results.html">Crime</a>
+                <a class="category" href="search_results.html">Celebrities</a>
+                <a class="category" href="search_results.html">World</a>
+                <a class="category" href="search_results.html">Politics</a>
+                <a class="category" href="search_results.html">Economics</a>
+                <a class="category" href="search_results.html">Lifestyle</a>
+                <a class="category" href="search_results.html">Sport</a>
+                <a class="category" href="search_results.html">Weather</a>
+            </div>
+        </main>
+    </body>
+</html>

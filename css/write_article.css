@@ -1,0 +1,49 @@
+.inner-content {
+    gap: 1em;
+}
+
+#image-upload, input {
+    border: var(--thin-border-width) solid var(--primary-color);
+    text-align: center;
+    padding: 0.3em 0;
+    font-size: 125%;
+    transition-duration: 0.3s;
+    border-radius: 0;
+}
+input {
+    background-color: white;
+    padding: 0.75em 0;
+    color: var(--primary-color);
+    font-family: var(--primary-font-family);
+}
+#image-upload:hover, input:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+textarea {
+    border-color: var(--primary-color);
+    border-width: var(--thin-border-width);
+    font-family: var(--primary-font-family);
+    padding: 0.5em;
+}
+textarea:focus {
+    outline: none;
+}
+textarea.error, #image-upload:has(.error) {
+    border-width: var(--thick-border-width);
+}
+
+#article-title {
+    font-size: 140%;
+}
+#article-summary {
+    font-size: 110%;
+}
+#article-body {
+    font-size: 95%;
+}
+#article-image {
+    display: none;
+}
+

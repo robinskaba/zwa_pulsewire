@@ -1,0 +1,41 @@
+Název: Novinové webové stránky
+
+Cíl: umožnit vybraným uživatelům publikovat články a přihlášeným uživatelům se podílet o své názory na dané články
+
+Popis:
+
+Implementované stránky a jejich funkce
+1. domácí stránka
+	 - výpis X posledních článků členěn na podstránky
+	 - výpis kategorií článků, které po kliknutí ukáží seznamy článků dané kategorie
+2. stránka článku
+	- obsahuje titulek, obsah článku, ilustrační titulní obrázek, datum publikování a jeho kategorii (viz. Článek)
+	- pod článkem bude diskuzní sekce s komentáři od přihlášených uživatelů
+	- admin zde uvidí tlačítko pro smazání článku
+	- komentáře
+		- obsahuje jméno uživatele, datum publikování a jeho textový obsah
+		- autor svého komentáře a admin uvidí tlačítko pro editaci a smazání komentáře
+3. přihlašovací stránka
+	- formulář pro uživatelské jméno a heslo
+4. stránka pro registraci
+	- formulář pro uživatelské jméno, křestní a příjmení, heslo a heslo znovu (kontrola hesla)
+5. stránka s profilem uživatele
+	 - je zde vidět výpis jeho komentářů
+6. stránka pro psaní článku
+	- formulář pro nadpis, hlavní textový obsah, ilustrační titulní obrázek a výběr kategorie (viz. Článek)
+7. stránka pro správu uživatelů
+	- výpis uživatelů s tlačítky pro resetování hesla, povýšení do role novinář, povýšení do role administrátor
+
+Role a jejich funkce
+1. nepřihlášený uživatel
+	- může číst články, sekci s komentáři, ale nemůže do ní přispívat
+2. přihlášený uživatel
+	- může navíc psát komentáře pod článek nebo upravovat a mazat své komentáře
+3. novinář
+	- může vytvářet články (nepovoluje se zpětná editace nebo mazání článků novinářem)
+4. administrátor
+	- může mazat články
+	- může mazat komentáře
+	- může přidat uživatelům roli "novinář" nebo "administrátor" na stránce pro admina
+	- může uživatelům resetovat heslo
+

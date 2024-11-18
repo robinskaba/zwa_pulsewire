@@ -1,0 +1,20 @@
+.inner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.profile-information {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+span > span {
+    color: var(--primary-color);
+    font-size: 140%;
+}
+
+hr {
+    margin: 0;
+}

@@ -1,0 +1,80 @@
+/* comment section */
+h3 {
+    margin: 0.5em 0;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+form > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+/* form empty error hint message */
+form > span {
+    font-weight: bold;
+}
+
+.submit-button {
+    font-size: 100%;
+    font-family: var(--terciary-font-family);
+    padding: 0.3em 0.75em;
+    background-color: white;
+    color: var(--primary-color);
+    border-width: var(--thin-border-width);
+    border-color: var(--primary-color);
+    border-style: double;
+    transition-duration: 0.3s;
+}
+.submit-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+textarea {
+    width: 99.35%;
+    padding: 0.5em;
+    font-family: var(--terciary-font-family);
+    font-size: 95%;
+    border-width: var(--thin-border-width);
+    border-color: var(--primary-color);
+}
+textarea:focus {
+    outline: none;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em 0;
+
+    border: var(--thin-border-width) solid;
+    border-color: var(--primary-color);
+    padding: 0.75em;
+}
+
+span {
+    color: var(--primary-color);
+    font-size: 75%;
+}
+
+.comment > p {
+    font-size: 85%;
+}
+
+.comment-buttons {
+    display: flex;
+    gap: 0.5em;
+}
+.comment-buttons img:hover {
+    cursor: pointer;
+}
