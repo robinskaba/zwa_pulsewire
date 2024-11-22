@@ -98,7 +98,7 @@ if (!$all_fields_empty && !$exists_error) {
     </head>
     <body>
 
-        <?= include("../html/header.html") ?>
+        <?php include("../html/header.html") ?>
 
         <main>
             <div class="inner-content">
@@ -155,6 +155,6 @@ if (!$all_fields_empty && !$exists_error) {
             </span>
         </div>
 
-        <?= include("../html/sidemenu.html") ?>
+        <?php include("../html/sidemenu.html") ?>
     </body>
 </html>

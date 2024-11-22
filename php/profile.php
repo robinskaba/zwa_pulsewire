@@ -15,10 +15,11 @@
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/comments.css">
 
-        <?= include("../html/metadata.html") ?>
+        <?php include("../html/metadata.html"); ?>
     </head>
     <body>
-        <?= include("../html/header.html") ?>
+        <?php include("../html/header.html"); ?>
+
 
         <main>
             <div class="inner-content">   
@@ -44,7 +45,7 @@
                 </div>
             </div>
 
-            <?= include("../html/sidemenu.html") ?>          
+            <?php include("../html/sidemenu.html"); ?>          
         </main>
     </body>
 </html>
