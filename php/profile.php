@@ -20,7 +20,6 @@
     <body>
         <?php include("../html/header.html"); ?>
 
-
         <main>
             <div class="inner-content">   
                 <h2><?= htmlspecialchars($username) ?>'s profile</h2>
