@@ -6,41 +6,36 @@ $second_name = "";
 $password1 = "";
 $password2 = "";
 
-$errors = array(
-    "username" => array(),
-    "first_name" => array(),
-    "second_name" => array(),
-    "password1" => array(),
-    "password2" => array()
-);
+require "form_validator.php";
+$validator = new Validator(array("username", "first_name", "second_name", "password1", "password2"));
 
 if (isset($_POST["username"])) {
     $username = $_POST["username"];
     if (strlen($username) < 4) {
-        $errors["username"][] = "Username must be at least 4 characters";
+        $validator->addError("username", "Username must be at least 4 characters");
     }
     $illegal_chars = array('@', '&', ',', '!', '#', '$', '%', '^', '*', '(', ')', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', "'", '"', '<', '>', '?', '/', '~', '`', ',');
 
     if (!ctype_alnum($username)) {
-        $errors["username"][] = "Username can only contain letters and numbers";
+        $validator->addError("username", "Username can only contain letters and numbers");
     }
 }
 if (isset($_POST["first_name"])) {
     $first_name = $_POST["first_name"];
     if (strlen($first_name) < 1) {
-        $errors["first_name"][] = "First name can not be empty";
+        $validator->addError("first_name", "First name can not be empty");
     }
 }
 if (isset($_POST["second_name"])) {
     $second_name = $_POST["second_name"];
     if (strlen($second_name) < 4) {
-        $errors["second_name"][] = "Second name can not be empty";
+        $validator->addError("second_name", "Second name can not be empty");
     }
 }
 if (isset($_POST["password1"])) {
     $password1 = $_POST["password1"];
     if (strlen($password1) < 8) {
-        $errors["password1"][] = "Password must be at least 8 characters long";
+        $validator->addError("password1", "Password must be at least 8 characters long");
     }
 
     $has_number = false;
@@ -50,12 +45,13 @@ if (isset($_POST["password1"])) {
             break;
         }
     }
-    if (!$has_number) $errors["password1"][] = "Password must contain a number";
+    
+    if (!$has_number) $validator->addError("password1", "Password must contain a number");
 }
 if (isset($_POST["password2"])) {
     $password2 = $_POST["password2"];
     if ($password1 != $password2) {
-        $errors["password2"][] = "Passwords must match";
+        $validator->addError("password2", "Passwords must match");
     }
 }
 
@@ -66,15 +62,7 @@ $all_fields_empty =
     strlen($password1) == 0 &&
     strlen($password2) == 0;
 
-$exists_error = false;
-foreach ($errors as $_ => $recorded_errors) {
-    if (sizeof($recorded_errors) > 0) { 
-        $exists_error = true; 
-        break;
-    }
-} 
-
-if (!$all_fields_empty && !$exists_error) {
+if (!$all_fields_empty && !$validator->hasErrors()) {
     header("Location: ../html/index.html");
 }
 
@@ -83,18 +71,13 @@ if (!$all_fields_empty && !$exists_error) {
 <html lang="en">
     <head>
         <title>Register for PulseWire</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- <script src="../js/field_error_handling.js" defer></script> -->
         <!-- <script src="../js/register_form_validation.js" defer></script> -->
-        <script src="../js/side_menu.js" defer></script>
 
-        <link rel="icon" type="image/x-icon" href="../src/favicon.ico">
         <link rel="stylesheet" href="../css/form.css">
 
-        <link rel="stylesheet" href="../css/header.css">
-        <link rel="stylesheet" href="../css/common.css">
+        <?php include("../html/metadata.html") ?>
     </head>
     <body>
 
@@ -138,12 +121,13 @@ if (!$all_fields_empty && !$exists_error) {
                         >
                             <?php
                                 if(!$all_fields_empty) echo "The server has denied your request because of the following reasons<hr>";
-                                foreach($errors as $field => $recorded_errors) {
-                                    foreach($recorded_errors as $i => $error_message) {
-                                        if($field == "password2" && $i == sizeof($recorded_errors)-1) echo $error_message;
-                                        else echo $error_message."<br>";
-                                    }
-                                }
+                                // foreach($errors as $field => $recorded_errors) {
+                                //     foreach($recorded_errors as $i => $error_message) {
+                                //         if($field == "password2" && $i == sizeof($recorded_errors)-1) echo $error_message;
+                                //         else echo $error_message."<br>";
+                                //     }
+                                // }
+                                $validator->formatMessages();
                             ?>
                         </span>
                         <input class="submitButton" type="submit" value="Register" name="submit">
