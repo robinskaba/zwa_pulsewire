@@ -37,8 +37,8 @@ username_field.addEventListener("blur", username_length_check);
 
 // first and second name checks
 let required_fields = {
-    "First Name": document.querySelector("#first_name"),
-    "Second Name": document.querySelector("#second_name")
+    "First name": document.querySelector("#first_name"),
+    "Second name": document.querySelector("#second_name")
 }
 error_handler.on_blur_check_required(required_fields);
 
