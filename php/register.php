@@ -1,70 +1,23 @@
 <?php 
 
-$username = "";
-$first_name = "";
-$second_name = "";
-$password1 = "";
-$password2 = "";
+require "validator.php";
+$validator = new Validator();
 
-require "form_validator.php";
-$validator = new Validator(array("username", "first_name", "second_name", "password1", "password2"));
+$username = $validator->getFromPOST("username");
+$first_name = $validator->getFromPOST("first_name");
+$second_name = $validator->getFromPOST("second_name");
+$password1 = $validator->getFromPOST("password1");
+$password2 = $validator->getFromPOST("password2");
 
-if (isset($_POST["username"])) {
-    $username = $_POST["username"];
-    if (strlen($username) < 4) {
-        $validator->addError("username", "Username must be at least 4 characters");
-    }
-    $illegal_chars = array('@', '&', ',', '!', '#', '$', '%', '^', '*', '(', ')', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', "'", '"', '<', '>', '?', '/', '~', '`', ',');
+$validator->checkLength(4, "username", "Username");
+$validator->checkIllegalChars("username", "Username");
+$validator->checkEmpty("first_name", "First name");
+$validator->checkEmpty("second_name", "Second name");
+$validator->checkLength(8, "password1", "Password");
+$validator->checkContainsNumber("password1", "Password");
+$validator->checkMatch($password1, "password2", "Passwords");
 
-    if (!ctype_alnum($username)) {
-        $validator->addError("username", "Username can only contain letters and numbers");
-    }
-}
-if (isset($_POST["first_name"])) {
-    $first_name = $_POST["first_name"];
-    if (strlen($first_name) < 1) {
-        $validator->addError("first_name", "First name can not be empty");
-    }
-}
-if (isset($_POST["second_name"])) {
-    $second_name = $_POST["second_name"];
-    if (strlen($second_name) < 4) {
-        $validator->addError("second_name", "Second name can not be empty");
-    }
-}
-if (isset($_POST["password1"])) {
-    $password1 = $_POST["password1"];
-    if (strlen($password1) < 8) {
-        $validator->addError("password1", "Password must be at least 8 characters long");
-    }
-
-    $has_number = false;
-    foreach(str_split($password1) as $char) {
-        if (is_numeric($char)) { 
-            $has_number = true; 
-            break;
-        }
-    }
-    
-    if (!$has_number) $validator->addError("password1", "Password must contain a number");
-}
-if (isset($_POST["password2"])) {
-    $password2 = $_POST["password2"];
-    if ($password1 != $password2) {
-        $validator->addError("password2", "Passwords must match");
-    }
-}
-
-$all_fields_empty =
-    strlen($username) == 0 &&
-    strlen($first_name) == 0 &&
-    strlen($second_name) == 0 &&
-    strlen($password1) == 0 &&
-    strlen($password2) == 0;
-
-if (!$all_fields_empty && !$validator->hasErrors()) {
-    header("Location: ../html/index.html");
-}
+if ($validator->success()) header("Location: ../html/index.html");
 
 ?>
 
@@ -72,8 +25,8 @@ if (!$all_fields_empty && !$validator->hasErrors()) {
     <head>
         <title>Register for PulseWire</title>
         
-        <!-- <script src="../js/field_error_handling.js" defer></script> -->
-        <!-- <script src="../js/register_form_validation.js" defer></script> -->
+        <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/register_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../css/form.css">
 
@@ -114,16 +67,7 @@ if (!$all_fields_empty && !$validator->hasErrors()) {
                         <label>Password again *
                             <input type="password" name="password2" placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password2) ?>">
                         </label>
-                        <span id="error-hint"
-                            <?php 
-                                if($all_fields_empty) echo "class=hidden";
-                            ?> 
-                        >
-                            <?php
-                                if(!$all_fields_empty) echo "The server has denied your request because of the following reasons<hr>";
-                                $validator->formatMessages();
-                            ?>
-                        </span>
+                        <?= $validator->displayErrors() ?>
                         <input class="submitButton" type="submit" value="Register" name="submit">
                     </form>
                 </div>
