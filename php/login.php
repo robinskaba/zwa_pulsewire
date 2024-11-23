@@ -1,31 +1,18 @@
 <?php
 
-require_once "form_validator.php";
-$validator = new Validator(["username", "password"]);
+// TODO musim to vubec validovat?? vzdyt to je login
+require_once "validator.php";
+$validator = new Validator();
 
-$username = "";
-$password = "";
+$username = $validator->getFromPOST("username");
+$password = $validator->getFromPOST("password");
 
-if (isset($_POST["username"])) {
-    $username = $_POST["username"];
+$validator->checkLength(4, "username", "Username");
+$validator->checkIllegalChars("username", "Username");
+$validator->checkLength(8, "password", "Password");
+$validator->checkContainsNumber("password", "Password");
 
-    if(strlen($username) < 4) {
-        $validator->addError("username", "Username can not be shorter than 4 characters");
-    }
-}
-
-if (isset($_POST["password"])) {
-    $password = $_POST["password"];
-
-    if(strlen($password) < 1) {
-        $validator->addError("password", "Password can not be empty");
-    }
-}
-
-$all_fields_empty = strlen($username) == 0 && strlen($password) == 0;
-if(!$all_fields_empty && !$validator->hasErrors()) {
-    header("Location: ../html/index.html");
-}
+if($validator->success()) header("Location: ../html/index.html");
 
 ?>
 
@@ -63,16 +50,7 @@ if(!$all_fields_empty && !$validator->hasErrors()) {
                         <label>Password *
                             <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>">
                         </label>
-                        <span id="error-hint"
-                            <?php 
-                                if($all_fields_empty) echo "class=hidden";
-                            ?> 
-                        >
-                            <?php
-                                if(!$all_fields_empty) echo "The server has denied your request because of the following reasons<hr>";
-                                $validator->formatMessages();
-                            ?>
-                        </span>
+                        <?= $validator->displayErrors() ?>
                         <input class="submitButton" type="submit" value="Log in" name="submit">
                     </form>
                 </div>
