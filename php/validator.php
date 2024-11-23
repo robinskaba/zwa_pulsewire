@@ -12,14 +12,16 @@ class Validator {
         return FALSE;
     }
 
-    // public function formatMessages() {
-    //     foreach($this->errors as $field => $recorded_errors) {
-    //         foreach($recorded_errors as $i => $error_message) {
-    //             if($field == "password2" && $i == sizeof($recorded_errors)-1) echo $error_message;
-    //             else echo $error_message."<br>";
-    //         }
-    //     }
-    // }
+    public function errorClass($key) {
+        if (isset($this->errors[$key])) {
+            $recorded_errors = $this->errors[$key];
+            if (sizeof($recorded_errors) > 0) {
+                echo "error";
+                return;
+            } 
+        }
+        echo "";
+    }
 
     public function displayErrors() {
         $message = "The server has denied your request because of the following reasons<hr>";
@@ -33,6 +35,11 @@ class Validator {
         $class = $this->all_empty ? "hidden" : "";
 
         echo "<span id=error-hint class=".$class.">".$message."</span>";
+    }
+
+    public function addPlaceholder(string $key) {
+        // for general messages like - wrong login credentials - #CHECKUSED remove if unused
+        $this->errors[$key][] = array();
     }
 
     public function addError(string $field, string $message) {
@@ -97,6 +104,7 @@ class Validator {
 
     public function checkMatch(string $targetContent, string $request_key, string $message_prefix) {
         if (!isset($_POST[$request_key])) return;
+
         if ($targetContent != $_POST[$request_key]) {
             $this->addError($request_key, $message_prefix." must match");
         }

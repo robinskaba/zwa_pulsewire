@@ -25,8 +25,8 @@ if ($validator->success()) header("Location: ../html/index.html");
     <head>
         <title>Register for PulseWire</title>
         
-        <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/register_form_validation.js" defer></script>
+        <!-- <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/register_form_validation.js" defer></script> -->
 
         <link rel="stylesheet" href="../css/form.css">
 
@@ -49,23 +49,23 @@ if ($validator->success()) header("Location: ../html/index.html");
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>Username *
-                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>">
+                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
                         </label>
                         
                         <div>
                             <label>First Name *
-                                <input type="text" name="first_name" placeholder="First Name" id="first_name" value="<?= htmlspecialchars($first_name) ?>">
+                                <input type="text" name="first_name" placeholder="First Name" id="first_name" value="<?= htmlspecialchars($first_name) ?>" class=<?php $validator->errorClass("first_name") ?>>
                             </label>
                             
                             <label>Second Name *
-                                <input type="text" name="second_name" placeholder="Second Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>">
+                                <input type="text" name="second_name" placeholder="Second Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>" class=<?php $validator->errorClass("second_name") ?>>
                             </label>
                         </div>
                         <label>Password *
-                            <input type="password" name="password1" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password1) ?>">
+                            <input type="password" name="password1" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password1) ?>" class=<?php $validator->errorClass("password1") ?>>
                         </label>
                         <label>Password again *
-                            <input type="password" name="password2" placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password2) ?>">
+                            <input type="password" name="password2" placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password2) ?>" class=<?php $validator->errorClass("password2") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
                         <input class="submitButton" type="submit" value="Register" name="submit">

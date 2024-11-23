@@ -42,14 +42,14 @@ if ($validator->success()) header("Location: ../html/article.html");
                     <span id="required-fields-hint">* marked fields are required</span>
 
                     <label for="article-title">Title *</label>
-                    <textarea name="article-title" id="article-title" rows="1"><?= htmlspecialchars($title) ?></textarea>
+                    <textarea name="article-title" id="article-title" rows="1" class=<?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title) ?></textarea>
                     <label for="article-summary">Summary *</label>
-                    <textarea name="article-summary" id="article-summary" rows="3"><?= htmlspecialchars($summary) ?></textarea>
+                    <textarea name="article-summary" id="article-summary" rows="3" class=<?php $validator->errorClass("article-summary") ?>><?= htmlspecialchars($summary) ?></textarea>
                     <label for="article-body">Content *</label>
-                    <textarea name="article-body" id="article-body" rows="10"><?= htmlspecialchars($body) ?></textarea>
+                    <textarea name="article-body" id="article-body" rows="10" class=<?php $validator->errorClass("article-body") ?>><?= htmlspecialchars($body) ?></textarea>
                     
                     <label for="article-image" id="image-upload">Upload header image *
-                        <input type="file" name="article-image" id="article-image" accept="image/*">
+                        <input type="file" name="article-image" id="article-image" accept="image/*" class=<?php $validator->errorClass("article-image") ?>>
                     </label>
 
                     <?php $validator->displayErrors() ?>

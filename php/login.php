@@ -1,16 +1,13 @@
 <?php
 
-// TODO musim to vubec validovat?? vzdyt to je login
 require_once "validator.php";
 $validator = new Validator();
 
 $username = $validator->getFromPOST("username");
 $password = $validator->getFromPOST("password");
 
-$validator->checkLength(4, "username", "Username");
-$validator->checkIllegalChars("username", "Username");
-$validator->checkLength(8, "password", "Password");
-$validator->checkContainsNumber("password", "Password");
+$validator->checkEmpty("username", "Username");
+$validator->checkEmpty("password", "Password");
 
 if($validator->success()) header("Location: ../html/index.html");
 
@@ -21,9 +18,8 @@ if($validator->success()) header("Location: ../html/index.html");
     <head>
         <title>Log in to PulseWire</title>
         
-        <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/login_form_validation.js" defer></script>
-        
+        <!-- <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/login_form_validation.js" defer></script> -->
 
         <link rel="stylesheet" href="../css/form.css">
 
@@ -45,10 +41,10 @@ if($validator->success()) header("Location: ../html/index.html");
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>Username *
-                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>">
+                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
                         </label>
                         <label>Password *
-                            <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>">
+                            <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>" class=<?php $validator->errorClass("password") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
                         <input class="submitButton" type="submit" value="Log in" name="submit">
