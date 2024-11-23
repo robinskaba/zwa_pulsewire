@@ -24,6 +24,8 @@ class Database {
 
         $id = uniqid("articleId", true);
 
+        // TODO save header image
+
         $article_array = [
             "title"=>$title,
             "summary"=>$summary,
@@ -68,6 +70,40 @@ class Database {
 
         $comments[$id] = $comment_array;
 
+        $this->setFileContent("comments.json", $comments);
+    }
+
+    // EDITING DATA STRUCTURES
+
+    public function editComment(string $commentId, string $newContent) {
+        $comments = $this->getFileContent("comments.json");
+
+        if (!isset($comments[$commentId])) return;
+        $comments[$commentId]["content"] = $newContent;
+
+        $this->setFileContent("comments.json", $comments);
+    }
+
+    public function changeUserRole(string $username, string $newRole) {
+        $users = $this->getFileContent("users.json");
+
+        if (!isset($users[$username])) return;
+        $users[$username]["role"] = $newRole;
+
+        $this->setFileContent("users.json", $users);
+    }
+
+    // DETELE DATA STRUCTURES
+
+    public function removeArticle(string $articleId) {
+        $articles = $this->getFileContent("articles.json");
+        unset($articles[$articleId]);
+        $this->setFileContent("articles.json", $articles);
+    }
+
+    public function removeComment(string $commentId) {
+        $comments = $this->getFileContent("comments.json");
+        unset($comments[$commentId]);
         $this->setFileContent("comments.json", $comments);
     }
 }
