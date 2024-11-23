@@ -13,8 +13,14 @@ $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
 
 // TODO redirect na stranku s novym clankem
-if ($validator->success()) header("Location: ../html/article.html");
-    // TODO zapsani do databaze
+if ($validator->success()) {
+    header("Location: ../html/article.html");
+
+    require_once "database.php";
+    $db = new Database();
+    $db->addArticle($title, $summary, $body);
+    // TODO naucit se ukladat ten obrazek
+}
     
 ?>
 
@@ -40,6 +46,8 @@ if ($validator->success()) header("Location: ../html/article.html");
                 <h2>Create an article</h2>
                 <form action="write.php" method="POST" enctype="multipart/form-data">
                     <span id="required-fields-hint">* marked fields are required</span>
+
+                    <!-- TODO pridat vyber kategorie -->
 
                     <label for="article-title">Title *</label>
                     <textarea name="article-title" id="article-title" rows="1" class=<?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title) ?></textarea>
