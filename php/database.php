@@ -192,19 +192,32 @@ class Database {
         return $comments;
     }
 
+    private function buildArticleObject(string $id, array $data): Article {
+        return new Article(
+            $id,
+            $data["title"],
+            $data["summary"],
+            $data["body"],
+            $data["category"],
+            $data["publish_date"],
+            $data["comments"]
+        );
+    }
+
     public function getArticle(string $id): Article {
         $articles = $this->getFileContent("articles.json");
         if(!isset($articles[$id])) return null;
         
-        return new Article(
-            $id,
-            $articles[$id]["title"],
-            $articles[$id]["summary"],
-            $articles[$id]["body"],
-            $articles[$id]["category"],
-            $articles[$id]["publish_date"],
-            $articles[$id]["comments"]
-        );
+        return $this->buildArticleObject($id, $articles[$id]);
+    }
+
+    public function getArticlesOfCategory(string $category): array {
+        $matching_articles = [];
+        $articles = $this->getFileContent("articles.json");
+        foreach($articles as $id => $data) {
+            if ($data["category"] == $category) $matching_articles[] = $this->buildArticleObject($id, $data);
+        }
+        return $matching_articles;
     }
 }
 
