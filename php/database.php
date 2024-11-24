@@ -21,12 +21,14 @@ class Comment {
 }
 
 class Article {
-    public function __construct(string $title, string $summary, string $body, string $category, array $comments) {
+    public function __construct(string $id, string $title, string $summary, string $body, string $category, string $publish_date, array $comments) {
+        $this->id = $id;
         $this->title = $title;
         $this->summary = $summary;
         $this->body = $body;
         // TODO image
         $this->category = $category;
+        $this->publish_date = $publish_date;
         $this->comments = $comments;
     }
 }
@@ -49,7 +51,7 @@ class Database {
 
     // CREATING MAIN DATA STRUCTURES
 
-    public function addArticle(string $title, string $summary, string $body) {
+    public function addArticle(string $title, string $summary, string $body): string {
         $articles = $this->getFileContent("articles.json");
 
         $id = uniqid("articleId", true);
@@ -68,6 +70,8 @@ class Database {
         $articles[$id] = $article_array;
 
         $this->setFileContent("articles.json", $articles);
+
+        return $id;
     }
 
     public function addUser(string $username, string $first_name, string $second_name, string $password) {
@@ -78,7 +82,7 @@ class Database {
             "second_name"=>$summary,
             "password"=>$password, // TODO hashing
             "role"=>"default",
-            "comments"=>[]
+            "comments"=>array()
         ];
 
         $users[$username] = $user_array;
@@ -189,13 +193,14 @@ class Database {
     public function getArticle(string $id): Article {
         $articles = $this->getFileContent("articles.json");
         if(!isset($articles[$id])) return null;
-
+        
         return new Article(
             $id,
             $articles[$id]["title"],
             $articles[$id]["summary"],
             $articles[$id]["body"],
             $articles[$id]["category"],
+            $articles[$id]["publish_date"],
             $articles[$id]["comments"]
         );
     }

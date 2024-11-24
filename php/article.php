@@ -8,7 +8,7 @@ if(isset($_GET["id"])) $articleId = $_GET["id"];
 if(!$articleId || !$db->articleExists($articleId)) {
     header("Location: page_not_found.php");
 } else {
-    $article = $db->getArticle($article);
+    $article = $db->getArticle($articleId);
 }
 
 ?>

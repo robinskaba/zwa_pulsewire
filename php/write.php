@@ -14,11 +14,12 @@ $validator->checkEmpty("article-body", "Content");
 
 // TODO redirect na stranku s novym clankem
 if ($validator->success()) {
-    header("Location: ../html/article.html");
-
     require_once "database.php";
     $db = new Database();
-    $db->addArticle($title, $summary, $body);
+    $id = $db->addArticle($title, $summary, $body);
+
+    header("Location: ../php/article.php?id=".$id);
+
     // TODO naucit se ukladat ten obrazek
 }
     
