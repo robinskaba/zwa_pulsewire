@@ -26,11 +26,11 @@
 
         <main>
             <div class="inner-content">   
-                <h2><?= htmlspecialchars($username) ?>'s profile</h2>
+                <h2><?= htmlspecialchars($username, true) ?>'s profile</h2>
                 <h4>Profile information</h4>
                 <div class="profile-information">
-                    <span><span>First name: </span><?= htmlspecialchars($user->first_name) ?></span>
-                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name) ?></span>
+                    <span><span>First name: </span><?= htmlspecialchars($user->first_name, true) ?></span>
+                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name, true) ?></span>
                 </div>
                 <hr>
                 <h4>Posted comments</h4>

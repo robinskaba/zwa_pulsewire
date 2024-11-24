@@ -21,11 +21,12 @@ class Comment {
 }
 
 class Article {
-    public function __construct(string $title, string $summary, string $body, array $comments) {
+    public function __construct(string $title, string $summary, string $body, string $category, array $comments) {
         $this->title = $title;
         $this->summary = $summary;
         $this->body = $body;
         // TODO image
+        $this->category = $category;
         $this->comments = $comments;
     }
 }
@@ -144,15 +145,13 @@ class Database {
         return false;
     }
 
+    public function articleExists(string $id): bool {
+        $articles = $this->getFileContent("articles.json");
+        if (isset($articles[$id])) return true;
+        return false;
+    }
+
     // GET FUNCTIONS
-
-    // public function getNamesOfUser(string $username): array {
-    //     $users = $this->getFileContent("users.json");
-    //     if (!isset($users[$username])) return ["UNKNOWN USER", "UNKNOWN USER"];
-    //     $user = $users[$username];
-
-    //     return [$user["first_name"], $user["second_name"]];
-    // }
 
     public function getUser(string $username): User {
         $users = $this->getFileContent("users.json");
@@ -196,6 +195,7 @@ class Database {
             $articles[$id]["title"],
             $articles[$id]["summary"],
             $articles[$id]["body"],
+            $articles[$id]["category"],
             $articles[$id]["comments"]
         );
     }
