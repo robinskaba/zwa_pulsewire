@@ -1,6 +1,6 @@
 <?php 
 
-require "validator.php";
+require_once "validator.php";
 $validator = new Validator();
 
 $username = $validator->getFromPOST("username");
@@ -11,6 +11,7 @@ $password2 = $validator->getFromPOST("password2");
 
 $validator->checkLength(4, "username", "Username");
 $validator->checkIllegalChars("username", "Username");
+$validator->checkUserExists("username");
 $validator->checkEmpty("first_name", "First name");
 $validator->checkEmpty("second_name", "Second name");
 $validator->checkLength(8, "password1", "Password");
@@ -31,8 +32,8 @@ if ($validator->success()) {
     <head>
         <title>Register for PulseWire</title>
         
-        <!-- <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/register_form_validation.js" defer></script> -->
+        <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/register_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../css/form.css">
 

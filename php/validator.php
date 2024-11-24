@@ -109,6 +109,14 @@ class Validator {
             $this->addError($request_key, $message_prefix." must match");
         }
     }
+
+    public function checkUserExists(string $request_key) {
+        if (!isset($_POST[$request_key])) return;
+
+        require_once "database.php";
+        $db = new Database();
+        if($db->userExists($_POST[$request_key])) $this->addError($request_key, "Username is already taken");
+    }
 }
 
 ?>

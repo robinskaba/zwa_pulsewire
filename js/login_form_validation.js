@@ -1,7 +1,8 @@
-let form = document.querySelector("form");
-
 var error_handler = new error_handler();
 
+let form = document.querySelector("form");
+
+// ENFORCING REQUIRED FIELDS
 let required_fields = {
     "Username": form.querySelector("input[name=username]"),
     "Password": form.querySelector("input[name=password]")
@@ -16,5 +17,5 @@ function check_on_submit(ev) {
     if (error_handler.has_issues()) {
         ev.preventDefault();
     }
-  }
+}
 form.addEventListener("submit", check_on_submit);

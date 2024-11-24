@@ -18,8 +18,8 @@ if($validator->success()) header("Location: ../html/index.html");
     <head>
         <title>Log in to PulseWire</title>
         
-        <!-- <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/login_form_validation.js" defer></script> -->
+        <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/login_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../css/form.css">
 

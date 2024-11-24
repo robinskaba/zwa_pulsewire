@@ -35,6 +35,26 @@ function illegal_char_check() {
 username_field.addEventListener("input", illegal_char_check);
 username_field.addEventListener("blur", username_length_check);
 
+// CHECKING IF USERNAME IS AVAILABLE WITH AJAX
+const USERNAME_USED_MESSAGE = "This username is already taken";
+function handleResponse(ev) {
+    let response = ev.target;
+    let content = response.responseText;
+
+    error_handler.run_issue(content == "true", USERNAME_USED_MESSAGE);
+    error_handler.errorify_element(username_field, USERNAME_USED_MESSAGE);
+    error_handler.process_hint_messages();
+}
+function requestUsernameAvailable(ev) {
+    if(username_field.value.length < 1) return;
+
+    let request = new XMLHttpRequest();
+    request.open("GET", "../php/exists_username.php?username="+username_field.value, true);
+    request.addEventListener("load", handleResponse);
+    request.send();
+}
+username_field.addEventListener("blur", requestUsernameAvailable);
+
 // first and second name checks
 let required_fields = {
     "First name": document.querySelector("#first_name"),
