@@ -17,7 +17,13 @@ $validator->checkLength(8, "password1", "Password");
 $validator->checkContainsNumber("password1", "Password");
 $validator->checkMatch($password1, "password2", "Passwords");
 
-if ($validator->success()) header("Location: ../html/index.html");
+if ($validator->success()) {
+    require_once "database.php";
+    $db = new Database();
+    $db->addUser($username, $first_name, $second_name, $password1);
+
+    header("Location: ../php/profile.php?username=".$username);
+}
 
 ?>
 

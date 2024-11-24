@@ -78,8 +78,8 @@ class Database {
         $users = $this->getFileContent("users.json");
 
         $user_array = [
-            "first_name"=>$title,
-            "second_name"=>$summary,
+            "first_name"=>$first_name,
+            "second_name"=>$second_name,
             "password"=>$password, // TODO hashing
             "role"=>"default",
             "comments"=>array()
@@ -90,7 +90,7 @@ class Database {
         $this->setFileContent("users.json", $users);
     }
 
-    public function addComment(string $author, string $articleId, string $content) {
+    public function addComment(string $author, string $articleId, string $content): string {
         $comments = $this->getFileContent("comments.json");
 
         $id = uniqid("commentId", true);
@@ -105,6 +105,8 @@ class Database {
         $comments[$id] = $comment_array;
 
         $this->setFileContent("comments.json", $comments);
+
+        return $id;
     }
 
     // EDITING DATA STRUCTURES
