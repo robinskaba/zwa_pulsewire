@@ -1,17 +1,21 @@
 <?php 
+    require_once "database.php";
+    $db = new Database();
+
     $username = NULL;
     if (isset($_GET["username"])) $username = $_GET["username"];
-    if(!$username) {
+    if(!$username || !$db->userExists($username)) {
         header("Location: page_not_found.php");
+    } else {
+        $user = $db->getUser($username);
     }
-
-    // TODO redirect to page not found when user not in database
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>User's profile</title>
+        <!-- TODO htmlspecialchars for title?? -->
+        <title><?= htmlspecialchars($username) ?>'s profile</title>
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/comments.css">
 
@@ -25,8 +29,8 @@
                 <h2><?= htmlspecialchars($username) ?>'s profile</h2>
                 <h4>Profile information</h4>
                 <div class="profile-information">
-                    <span><span>First name: </span>xxxxxxxxxxx</span>
-                    <span><span>Second name: </span>xxxxxxxxxxx</span>
+                    <span><span>First name: </span><?= htmlspecialchars($user->first_name) ?></span>
+                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name) ?></span>
                 </div>
                 <hr>
                 <h4>Posted comments</h4>
