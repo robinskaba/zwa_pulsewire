@@ -77,11 +77,11 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         <?php foreach($comments as $comment): ?>
                         <div class="comment">
                             <div class="so cv">
+                                <?php $author = $db->getUser($comment->author); ?>
                                 <h6>
-                                    <?php
-                                        $author = $db->getUser($comment->author);
-                                        echo htmlspecialchars($author->first_name." ".$author->second_name);
-                                    ?>
+                                    <a href="profile.php?username=<?= htmlspecialchars($author->username) ?>">
+                                        <?= htmlspecialchars($author->first_name." ".$author->second_name); ?>
+                                    </a>
                                 </h6>
                                 <div class="comment-buttons">
                                     <img src="../src/delete_16x16.png" alt="delete comment button" class="delete-button">
