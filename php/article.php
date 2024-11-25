@@ -9,6 +9,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
     header("Location: page_not_found.php");
 } else {
     $article = $db->getArticle($articleId);
+    $comments = $db->getCommentsFromIds($article->comments);
 }
 
 ?>
@@ -73,49 +74,24 @@ if(!$articleId || !$db->articleExists($articleId)) {
                     <h4>Comments</h4>
 
                     <div class="comment-list">
+                        <?php foreach($comments as $comment): ?>
                         <div class="comment">
                             <div class="so cv">
-                                <h6>Username</h6>
+                                <h6>
+                                    <?php
+                                        $author = $db->getUser($comment->author);
+                                        echo htmlspecialchars($author->first_name." ".$author->second_name);
+                                    ?>
+                                </h6>
                                 <div class="comment-buttons">
                                     <img src="../src/delete_16x16.png" alt="delete comment button" class="delete-button">
                                     <img src="../src/edit_16x16.png" alt="edit comment button" class="edit-button">
                                 </div> 
                             </div>
-                            <span>Datum publikování</span>
-                            <p>
-                                Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                                Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                                Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                                Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                                Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                            </p>
+                            <span><?= $comment->publish_date ?></span>
+                            <p><?= htmlspecialchars($comment->content, true) ?></p>
                         </div>
-                        <div class="comment">
-                            <div class="so cv">
-                                <h6>Username</h6>
-                                <div class="comment-buttons">
-                                    <img src="../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                    <img src="../src/edit_16x16.png" alt="edit comment button" class="edit-button">
-                                </div> 
-                            </div>
-                            <span>Datum publikování</span>
-                            <p>
-                                Komentar o clanku. Velmi užitečný. řčěáýá+šě+éíáščé.
-                            </p>
-                        </div>
-                        <div class="comment">
-                            <div class="so cv">
-                                <h6>Username</h6>
-                                <div class="comment-buttons">
-                                    <img src="../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                    <img src="../src/edit_16x16.png" alt="edit comment button" class="edit-button">
-                                </div> 
-                            </div>
-                            <span>Datum publikování</span>
-                            <p>
-                                Lorem Ipsum Haha Joe biden
-                            </p>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
