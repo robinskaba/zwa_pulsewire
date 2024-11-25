@@ -41,7 +41,7 @@
                         <?php
                             $parent_article = $db->getArticle($comment->articleId);
                         ?>
-                        <h5><a href="#idKomentareNaStranceClanku"><?= htmlspecialchars($parent_article->title, true) ?></a></h5>
+                        <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, true) ?></a></h5>
                         <span><?= $comment->publish_date ?></span>
                         <p><?= htmlspecialchars($comment->content, true) ?></p>
                     </div>
