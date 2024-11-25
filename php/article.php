@@ -79,8 +79,8 @@ if(!$articleId || !$db->articleExists($articleId)) {
                             <div class="so cv">
                                 <?php $author = $db->getUser($comment->author); ?>
                                 <h6>
-                                    <a href="profile.php?username=<?= htmlspecialchars($author->username) ?>">
-                                        <?= htmlspecialchars($author->first_name." ".$author->second_name); ?>
+                                    <a href="profile.php?username=<?= htmlspecialchars($author->usernam, true) ?>">
+                                        <?= htmlspecialchars($author->first_name." ".$author->second_name, true); ?>
                                     </a>
                                 </h6>
                                 <div class="comment-buttons">
