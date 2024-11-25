@@ -8,6 +8,7 @@
         header("Location: page_not_found.php");
     } else {
         $user = $db->getUser($username);
+        $comments = $db->getCommentsFromIds($user->comments);
     }
 ?>
 
@@ -35,16 +36,16 @@
                 <hr>
                 <h4>Posted comments</h4>
                 <div class="comment-list">
+                    <?php foreach($comments as $comment): ?>
                     <div class="comment">
-                        <h5><a href="#idKomentareNaStranceClanku">Title of article</a></h5>
-                        <span>Datum publikování</span>
-                        <p>
-                            Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                            Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                            Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                            Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře Obsah komentáře 
-                        </p>
+                        <?php
+                            $parent_article = $db->getArticle($comment->articleId);
+                        ?>
+                        <h5><a href="#idKomentareNaStranceClanku"><?= htmlspecialchars($parent_article->title, true) ?></a></h5>
+                        <span><?= $comment->publish_date ?></span>
+                        <p><?= htmlspecialchars($comment->content, true) ?></p>
                     </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
