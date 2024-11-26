@@ -11,7 +11,7 @@ if(!in_array($category, $categories)) header("Location: page_not_found.php");
 
 require_once "database.php";
 $db = new Database();
-$category = ucfirst($category); // i assume categories will be saved with first letter uppercase
+$category = ucfirst($category);
 $articles = $db->getArticlesOfCategory($category);
 
 ?>
@@ -27,7 +27,7 @@ $articles = $db->getArticlesOfCategory($category);
         <?php include "../html/metadata.html" ?>
     </head>
     <body>
-        <?php include "../html/header.html" ?>
+        <?php include "header.php" ?>
 
         <main>
             <div class="inner-content">

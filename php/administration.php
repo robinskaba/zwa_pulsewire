@@ -17,7 +17,7 @@ $users = $db->getUsers();
     </head>
 
     <body>
-        <?php include "../html/header.html" ?>
+        <?php include "header.php" ?>
 
         <main>
             <div class="inner-content">

@@ -105,7 +105,7 @@ class Database {
             "first_name"=>$first_name,
             "second_name"=>$second_name,
             "password"=>$password, // TODO hashing
-            "role"=>"default",
+            "role"=>"user",
             "comments"=>array()
         ];
 

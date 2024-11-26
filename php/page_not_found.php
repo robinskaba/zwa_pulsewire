@@ -6,7 +6,7 @@
         <?php include("../html/metadata.html") ?>
     </head>
     <body>
-        <?php include("../html/header.html") ?>
+        <?php include "header.php" ?>
 
         <main>
             <div class="inner-content">
