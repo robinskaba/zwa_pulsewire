@@ -1,11 +1,12 @@
 <?php
 
 class User {
-    public function __construct(string $username, string $first_name, string $second_name, string $password, array $comments) {
+    public function __construct(string $username, string $first_name, string $second_name, string $password, string $role, array $comments) {
         $this->username = $username;
         $this->first_name = $first_name;
         $this->second_name = $second_name;
         $this->password = $password;
+        $this->role = $role;
         $this->comments = $comments;
     }
 }
@@ -47,6 +48,29 @@ class Database {
         $path = $this->file_folder_path.$relative_path;
         $encoded_json = json_encode($content);
         file_put_contents($path, $encoded_json);
+    }
+
+    private function buildArticleObject(string $id, array $data): Article {
+        return new Article(
+            $id,
+            $data["title"],
+            $data["summary"],
+            $data["body"],
+            $data["category"],
+            $data["publish_date"],
+            $data["comments"]
+        );
+    }
+
+    private function buildUserObject(string $username, array $data): User {
+        return new User(
+            $username,
+            $data["first_name"],
+            $data["second_name"],
+            $data["password"],
+            $data["role"],
+            $data["comments"]
+        );
     }
 
     // CREATING MAIN DATA STRUCTURES
@@ -162,15 +186,16 @@ class Database {
     public function getUser(string $username): User {
         $users = $this->getFileContent("users.json");
         if (!isset($users[$username])) return null;
-        $user = new User(
-            $username,
-            $users[$username]["first_name"],
-            $users[$username]["second_name"],
-            $users[$username]["password"],
-            $users[$username]["comments"]
-        );
+        return $this->buildUserObject($username, $users[$username]);
+    }
 
-        return $user;
+    public function getUsers(): array {
+        $usersFile = $this->getFileContent("users.json");
+        $users = array();
+        foreach($usersFile as $username => $data) {
+            $users[] = $this->buildUserObject($username, $data);
+        }
+        return $users;
     }
 
     public function getCommentsFromIds(array $commentIds): array {
@@ -190,18 +215,6 @@ class Database {
         }
 
         return $comments;
-    }
-
-    private function buildArticleObject(string $id, array $data): Article {
-        return new Article(
-            $id,
-            $data["title"],
-            $data["summary"],
-            $data["body"],
-            $data["category"],
-            $data["publish_date"],
-            $data["comments"]
-        );
     }
 
     public function getArticle(string $id): Article {
