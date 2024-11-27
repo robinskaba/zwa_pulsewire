@@ -62,9 +62,17 @@
                     <label for="article-body">Content *</label>
                     <textarea name="article-body" id="article-body" rows="10"></textarea>
                     
-                    <label for="article-image" id="image-upload">Upload header image *
-                        <input type="file" name="article-image" id="article-image" accept="image/*">
-                    </label>
+                    <div>
+                        <label for="article-category">Category *</label>
+                        <select name="article-category" id="article-category">
+                            <option value="weather">Weather</option>
+                            <option value="politics">Politics</option>
+                            <option value="economics">Economics</option>
+                        </select>
+                        <label id="image-upload">Upload header image *
+                            <input type="file" name="article-image" id="article-image" accept="image/*">
+                        </label>
+                    </div>
 
                     <span id="error-hint" class="hidden"></span>
 

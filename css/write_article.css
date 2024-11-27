@@ -2,7 +2,7 @@
     gap: 1em;
 }
 
-textarea, #image-upload, input {
+textarea, #image-upload, input, select, option {
     font-family: var(--primary-font-family);
 }
 
@@ -14,17 +14,19 @@ textarea, #image-upload, input {
     border-radius: 0;
 }
 input {
-    border: var(--thin-border-width) solid var(--primary-color);
     background-color: white;
     padding: 0.75em 0;
     color: var(--primary-color);
+}
+#image-upload {
+    flex-grow: 3;
 }
 #image-upload:hover, input:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-textarea, #image-upload {
+textarea, #image-upload, select, input {
     border-color: var(--primary-color);
     border-width: var(--thin-border-width);
     border-style: dashed;
@@ -56,4 +58,15 @@ textarea.error, #image-upload:has(.error) {
 #article-image {
     display: none;
 }
-
+select {
+    height: 100%;
+    padding: 0 0.5em;
+    color: var(--primary-color);
+}
+form > div {
+    justify-content: center;
+    gap: 1%;
+}
+form > div > label {
+    width: auto;
+}
