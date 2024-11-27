@@ -51,11 +51,11 @@ if ($validator->success()) {
                     <!-- TODO pridat vyber kategorie -->
 
                     <label for="article-title">Title *</label>
-                    <textarea name="article-title" id="article-title" rows="1" class=<?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title) ?></textarea>
+                    <textarea name="article-title" id="article-title" rows="1" class=<?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title, ENT_QUOTES) ?></textarea>
                     <label for="article-summary">Summary *</label>
-                    <textarea name="article-summary" id="article-summary" rows="3" class=<?php $validator->errorClass("article-summary") ?>><?= htmlspecialchars($summary) ?></textarea>
+                    <textarea name="article-summary" id="article-summary" rows="3" class=<?php $validator->errorClass("article-summary") ?>><?= htmlspecialchars($summary, ENT_QUOTES) ?></textarea>
                     <label for="article-body">Content *</label>
-                    <textarea name="article-body" id="article-body" rows="10" class=<?php $validator->errorClass("article-body") ?>><?= htmlspecialchars($body) ?></textarea>
+                    <textarea name="article-body" id="article-body" rows="10" class=<?php $validator->errorClass("article-body") ?>><?= htmlspecialchars($body, ENT_QUOTES) ?></textarea>
                     
                     <label for="article-image" id="image-upload">Upload header image *
                         <input type="file" name="article-image" id="article-image" accept="image/*" class=<?php $validator->errorClass("article-image") ?>>

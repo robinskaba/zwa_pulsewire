@@ -27,7 +27,7 @@ $users = $db->getUsers();
                 <div class="user-list">
                     <?php foreach($users as $user): ?>
                     <div>
-                        <a href="profile.html"><?= htmlspecialchars($user->username, true) ?></a>
+                        <a href="profile.html"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
                         <div>
                             <label class="cv">Select role: 
                                 <select>

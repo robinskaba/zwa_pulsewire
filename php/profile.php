@@ -16,7 +16,7 @@
 <html lang="en">
     <head>
         <!-- TODO htmlspecialchars for title?? -->
-        <title><?= htmlspecialchars($username) ?>'s profile</title>
+        <title><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</title>
         <link rel="stylesheet" href="../css/profile.css">
         <link rel="stylesheet" href="../css/comments.css">
 
@@ -30,8 +30,8 @@
                 <h2><?= htmlspecialchars($username, true) ?>'s profile</h2>
                 <h4>Profile information</h4>
                 <div class="profile-information">
-                    <span><span>First name: </span><?= htmlspecialchars($user->first_name, true) ?></span>
-                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name, true) ?></span>
+                    <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
+                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
                 </div>
                 <hr>
                 <h4>Posted comments</h4>
@@ -41,9 +41,9 @@
                         <?php
                             $parent_article = $db->getArticle($comment->articleId);
                         ?>
-                        <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, true) ?></a></h5>
+                        <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h5>
                         <span><?= $comment->publish_date ?></span>
-                        <p><?= htmlspecialchars($comment->content, true) ?></p>
+                        <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
                     </div>
                     <?php endforeach; ?>
                 </div>

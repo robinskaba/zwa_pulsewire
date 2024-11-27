@@ -18,7 +18,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
 
 <html lang="en">
     <head>
-        <title>PulseWire - <?= htmlspecialchars($article->title) ?></title>
+        <title>PulseWire - <?= htmlspecialchars($article->title, ENT_QUOTES) ?></title>
 
         <script src="../js/comments.js" defer></script>
 
@@ -42,7 +42,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         <div class="article-about">
                             <div class="so cv">
                                 <h2>
-                                    <?= htmlspecialchars($article->title, true); ?>
+                                    <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                                 </h2>
                                 <a href="">
                                     <img src="../src/delete_24x24.png" alt="delete comment button">
@@ -51,12 +51,12 @@ if(!$articleId || !$db->articleExists($articleId)) {
                             
                             <div class="so">
                                 <span class="date">Published at <?= $article->publish_date ?></span>
-                                <a class="category"><?= $article->category ?></a>
+                                <a class="category"><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
                             </div>
-                            <p><?= htmlspecialchars($article->summary, true) ?><p>
+                            <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?><p>
                         </div>
                     </div>
-                    <p><?= htmlspecialchars($article->body, true) ?></p>    
+                    <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
                 </div>
 
                 <hr>
@@ -79,8 +79,8 @@ if(!$articleId || !$db->articleExists($articleId)) {
                             <div class="so cv">
                                 <?php $author = $db->getUser($comment->author); ?>
                                 <h6>
-                                    <a href="profile.php?username=<?= htmlspecialchars($author->usernam) ?>">
-                                        <?= htmlspecialchars($author->first_name." ".$author->second_name, true); ?>
+                                    <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
+                                        <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                     </a>
                                 </h6>
                                 <div class="comment-buttons">
@@ -89,7 +89,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                 </div> 
                             </div>
                             <span><?= $comment->publish_date ?></span>
-                            <p><?= htmlspecialchars($comment->content, true) ?></p>
+                            <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
                         </div>
                         <?php endforeach; ?>
                     </div>

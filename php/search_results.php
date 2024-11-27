@@ -20,7 +20,7 @@ $articles = $db->getArticlesOfCategory($category);
 
 <html lang="en">
     <head>
-        <title>Articles: <?= $category ?></title>
+        <title>Articles: <?= htmlspecialchars($category, ENT_QUOTES) ?></title>
 
         <link rel="stylesheet" href="../css/search_results.css">
 
@@ -31,7 +31,7 @@ $articles = $db->getArticlesOfCategory($category);
 
         <main>
             <div class="inner-content">
-                <h3><?= $category ?> - articles</h3>
+                <h3><?= htmlspecialchars($category, ENT_QUOTES) ?> - articles</h3>
                 <hr>
                 <?php foreach($articles as $article): ?>
                 <a href="article.html">
@@ -39,10 +39,10 @@ $articles = $db->getArticlesOfCategory($category);
                     <img src="../src/search_result_small_template.jpg" alt="article name header image">
                     <div>
                         <div>
-                            <h6><?= $article->title ?></h6>
-                            <span><?= $article->publish_date ?></span>
+                            <h6><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h6>
+                            <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
                         </div>
-                        <p><?= $article->summary ?></p>
+                        <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     </div>
                 </a>
                 <hr>
