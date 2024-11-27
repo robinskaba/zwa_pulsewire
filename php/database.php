@@ -22,12 +22,21 @@ class Comment {
 }
 
 class Article {
-    public function __construct(string $id, string $title, string $summary, string $body, string $category, string $publish_date, array $comments) {
+    public function __construct(
+        string $id, 
+        string $title, 
+        string $summary, 
+        string $body, 
+        string $image_path,
+        string $category, 
+        string $publish_date, 
+        array $comments
+    ) {
         $this->id = $id;
         $this->title = $title;
         $this->summary = $summary;
         $this->body = $body;
-        // TODO image
+        $this->image_path = $image_path;
         $this->category = $category;
         $this->publish_date = $publish_date;
         $this->comments = $comments;
@@ -56,6 +65,7 @@ class Database {
             $data["title"],
             $data["summary"],
             $data["body"],
+            $data["image_path"],
             $data["category"],
             $data["publish_date"],
             $data["comments"]
@@ -73,9 +83,17 @@ class Database {
         );
     }
 
+    // IMAGES
+    public function saveImage(array $imageData) {
+        $target_path = $this->file_folder_path."images/".$imageData["name"];
+        $success = move_uploaded_file($imageData["tmp_name"], $target_path);
+        if(!$success) return $this->file_folder_path."images/not_found.jpg";
+        return $target_path;
+    }
+
     // CREATING MAIN DATA STRUCTURES
 
-    public function addArticle(string $title, string $summary, string $body): string {
+    public function addArticle(string $title, string $summary, string $body, string $image_path, string $category): string {
         $articles = $this->getFileContent("articles.json");
 
         $id = uniqid("articleId", true);
@@ -86,8 +104,9 @@ class Database {
             "title"=>$title,
             "summary"=>$summary,
             "body"=>$body,
+            "image_path"=>$image_path,
             "publish_date"=>date("d.m.Y"),
-            "category"=>"",
+            "category"=>$category,
             "comments"=>[]
         ];
 

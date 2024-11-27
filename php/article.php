@@ -36,7 +36,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 <div class="article">
                     <div>
                         <img
-                            src="../src/template_news_image.png" 
+                            src="<?= $article->image_path ?>" 
                             alt="popis titulniho obrazku"
                         >
                         <div class="article-about">

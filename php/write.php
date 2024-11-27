@@ -12,15 +12,13 @@ $validator->checkEmpty("article-title", "Title");
 $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
 
-// TODO redirect na stranku s novym clankem
 if ($validator->success()) {
     require_once "database.php";
     $db = new Database();
-    $id = $db->addArticle($title, $summary, $body);
-
+    $image_path = $db->saveImage($_FILES["article-image"]);
+    $id = $db->addArticle($title, $summary, $body, $image_path, "Politics");
+    
     header("Location: ../php/article.php?id=".$id);
-
-    // TODO naucit se ukladat ten obrazek
 }
     
 ?>
@@ -63,7 +61,7 @@ if ($validator->success()) {
 
                     <?php $validator->displayErrors() ?>
 
-                    <input type="submit" name="submit-button" value="Publish">
+                    <input type="submit" name="submit" value="Publish">
                 </form>
             </div>
 
