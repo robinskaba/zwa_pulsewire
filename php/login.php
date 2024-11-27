@@ -41,10 +41,10 @@ if($validator->success()) header("Location: ../html/index.html");
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>Username *
-                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username, ENT_QUOTES) ?>" class=<?php $validator->errorClass("username") ?>>
+                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
                         </label>
                         <label>Password *
-                            <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password, ENT_QUOTES) ?>" class=<?php $validator->errorClass("password") ?>>
+                            <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>" class=<?php $validator->errorClass("password") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
                         <input class="submitButton" type="submit" value="Log in" name="submit">

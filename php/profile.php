@@ -27,7 +27,7 @@
 
         <main>
             <div class="inner-content">   
-                <h2><?= htmlspecialchars($username, true) ?>'s profile</h2>
+                <h2><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</h2>
                 <h4>Profile information</h4>
                 <div class="profile-information">
                     <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
