@@ -3,10 +3,7 @@ header {
     position: fixed;
     top: 0; left: 0;
     width: 100%;
-}
-
-header nav {
-    width: inherit;
+    flex-direction: column;
     background-color: var(--background-color);
     padding: 0 0 0.5em 0;
     
@@ -14,6 +11,7 @@ header nav {
     box-shadow: 0 0.3em 0.3em rgba(170, 0, 0, 0.164);
 
     border-bottom: var(--thick-border-width) solid var(--primary-color);
+
 }
 
 main {
@@ -39,20 +37,26 @@ main {
     margin-right: 1em;
 }
 
-.top-bar {
+nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
 }
 
-.bottom-bar {
-    display: flex;
+#upper-nav {
+    justify-content: space-between;
+}
+#lower-nav {
     justify-content: space-around;
+}
+
+nav > div {
+    display: flex;
+    align-items: center;
 }
 
 .account-actions {
     margin: 0 1em;
-    display: flex;
     justify-content: space-around;
     gap: 1em;
 }
@@ -90,7 +94,7 @@ main {
     main {
         margin-top: 0;
     }
-    nav {
+    header {
         display: none;
     }
 }
@@ -102,7 +106,7 @@ main {
     .account-actions {
         font-size: 80%;
     }
-    .bottom-bar, .account-actions {
+    #lower-nav, .account-actions {
         display: none;
     }
     main {
