@@ -12,6 +12,14 @@ if(!$articleId || !$db->articleExists($articleId)) {
     $comments = $db->getCommentsFromIds($article->comments);
 }
 
+require_once "validator.php";
+$validator = new Validator();
+$comment_body = $validator->checkExists("comment-body");
+
+if($validator->success()) {
+    $db->addComment("TODO-USERNAME", $articleId, $comment_body);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -63,11 +71,11 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 
                 <div>
                     <h4>Write a comment</h4>
-                    <form action="" method="POST" id="new-comment-form">
+                    <form action="article.php" method="POST" id="new-comment-form">
                         <span class="hidden">You can not post an empty comment!</span>
                         <div>
                             <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
-                            <input type="submit" value="Edit comment" class="submit-button db">
+                            <input type="submit" name="submit" value="Edit comment" class="submit-button db">
                         </div>
                     </form>
 
