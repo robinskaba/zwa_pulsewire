@@ -14,7 +14,9 @@ if(!$articleId || !$db->articleExists($articleId)) {
 
 require_once "validator.php";
 $validator = new Validator();
-$comment_body = $validator->checkExists("comment-body");
+$comment_body = $validator->getFromPOST("comment-body");
+
+$validator->checkEmpty("comment-body", "Comment");
 
 if($validator->success()) {
     $db->addComment("TODO-USERNAME", $articleId, $comment_body);
@@ -28,7 +30,7 @@ if($validator->success()) {
     <head>
         <title>PulseWire - <?= htmlspecialchars($article->title, ENT_QUOTES) ?></title>
 
-        <script src="../js/comments.js" defer></script>
+        <!-- <script src="../js/comments.js" defer></script> -->
 
         <link rel="stylesheet" href="../css/article.css">
         <link rel="stylesheet" href="../css/comments.css">
@@ -44,7 +46,7 @@ if($validator->success()) {
                 <div class="article">
                     <div>
                         <img
-                            src="<?= $article->image_path ?>" 
+                            src=<?= "resize_image.php?img=".urlencode($article->image_path)."&width=400&height=200" ?> 
                             alt="popis titulniho obrazku"
                         >
                         <div class="article-about">

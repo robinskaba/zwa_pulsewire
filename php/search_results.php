@@ -34,9 +34,12 @@ $articles = $db->getArticlesOfCategory($category);
                 <h3><?= htmlspecialchars($category, ENT_QUOTES) ?> - articles</h3>
                 <hr>
                 <?php foreach($articles as $article): ?>
-                <a href="article.html">
+                <a href=<?= "article.php?id=".$article->id ?>>
                     <!-- TODO display small header image -->
-                    <img src="../src/search_result_small_template.jpg" alt="article name header image">
+                    <img 
+                        src=<?= "resize_image.php?img=".urlencode($article->image_path)."&width=100&height=70" ?>
+                        alt="article name header image"
+                    >
                     <div>
                         <div>
                             <h6><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h6>
