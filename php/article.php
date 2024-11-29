@@ -30,7 +30,7 @@ if($validator->success()) {
     <head>
         <title>PulseWire - <?= htmlspecialchars($article->title, ENT_QUOTES) ?></title>
 
-        <!-- <script src="../js/comments.js" defer></script> -->
+        <script src="../js/comments.js" defer></script>
 
         <link rel="stylesheet" href="../css/article.css">
         <link rel="stylesheet" href="../css/comments.css">
@@ -54,7 +54,7 @@ if($validator->success()) {
                                 <h2>
                                     <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                                 </h2>
-                                <a href=<?php $db->removeArticle($articleId); echo "index.php"; ?>>
+                                <a href="">
                                     <img src="../src/delete_24x24.png" alt="delete comment button">
                                 </a>
                             </div>

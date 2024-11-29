@@ -65,7 +65,7 @@ if ($validator->success()) {
                             <?php endforeach; ?>
                         </select>
                         <label id="image-upload">Upload header image *
-                            <input type="file" name="article-image" id="article-image" accept="image/*" class=<?php $validator->errorClass("article-image") ?>>
+                            <input type="file" name="article-image" id="article-image" accept="image/png, image/jpeg" class=<?php $validator->errorClass("article-image") ?>>
                         </label>
                     </div>
 

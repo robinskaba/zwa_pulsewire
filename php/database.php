@@ -84,9 +84,9 @@ class Database {
     }
 
     // IMAGES
-    public function saveImage(array $imageData) {
-        $target_path = $this->file_folder_path."images/".$imageData["name"];
-        $success = move_uploaded_file($imageData["tmp_name"], $target_path);
+    public function saveImage(array $image_data) {
+        $target_path = $this->file_folder_path."images/".uniqid("headerImg").$image_data["name"];
+        $success = move_uploaded_file($image_data["tmp_name"], $target_path);
         if(!$success) return $this->file_folder_path."images/not_found.jpg";
         return $target_path;
     }
@@ -97,8 +97,6 @@ class Database {
         $articles = $this->getFileContent("articles.json");
 
         $id = uniqid("articleId", true);
-
-        // TODO save header image
 
         $article_array = [
             "title"=>$title,
@@ -176,6 +174,7 @@ class Database {
 
     public function removeArticle(string $articleId) {
         $articles = $this->getFileContent("articles.json");
+        // unlink($articles[$articleId]["image_path"]);
         unset($articles[$articleId]);
         $this->setFileContent("articles.json", $articles);
     }
