@@ -37,6 +37,11 @@ class Validator {
         echo "<span id=error-hint class=".$class.">".$message."</span>";
     }
 
+    public function recordErrorsForField(string $key) {
+        // init array for recording errors
+        $this->errors[$key] = array();
+    }
+
     public function addPlaceholder(string $key) {
         // for general messages like - wrong login credentials - #CHECKUSED remove if unused
         $this->errors[$key][] = array();
@@ -46,9 +51,8 @@ class Validator {
         $this->errors[$field][] = $message;
     }
 
-    public function getFromPOST($request_key): string {
-        // init array for recording errors
-        $this->errors[$request_key] = array();
+    public function getFromPOST(string $request_key): string {
+        $this->recordErrorsForField($request_key);
 
         // check if key in post body
         if (isset($_POST[$request_key])) {
@@ -116,6 +120,21 @@ class Validator {
         require_once "database.php";
         $db = new Database();
         if($db->userExists($_POST[$request_key])) $this->addError($request_key, "Username is already taken");
+    }
+
+    public function checkFileSize(string $request_key, $min_size_in_bytes, $max_size_in_bytes, string $message_prefix) {
+        if (!isset($_FILES[$request_key])) return;
+    
+        $file_size = $_FILES[$request_key]["size"];
+        if ($file_size < $min_size_in_bytes || $file_size > $max_size_in_bytes) {
+            $this->addError($request_key, $message_prefix." must be between ".(string)$min_size_in_bytes." and ".(string)$max_size_in_bytes." bytes. (not ".(string) $file_size.")");
+        }
+    }
+
+    public function checkFileIsOfType(string $request_key, array $allowed_types, string $message_prefix) {
+        if($_FILES[$request_key]["size"] == 0) return;
+        $file_data = $_FILES[$request_key];
+        if(!in_array($file_data["type"], $allowed_types)) $this->addError($request_key, $message_prefix." must be of type png, jpg / jpeg. (not ".$file_data["type"].")");
     }
 }
 

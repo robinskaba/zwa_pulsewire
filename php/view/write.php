@@ -7,11 +7,14 @@ $title = $validator->getFromPOST("article-title");
 $summary = $validator->getFromPOST("article-summary");
 $body = $validator->getFromPOST("article-body");
 $category = $validator->getFromPOST("article-category");
-$image = $validator->getFromPOST("article-image");
+$image = $validator->recordErrorsForField("article-image");
 
 $validator->checkEmpty("article-title", "Title");
 $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
+
+$validator->checkFileSize("article-image", 50, 3000000, "Header image");
+$validator->checkFileIsOfType("article-image", ["image/png", "image/jpeg"], "Header image");
 
 if ($validator->success()) {
     require_once "../main/database.php";
@@ -30,8 +33,8 @@ if ($validator->success()) {
     <head>
         <title>Write an article</title>
         
-        <script src="../../js/field_error_handling.js" defer></script>
-        <script src="../../js/write_article_handler.js" defer></script>
+        <!-- <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/write_article_handler.js" defer></script> -->
 
         <link rel="stylesheet" href="../../css/form.css">
         <link rel="stylesheet" href="../../css/write_article.css">
