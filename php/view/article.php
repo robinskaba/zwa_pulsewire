@@ -46,7 +46,7 @@ if($validator->success()) {
                 <div class="article">
                     <div>
                         <img
-                            src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=400&height=200" ?> 
+                            src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=500&height=250" ?> 
                             alt="popis titulniho obrazku"
                         >
                         <div class="article-about">

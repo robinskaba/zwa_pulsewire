@@ -36,7 +36,7 @@ $articles = $db->getArticlesOfCategory($category);
                 <?php foreach($articles as $article): ?>
                 <a href=<?= "article.php?id=".$article->id ?>>
                     <img 
-                        src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=100&height=70" ?>
+                        src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=150&height=75" ?>
                         alt="article name header image"
                     >
                     <div>
