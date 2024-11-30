@@ -1,6 +1,4 @@
-<?php
-
-$categories = [
+[
     "Crime",
     "Celebrities",
     "World",
@@ -9,6 +7,4 @@ $categories = [
     "Lifestyle",
     "Sport",
     "Weather"
-];
-
-?>
+]

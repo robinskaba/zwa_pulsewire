@@ -1,6 +1,6 @@
 <?php
 
-require_once "database.php";
+require_once "../main/database.php";
 $db = new Database();
 
 $articleId = NULL;
@@ -12,7 +12,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
     $comments = $db->getCommentsFromIds($article->comments);
 }
 
-require_once "validator.php";
+require_once "../main/validator.php";
 $validator = new Validator();
 $comment_body = $validator->getFromPOST("comment-body");
 
@@ -30,23 +30,23 @@ if($validator->success()) {
     <head>
         <title>PulseWire - <?= htmlspecialchars($article->title, ENT_QUOTES) ?></title>
 
-        <script src="../js/comments.js" defer></script>
+        <script src="../../js/comments.js" defer></script>
 
-        <link rel="stylesheet" href="../css/article.css">
-        <link rel="stylesheet" href="../css/comments.css">
+        <link rel="stylesheet" href="../../css/article.css">
+        <link rel="stylesheet" href="../../css/comments.css">
 
-        <?php include("../html/metadata.html") ?>
+        <?php include("../../html/metadata.html") ?>
     </head>
 
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
                 <div class="article">
                     <div>
                         <img
-                            src=<?= "resize_image.php?img=".urlencode($article->image_path)."&width=400&height=200" ?> 
+                            src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=400&height=200" ?> 
                             alt="popis titulniho obrazku"
                         >
                         <div class="article-about">
@@ -55,7 +55,7 @@ if($validator->success()) {
                                     <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                                 </h2>
                                 <a href="">
-                                    <img src="../src/delete_24x24.png" alt="delete comment button">
+                                    <img src="../../src/delete_24x24.png" alt="delete comment button">
                                 </a>
                             </div>
                             
@@ -94,8 +94,8 @@ if($validator->success()) {
                                     </a>
                                 </h6>
                                 <div class="comment-buttons">
-                                    <img src="../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                    <img src="../src/edit_16x16.png" alt="edit comment button" class="edit-button">
+                                    <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
+                                    <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button">
                                 </div> 
                             </div>
                             <span><?= $comment->publish_date ?></span>
@@ -106,7 +106,7 @@ if($validator->success()) {
                 </div>
             </div>
 
-            <?php include("../html/sidemenu.html") ?>
+            <?php include("../../html/sidemenu.html") ?>
         </main>
     </body>
 </html>

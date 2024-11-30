@@ -1,6 +1,6 @@
 <?php
 
-require_once "categories.php";
+require_once __DIR__."/../../main/categories.php";
 
 ?>
 
@@ -8,7 +8,7 @@ require_once "categories.php";
     <nav id="upper-nav">
         <div>
             <a href="index.html">
-                <img src="../src/logo_64x64.png" alt="pulsewire logo" id="page-logo">
+                <img src="../../src/logo_64x64.png" alt="pulsewire logo" id="page-logo">
             </a>
             <a class="page-title" href="index.php">PulseWire</a>
         </div>
@@ -20,10 +20,10 @@ require_once "categories.php";
             <a class="account-action" href="login.php">Log out</a>
             <a class="account-action" href="register.php">Register</a>
         </div>
-        <img src="../src/menu-icon.png" alt="open category menu" id="category-menu">
+        <img src="../../src/menu-icon.png" alt="open category menu" id="category-menu">
     </nav>
     <nav id="lower-nav">
-        <?php foreach($categories as $_category): ?>
+        <?php foreach($CATEGORIES as $_category): ?>
             <a class="category" href=<?= "search_results.php?category=".$_category ?>><?= $_category ?></a>
         <?php endforeach; ?>
     </nav>

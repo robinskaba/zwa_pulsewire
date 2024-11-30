@@ -1,6 +1,6 @@
 <?php
 
-require_once "database.php";
+require_once "../main/database.php";
 $db = new Database();
 
 $q_username = NULL;

@@ -5,11 +5,11 @@ if(isset($_GET["category"])) $category = $_GET["category"];
 if(!$category) header("Location: page_not_found.php");
 
 // redirect if category not in variable declared in categories.php
-require_once "categories.php";
+require_once "../main/categories.php";
 $category = ucfirst($category);
-if(!in_array($category, $categories)) header("Location: page_not_found.php");
+if(!in_array($category, $CATEGORIES)) header("Location: page_not_found.php");
 
-require_once "database.php";
+require_once "../main/database.php";
 $db = new Database();
 $category = ucfirst($category);
 $articles = $db->getArticlesOfCategory($category);
@@ -22,12 +22,12 @@ $articles = $db->getArticlesOfCategory($category);
     <head>
         <title>Articles: <?= htmlspecialchars($category, ENT_QUOTES) ?></title>
 
-        <link rel="stylesheet" href="../css/search_results.css">
+        <link rel="stylesheet" href="../../css/search_results.css">
 
-        <?php include "../html/metadata.html" ?>
+        <?php include "../../html/metadata.html" ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
@@ -35,9 +35,8 @@ $articles = $db->getArticlesOfCategory($category);
                 <hr>
                 <?php foreach($articles as $article): ?>
                 <a href=<?= "article.php?id=".$article->id ?>>
-                    <!-- TODO display small header image -->
                     <img 
-                        src=<?= "resize_image.php?img=".urlencode($article->image_path)."&width=100&height=70" ?>
+                        src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=100&height=70" ?>
                         alt="article name header image"
                     >
                     <div>
@@ -52,6 +51,6 @@ $articles = $db->getArticlesOfCategory($category);
                 <?php endforeach; ?>
             </div>
 
-            <?php include "../html/sidemenu.html" ?>
+            <?php include "../../html/sidemenu.html" ?>
     </body>
 </html>

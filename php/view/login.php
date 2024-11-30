@@ -1,6 +1,6 @@
 <?php
 
-require_once "validator.php";
+require_once "../main/validator.php";
 $validator = new Validator();
 
 $username = $validator->getFromPOST("username");
@@ -18,21 +18,21 @@ if($validator->success()) header("Location: ../html/index.html");
     <head>
         <title>Log in to PulseWire</title>
         
-        <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/login_form_validation.js" defer></script>
+        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/login_form_validation.js" defer></script>
 
-        <link rel="stylesheet" href="../css/form.css">
+        <link rel="stylesheet" href="../../css/form.css">
 
-        <?php include("../html/metadata.html") ?>
+        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
                 <div class="form-heading">
                     <h2 class="form-headline">Log in to</h2>
-                    <img src="../src/logo_128x128.png" alt="page logo">
+                    <img src="../../src/logo_128x128.png" alt="page logo">
                     <h1 class="page-title">PulseWire</h1>
                 </div>
 
@@ -56,7 +56,7 @@ if($validator->success()) header("Location: ../html/index.html");
                 </span>
             </div>
 
-            <?php include("../html/sidemenu.html") ?>
+            <?php include("../../html/sidemenu.html") ?>
         </main>
     </body>
 </html>

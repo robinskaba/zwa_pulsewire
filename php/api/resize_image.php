@@ -16,19 +16,20 @@ function resize_image(string $original_path, int $new_width, int $new_height) {
 
     switch ($image_type) {
         case IMAGETYPE_JPEG:
+            header("Content-Type: image/jpeg");
             imagejpeg($resized_image);
             break;
         case IMAGETYPE_PNG:
+            header("Content-Type: image/png");
             imagepng($resized_image);
             break;
     }
 }
 
 if (isset($_GET['img'], $_GET['width'], $_GET['height'])) {
-    header("Content-Type: image/jpeg");
-    echo resize_image(urldecode($_GET['img']), (int) $_GET["width"], (int) $_GET["height"]);
+    resize_image(urldecode($_GET['img']), (int) $_GET["width"], (int) $_GET["height"]);
 } else {
-    header("Location: page_not_found.php");
+    header("Location: ../view/page_not_found.php");
 }
 
 ?>

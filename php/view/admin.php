@@ -1,6 +1,6 @@
 <?php
 
-require_once "database.php";
+require_once "../main/database.php";
 $db = new Database();
 $users = $db->getUsers();
 
@@ -11,13 +11,13 @@ $users = $db->getUsers();
 <html lang="en">
     <head>
         <title>Administrator's page</title>
-        <link rel="stylesheet" href="../css/admin_page.css">
+        <link rel="stylesheet" href="../../css/admin_page.css">
 
-        <?php include "../html/metadata.html" ?>
+        <?php include "../../html/metadata.html" ?>
     </head>
 
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
@@ -55,6 +55,6 @@ $users = $db->getUsers();
                 </div>
             </div>
 
-            <?php include "../html/sidemenu.html" ?>
+            <?php include "../../html/sidemenu.html" ?>
     </body>
 </html>

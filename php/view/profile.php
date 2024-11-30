@@ -1,5 +1,5 @@
 <?php 
-    require_once "database.php";
+    require_once "../main/database.php";
     $db = new Database();
 
     $username = NULL;
@@ -17,13 +17,13 @@
     <head>
         <!-- TODO htmlspecialchars for title?? -->
         <title><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</title>
-        <link rel="stylesheet" href="../css/profile.css">
-        <link rel="stylesheet" href="../css/comments.css">
+        <link rel="stylesheet" href="../../css/profile.css">
+        <link rel="stylesheet" href="../../css/comments.css">
 
-        <?php include("../html/metadata.html"); ?>
+        <?php include("../../html/metadata.html"); ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">   
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <?php include("../html/sidemenu.html"); ?>          
+            <?php include("../../html/sidemenu.html"); ?>          
         </main>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-require_once "validator.php";
+require_once "../main/validator.php";
 $validator = new Validator();
 
 $title = $validator->getFromPOST("article-title");
@@ -14,12 +14,12 @@ $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
 
 if ($validator->success()) {
-    require_once "database.php";
+    require_once "../main/database.php";
     $db = new Database();
     $image_path = $db->saveImage($_FILES["article-image"]);
     $id = $db->addArticle($title, $summary, $body, $image_path, $category);
     
-    header("Location: ../php/article.php?id=".$id);
+    header("Location: article.php?id=".$id);
 }
     
 ?>
@@ -30,16 +30,16 @@ if ($validator->success()) {
     <head>
         <title>Write an article</title>
         
-        <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/write_article_handler.js" defer></script>
+        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/write_article_handler.js" defer></script>
 
-        <link rel="stylesheet" href="../css/form.css">
-        <link rel="stylesheet" href="../css/write_article.css">
+        <link rel="stylesheet" href="../../css/form.css">
+        <link rel="stylesheet" href="../../css/write_article.css">
         
-        <?php include("../html/metadata.html") ?>
+        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
@@ -58,8 +58,8 @@ if ($validator->success()) {
                         <label for="article-category">Category *</label>
                         <select name="article-category" id="article-category">
                             <?php
-                                include "categories.php";
-                                foreach($categories as $_category):
+                                include "../main/categories.php";
+                                foreach($CATEGORIES as $_category):
                             ?>
                                 <option <?php if($_category == $category) echo "selected" ?> value="<?= $_category ?>"><?= $_category ?></option>
                             <?php endforeach; ?>
@@ -75,7 +75,7 @@ if ($validator->success()) {
                 </form>
             </div>
 
-            <?php include("../html/sidemenu.html") ?>
+            <?php include("../../html/sidemenu.html") ?>
         </main>
     </body>
 </html>

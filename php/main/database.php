@@ -44,7 +44,7 @@ class Article {
 }
 
 class Database {
-    private string $file_folder_path = "../database/";
+    private string $file_folder_path = __DIR__."/../../database/";
 
     private function getFileContent($relative_path): array {
         $path = $this->file_folder_path.$relative_path;

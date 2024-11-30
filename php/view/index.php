@@ -1,6 +1,6 @@
 <?php
 
-require_once "database.php";
+require_once "../main/database.php";
 $db = new Database();
 // $articles = $db->getArticles()
 
@@ -11,18 +11,18 @@ $db = new Database();
 <html lang="en">
     <head>
         <title>PulseWire</title>
-        <link rel="stylesheet" href="../css/home_page.css">
-        <?php include "../html/metadata.html" ?>
+        <link rel="stylesheet" href="../../css/home_page.css">
+        <?php include "../../html/metadata.html" ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
     
         <main>
             <div class="inner-content">
                 <ul>
                     <li>
                         <div class="image-frame">
-                            <img src="../src/rectangular-image.jpg" alt="article header image">
+                            <img src="../../src/rectangular-image.jpg" alt="article header image">
                         </div>
                         <h5><a href="article.html">News headline headline headline</a></h5>
                         <div class="article-metadata">
@@ -41,7 +41,7 @@ $db = new Database();
                 </div>
             </div>
 
-            <?php include "../html/sidemenu.html" ?>
+            <?php include "../../html/sidemenu.html" ?>
         </main>
     </body>
 </html>

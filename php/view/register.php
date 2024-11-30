@@ -1,6 +1,6 @@
 <?php 
 
-require_once "validator.php";
+require_once "../main/validator.php";
 $validator = new Validator();
 
 $username = $validator->getFromPOST("username");
@@ -19,11 +19,11 @@ $validator->checkContainsNumber("password1", "Password");
 $validator->checkMatch($password1, "password2", "Passwords");
 
 if ($validator->success()) {
-    require_once "database.php";
+    require_once "../main/database.php";
     $db = new Database();
     $db->addUser($username, $first_name, $second_name, $password1);
 
-    header("Location: ../php/profile.php?username=".$username);
+    header("Location: profile.php?username=".$username);
 }
 
 ?>
@@ -32,21 +32,21 @@ if ($validator->success()) {
     <head>
         <title>Register for PulseWire</title>
         
-        <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/register_form_validation.js" defer></script>
+        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/register_form_validation.js" defer></script>
 
-        <link rel="stylesheet" href="../css/form.css">
+        <link rel="stylesheet" href="../../css/form.css">
 
-        <?php include("../html/metadata.html") ?>
+        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
-        <?php include "header.php" ?>
+        <?php include "templates/header.php" ?>
 
         <main>
             <div class="inner-content">
                 <div class="form-heading">
                     <h2 class="form-headline">Register for</h2>
-                    <img src="../src/logo_128x128.png" alt="page logo">
+                    <img src="../../src/logo_128x128.png" alt="page logo">
                     <h1 class="page-title">PulseWire</h1>
                 </div>
 
@@ -83,6 +83,6 @@ if ($validator->success()) {
             </span>
         </div>
 
-        <?php include("../html/sidemenu.html") ?>
+        <?php include("../../html/sidemenu.html") ?>
     </body>
 </html>
