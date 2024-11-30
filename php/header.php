@@ -17,6 +17,7 @@ require_once "categories.php";
             <a class="account-action" href="write.php">Write</a>
             <a class="account-action" href="profile.php">Profile</a>
             <a class="account-action" href="login.php">Login</a>
+            <a class="account-action" href="login.php">Log out</a>
             <a class="account-action" href="register.php">Register</a>
         </div>
         <img src="../src/menu-icon.png" alt="open category menu" id="category-menu">
