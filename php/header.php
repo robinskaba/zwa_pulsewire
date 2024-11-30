@@ -13,7 +13,7 @@ require_once "categories.php";
             <a class="page-title" href="index.php">PulseWire</a>
         </div>
         <div class="account-actions">
-            <a class="account-action" href="administration.php">Admin</a>
+            <a class="account-action" href="admin.php">Admin</a>
             <a class="account-action" href="write.php">Write</a>
             <a class="account-action" href="profile.php">Profile</a>
             <a class="account-action" href="login.php">Login</a>
