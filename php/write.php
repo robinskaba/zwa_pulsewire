@@ -30,8 +30,8 @@ if ($validator->success()) {
     <head>
         <title>Write an article</title>
         
-        <!-- <script src="../js/field_error_handling.js" defer></script>
-        <script src="../js/write_article_handler.js" defer></script> -->
+        <script src="../js/field_error_handling.js" defer></script>
+        <script src="../js/write_article_handler.js" defer></script>
 
         <link rel="stylesheet" href="../css/form.css">
         <link rel="stylesheet" href="../css/write_article.css">
@@ -64,7 +64,7 @@ if ($validator->success()) {
                                 <option <?php if($_category == $category) echo "selected" ?> value="<?= $_category ?>"><?= $_category ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <label id="image-upload">Upload header image *
+                        <label id="image-upload"><span>Upload header image *</span>
                             <input type="file" name="article-image" id="article-image" accept="image/png, image/jpeg" class=<?php $validator->errorClass("article-image") ?>>
                         </label>
                     </div>

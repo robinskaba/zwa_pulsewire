@@ -25,6 +25,9 @@ input {
     background-color: var(--primary-color);
     color: white;
 }
+#image-upload > span {
+    font-size: 100%;
+}
 
 textarea, #image-upload, select, input {
     border-color: var(--primary-color);
