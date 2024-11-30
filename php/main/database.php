@@ -259,8 +259,9 @@ class Database {
 
     public function getGroupOfArticles(int $groupNumber, int $size): array {
         $articles = $this->getFileContent("articles.json");
-        $groups = array_chunk($articles, $size, true);
-        $target_group = $groups[sizeof($groups)-$groupNumber];
+        $reversed_articles = array_reverse($articles, true);
+        $groups = array_chunk($reversed_articles, $size, true);
+        $target_group = $groups[$groupNumber-1];
         $group_with_objects = [];
         foreach($target_group as $id => $data) {
             $group_with_objects[] = $this->buildArticleObject($id, $data);
