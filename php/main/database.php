@@ -250,6 +250,24 @@ class Database {
         }
         return $matching_articles;
     }
+
+    public function getMaxGroupsOfArticles(int $size): int {
+        $articles = $this->getFileContent("articles.json");
+        $amount = ceil(sizeof($articles) / $size);
+        return $amount;
+    }
+
+    public function getGroupOfArticles(int $groupNumber, int $size): array {
+        $articles = $this->getFileContent("articles.json");
+        $groups = array_chunk($articles, $size, true);
+        $target_group = $groups[sizeof($groups)-$groupNumber];
+        $group_with_objects = [];
+        foreach($target_group as $id => $data) {
+            $group_with_objects[] = $this->buildArticleObject($id, $data);
+        }
+
+        return $group_with_objects;
+    }
 }
 
 ?>

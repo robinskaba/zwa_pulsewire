@@ -1,8 +1,21 @@
 <?php
 
+$ARTICLES_PER_PAGE = 6;
+
 require_once "../main/database.php";
 $db = new Database();
-// $articles = $db->getArticles()
+$amount_of_pages = $db->getMaxGroupsOfArticles($ARTICLES_PER_PAGE);
+
+$current_page = 1;
+if(isset($_GET["page"])) {
+    try {
+        $current_page = (int) $_GET["page"];
+    } catch (Exception $e) {
+        header("Location: page_not_found.php");
+    }
+}
+
+$articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
 
 ?>
 
@@ -20,24 +33,36 @@ $db = new Database();
         <main>
             <div class="inner-content">
                 <ul>
-                    <li>
-                        <div class="image-frame">
-                            <img src="../../src/rectangular-image.jpg" alt="article header image">
-                        </div>
-                        <h5><a href="article.html">News headline headline headline</a></h5>
-                        <div class="article-metadata">
-                            <span class="date">24.5.2004</span>
-                            <span class="category"><a href="">Category</a></span>
-                        </div>
-                        <p>Article description</p>
-                    </li>
+                    <?php foreach($articles as $article): ?>
+                        <li>
+                            <div class="image-frame">
+                                <img src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=300&height=150" ?> alt="article header image">
+                            </div>
+                            <h5>
+                                <a 
+                                    href=<?= "article.php?id=".$article->id ?>
+                                >
+                                    <?= htmlspecialchars($article->title, true) ?>
+                                </a>
+                            </h5>
+                            <div class="article-metadata">
+                                <span class="date"><?= $article->publish_date ?></span>
+                                <span class="category"><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
+                            </div>
+                            <p><?= htmlspecialchars($article->summary, true) ?></p>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
                 <div class="page-links">
-                    <a href="">&lt;</a>
-                    <a href="" class="selected">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">&gt;</a>
+                    <?php if($current_page - 1 > 0): ?>
+                        <a href=<?= "index.php?page=".(string) $current_page - 1 ?>>&lt;</a>
+                    <?php endif; ?>
+                    <?php for($i = 1; $i <= $amount_of_pages; $i++): ?>
+                        <a href=<?= "index.php?page=".(string) $i ?> <?= $i == $current_page ? "class=selected" : "" ?>><?= $i ?></a>
+                    <?php endfor; ?>
+                    <?php if($current_page + 1 <= $amount_of_pages): ?>
+                        <a href=<?= "index.php?page=".(string) $current_page + 1 ?>>&gt;</a>
+                    <?php endif; ?>
                 </div>
             </div>
 
