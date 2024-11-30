@@ -174,7 +174,7 @@ class Database {
 
     public function removeArticle(string $articleId) {
         $articles = $this->getFileContent("articles.json");
-        // unlink($articles[$articleId]["image_path"]);
+        unlink($articles[$articleId]["image_path"]);
         unset($articles[$articleId]);
         $this->setFileContent("articles.json", $articles);
     }

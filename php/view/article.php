@@ -54,7 +54,7 @@ if($validator->success()) {
                                 <h2>
                                     <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                                 </h2>
-                                <a href="">
+                                <a href=<?= "../api/delete_article.php?id=".$articleId ?>>
                                     <img src="../../src/delete_24x24.png" alt="delete comment button">
                                 </a>
                             </div>
