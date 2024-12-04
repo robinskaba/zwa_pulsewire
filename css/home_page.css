@@ -7,6 +7,12 @@ ul {
     padding-bottom: 1.5em;
 }
 
+img {
+    text-align: center;
+    max-width: 100%;
+    object-fit: contain;
+}
+
 li {
     display: flex;
     flex-direction: column;

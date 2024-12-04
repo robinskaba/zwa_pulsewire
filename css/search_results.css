@@ -4,10 +4,6 @@ h6 {
     overflow: hidden;
 }
 
-/* div {
-    min-width: 0;
-} */
-
 .inner-content {
     display: flex;
     flex-direction: column;
