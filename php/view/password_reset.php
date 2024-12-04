@@ -1,9 +1,31 @@
 <?php
 
-// require_once "../main/validator.php";
-// $validator = new Validator();
+$P1_KEY = "password_1";
+$P2_KEY = "password_2";
 
-// if($validator->success()) header("Location: ../html/index.html");
+$username = "";
+if(isset($_GET["username"])) {
+    $username = $_GET["username"];
+} else {
+    header("Location: page_not_found.php");
+}
+
+require_once "../main/validator.php";
+$validator = new Validator();
+
+$password_1 = $validator->getFromPOST($P1_KEY);
+$password_2 = $validator->getFromPOST($P2_KEY);
+
+$validator->checkLength(8, $P1_KEY, "Password");
+$validator->checkContainsNumber($P1_KEY, "Password");
+$validator->checkMatch($password_1, $P2_KEY, "Passwords");
+
+if($validator->success()) {
+    require_once "../main/database.php";
+    $db = new Database();
+    $db->changePassword($username, $password_1);
+    header("Location: admin.php");
+}
 
 ?>
 
@@ -25,7 +47,7 @@
         <main>
             <div class="inner-content">
                 <div class="form-heading">
-                    <h2 class="form-headline">Reset password for USERNAME</h2>
+                    <h2 class="form-headline">Reset password for <?= htmlspecialchars($username, true) ?></h2>
                 </div>
 
                 <div class="form-wrap">
@@ -33,11 +55,12 @@
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>New password *
-                            <input type="password" name="password_1" placeholder="New Password" id="password_1" value="">
+                            <input type="text" name=<?= $P1_KEY ?> placeholder="New password" id="password_1" value="<?= htmlspecialchars($password_1) ?>" class=<?php $validator->errorClass($P1_KEY) ?>>
                         </label>
                         <label>Password again *
-                            <input type="password" name="password_2" placeholder="Password again" id="password_2" value="">
+                            <input type="password" name=<?= $P2_KEY ?> placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password_2) ?>" class=<?php $validator->errorClass($P2_KEY) ?>>
                         </label>
+                        <?= $validator->displayErrors() ?>
                         
                         <input type="submit" value="Set new password" name="submit">
                     </form>

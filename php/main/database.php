@@ -152,11 +152,11 @@ class Database {
 
     // EDITING DATA STRUCTURES
 
-    public function editComment(string $commentId, string $newContent) {
+    public function editComment(string $commentId, string $new_content) {
         $comments = $this->getFileContent("comments.json");
 
         if (!isset($comments[$commentId])) return;
-        $comments[$commentId]["content"] = $newContent;
+        $comments[$commentId]["content"] = $new_content;
 
         $this->setFileContent("comments.json", $comments);
     }
@@ -166,6 +166,15 @@ class Database {
 
         if (!isset($users[$username])) return;
         $users[$username]["role"] = $newRole;
+
+        $this->setFileContent("users.json", $users);
+    }
+
+    public function changePassword(string $username, string $new_password) {
+        $users = $this->getFileContent("users.json");
+
+        if (!isset($users[$username])) return;
+        $users[$username]["password"] = $new_password; // TODO hash pasword
 
         $this->setFileContent("users.json", $users);
     }

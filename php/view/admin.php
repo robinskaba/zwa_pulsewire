@@ -50,7 +50,7 @@ $users = $db->getUsers();
                             </label>
                             
 
-                            <a href="">Reset password</a>
+                            <a href=<?= "password_reset.php?username=".$user->username ?>>Reset password</a>
                             <a href="" class="disabled">Ban</a>
                         </div>
                     </li>
