@@ -11,6 +11,9 @@ $users = $db->getUsers();
 <html lang="en">
     <head>
         <title>Administrator's page</title>
+
+        <script src="../../js/admin.js" defer></script>
+
         <link rel="stylesheet" href="../../css/admin_page.css">
 
         <?php include "../../html/metadata.html" ?>
@@ -24,10 +27,10 @@ $users = $db->getUsers();
                 <h3>Admin controls</h3>
                 <hr>
                 <h4>Registered users</h4>
-                <div class="user-list">
+                <ul>
                     <?php foreach($users as $user): ?>
-                    <div>
-                        <a href="profile.html"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
+                    <li>
+                        <a href=<?= "profile.php?username=".$user->username ?> id="username-anchor"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
                         <div>
                             <label class="cv">Select role: 
                                 <select>
@@ -50,9 +53,9 @@ $users = $db->getUsers();
                             <a href="">Reset password</a>
                             <a href="" class="disabled">Ban</a>
                         </div>
-                    </div>
+                    </li>
                     <?php endforeach; ?>
-                </div>
+                </ul>
             </div>
 
             <?php include "../../html/sidemenu.html" ?>

@@ -47,7 +47,7 @@ if($validator->success()) header("Location: ../html/index.html");
                             <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>" class=<?php $validator->errorClass("password") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
-                        <input class="submitButton" type="submit" value="Log in" name="submit">
+                        <input type="submit" value="Log in" name="submit">
                     </form>
                 </div>
                 

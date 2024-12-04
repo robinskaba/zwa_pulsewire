@@ -63,7 +63,7 @@ input:focus {
     outline: none;
 }
 
-.submitButton, .submitButton:focus {
+input[type=submit], input[type=submit]:focus {
     width: 100%;
     font-size: 125%;
     padding: 0.4em 0;
@@ -73,14 +73,14 @@ input:focus {
     border-width: var(--thin-border-width);
     font-family: var(--primary-font-family);
 }
-.submitButton:hover {
+input[type=submit]:hover {
     background-color: var(--primary-color);
     color: white;
 }
-.submitButton:enabled {
+input[type=submit]:enabled {
     transition-duration: 0.3s;
 }
-.submitButton:disabled {
+input[type=submit]:disabled {
     background-color: lightgray;
     color: gray;
     border-width: 0;

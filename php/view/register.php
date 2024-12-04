@@ -74,7 +74,7 @@ if ($validator->success()) {
                             <input type="password" name="password2" placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password2) ?>" class=<?php $validator->errorClass("password2") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
-                        <input class="submitButton" type="submit" value="Register" name="submit">
+                        <input type="submit" value="Register" name="submit">
                     </form>
                 </div>
             

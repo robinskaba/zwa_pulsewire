@@ -4,13 +4,15 @@
     gap: 0.5em;
 }
 
-.user-list {
+ul {
     display: flex;
     flex-direction: column;
     gap: 0.75em;
+    padding: 0;
+    margin: 0;
 }
 
-.user-list > div {
+li {
     display: flex;
     border: var(--thin-border-width) solid var(--primary-color);
     padding: 0.75em;
@@ -18,23 +20,23 @@
     align-items: center;
 }
 
-.user-list > div > div {
+li > div {
     display: flex;
     gap: 0.5em;
 }
 
-.user-list > div > div > a {
+li > div > a {
     text-decoration: none;
     border: var(--thin-border-width) solid var(--primary-color);
     padding: 0.4em 1em;
     transition-duration: 0.3s;
 }
-.user-list > div > div > a:hover {
+li > div > a:hover {
     background-color: var(--primary-color);
     text-decoration: none;
     color: white;
 }
-.user-list > div > div > a.disabled {
+li > div > a.disabled {
     border-color: gray;
     color: gray;
     background-color: #4b4b4b2c;

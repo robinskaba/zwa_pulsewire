@@ -33,8 +33,8 @@ if ($validator->success()) {
     <head>
         <title>Write an article</title>
         
-        <!-- <script src="../../js/field_error_handling.js" defer></script>
-        <script src="../../js/write_article_handler.js" defer></script> -->
+        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/write_article_handler.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
         <link rel="stylesheet" href="../../css/write_article.css">
