@@ -2,7 +2,7 @@
 
 session_start();
 
-if($_SESSION["logged_username"] != "") header("Location: index.php");
+if(isset($_SESSION["username"])) header("Location: index.php");
 
 require_once "../main/validator.php";
 $validator = new Validator();
@@ -25,7 +25,7 @@ if($validator->success()) {
 }
 
 if($validator->success()) {
-    $_SESSION["logged_username"] = $username;
+    $_SESSION["username"] = $username;
     header("Location: index.php");
 } 
 

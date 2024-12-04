@@ -2,6 +2,8 @@
 
 $ARTICLES_PER_PAGE = 6;
 
+session_start();
+
 require_once "../main/database.php";
 $db = new Database();
 $amount_of_pages = $db->getMaxGroupsOfArticles($ARTICLES_PER_PAGE);

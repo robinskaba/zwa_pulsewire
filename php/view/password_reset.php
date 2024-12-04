@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $P1_KEY = "password_1";
 $P2_KEY = "password_2";
 

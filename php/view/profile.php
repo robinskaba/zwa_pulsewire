@@ -1,15 +1,19 @@
 <?php 
-    require_once "../main/database.php";
-    $db = new Database();
 
-    $username = NULL;
-    if (isset($_GET["username"])) $username = $_GET["username"];
-    if(!$username || !$db->userExists($username)) {
-        header("Location: page_not_found.php");
-    } else {
-        $user = $db->getUser($username);
-        $comments = $db->getCommentsFromIds($user->comments);
-    }
+session_start();
+
+require_once "../main/database.php";
+$db = new Database();
+
+$username = NULL;
+if (isset($_GET["username"])) $username = $_GET["username"];
+if(!$username || !$db->userExists($username)) {
+    header("Location: page_not_found.php");
+} else {
+    $user = $db->getUser($username);
+    $comments = $db->getCommentsFromIds($user->comments);
+}
+
 ?>
 
 <!DOCTYPE html>

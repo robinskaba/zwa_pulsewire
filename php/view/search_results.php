@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $category = NULL;
 if(isset($_GET["category"])) $category = $_GET["category"];
 if(!$category) header("Location: page_not_found.php");

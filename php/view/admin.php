@@ -1,7 +1,21 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION["username"])) {
+    header("Location: page_not_found.php");
+    exit;
+}
+
 require_once "../main/database.php";
 $db = new Database();
+
+$logged_user = $db->getUser($_SESSION["username"]);
+if(!$logged_user->isAdmin()) {
+    header("Location: page_not_found.php");
+    exit;
+}
+
 $users = $db->getUsers();
 
 ?>
@@ -35,7 +49,7 @@ $users = $db->getUsers();
                             <label class="cv">Select role: 
                                 <select>
                                     <?php
-                                        $roles = ["user", "journalist", "administrator"];
+                                        $roles = ["user", "writer", "admin"];
                                         foreach($roles as $role):
                                     ?>
                                         <option 

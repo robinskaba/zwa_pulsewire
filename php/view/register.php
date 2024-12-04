@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require_once "../main/validator.php";
 $validator = new Validator();
 

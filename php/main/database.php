@@ -9,6 +9,14 @@ class User {
         $this->role = $role;
         $this->comments = $comments;
     }
+
+    public function isAdmin() {
+        return $this->role == "admin";
+    }
+
+    public function isWriter() {
+        return $this->role == "writer";
+    }
 }
 
 class Comment {
