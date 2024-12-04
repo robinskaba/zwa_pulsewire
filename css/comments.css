@@ -3,7 +3,7 @@ h3 {
     margin: 0.5em 0;
 }
 
-.comment-list {
+ul {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -24,7 +24,7 @@ form > span {
     font-weight: bold;
 }
 
-.submit-button {
+input[type=submit] {
     font-size: 100%;
     font-family: var(--terciary-font-family);
     padding: 0.3em 0.75em;
@@ -34,8 +34,9 @@ form > span {
     border-color: var(--primary-color);
     border-style: double;
     transition-duration: 0.3s;
+    display: block;
 }
-.submit-button:hover {
+input[type=submit]:hover {
     background-color: var(--primary-color);
     color: white;
 }
@@ -52,7 +53,7 @@ textarea:focus {
     outline: none;
 }
 
-.comment {
+li {
     display: flex;
     flex-direction: column;
     gap: 0.3em 0;
@@ -67,7 +68,7 @@ span {
     font-size: 75%;
 }
 
-.comment > p {
+li > p {
     font-size: 85%;
 }
 

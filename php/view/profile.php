@@ -35,18 +35,22 @@
                 </div>
                 <hr>
                 <h4>Posted comments</h4>
-                <div class="comment-list">
-                    <?php foreach($comments as $comment): ?>
-                    <div class="comment">
-                        <?php
-                            $parent_article = $db->getArticle($comment->articleId);
-                        ?>
-                        <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h5>
-                        <span><?= $comment->publish_date ?></span>
-                        <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+                <?php if(sizeof($comments) > 0): ?>
+                    <ul>
+                        <?php foreach($comments as $comment): ?>
+                        <li>
+                            <?php
+                                $parent_article = $db->getArticle($comment->articleId);
+                            ?>
+                            <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h5>
+                            <span><?= $comment->publish_date ?></span>
+                            <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>No comments yet</p>
+                <?php endif; ?>
             </div>
 
             <?php include("../../html/sidemenu.html"); ?>          

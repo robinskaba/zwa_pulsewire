@@ -77,32 +77,36 @@ if($validator->success()) {
                         <span class="hidden">You can not post an empty comment!</span>
                         <div>
                             <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
-                            <input type="submit" name="submit" value="Edit comment" class="submit-button db">
+                            <input type="submit" name="submit" value="Post comment">
                         </div>
                     </form>
 
                     <h4>Comments</h4>
 
-                    <div class="comment-list">
-                        <?php foreach($comments as $comment): ?>
-                        <div class="comment">
-                            <div class="so cv">
-                                <?php $author = $db->getUser($comment->author); ?>
-                                <h6>
-                                    <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
-                                        <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
-                                    </a>
-                                </h6>
-                                <div class="comment-buttons">
-                                    <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                    <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button">
-                                </div> 
-                            </div>
-                            <span><?= $comment->publish_date ?></span>
-                            <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
+                    <?php if(sizeof($comments) > 0): ?>
+                        <ul>
+                            <?php foreach($comments as $comment): ?>
+                            <li>
+                                <div class="so cv">
+                                    <?php $author = $db->getUser($comment->author); ?>
+                                    <h6>
+                                        <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
+                                            <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
+                                        </a>
+                                    </h6>
+                                    <div class="comment-buttons">
+                                        <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
+                                        <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button">
+                                    </div> 
+                                </div>
+                                <span><?= $comment->publish_date ?></span>
+                                <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p>No comments.</p>
+                    <?php endif; ?>
                 </div>
             </div>
 
