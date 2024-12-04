@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+if($_SESSION["logged_username"] != "") header("Location: index.php");
+
 require_once "../main/validator.php";
 $validator = new Validator();
 
@@ -9,7 +13,21 @@ $password = $validator->getFromPOST("password");
 $validator->checkEmpty("username", "Username");
 $validator->checkEmpty("password", "Password");
 
-if($validator->success()) header("Location: ../html/index.html");
+if($validator->success()) {
+    require_once "../main/database.php";
+    $db = new Database();
+    $user = $db->getUser($username);
+    if(!$user) {
+        $validator->addError("username", "Incorrect username");
+    } elseif($user->password != $password) { // TODO check hashed password against hashed entered password
+        $validator->addError("password", "Incorrect password");
+    }
+}
+
+if($validator->success()) {
+    $_SESSION["logged_username"] = $username;
+    header("Location: index.php");
+} 
 
 ?>
 

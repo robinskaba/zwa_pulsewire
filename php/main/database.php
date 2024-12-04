@@ -201,7 +201,7 @@ class Database {
 
     // GET FUNCTIONS
 
-    public function getUser(string $username): User {
+    public function getUser(string $username): User | null {
         $users = $this->getFileContent("users.json");
         if (!isset($users[$username])) return null;
         return $this->buildUserObject($username, $users[$username]);
