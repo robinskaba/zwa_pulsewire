@@ -132,6 +132,8 @@ class Validator {
     }
 
     public function checkFileIsOfType(string $request_key, array $allowed_types, string $message_prefix) {
+        if(!isset($_FILES[$request_key])) return;
+
         if($_FILES[$request_key]["size"] == 0) return;
         $file_data = $_FILES[$request_key];
         if(!in_array($file_data["type"], $allowed_types)) $this->addError($request_key, $message_prefix." must be of type png, jpg / jpeg. (not ".$file_data["type"].")");
