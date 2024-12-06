@@ -36,6 +36,7 @@ if(!$username || !$db->userExists($username)) {
                 <div class="profile-information">
                     <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
                     <span><span>Second name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
+                    <span><span>Role: </span><?= htmlspecialchars($user->role, ENT_QUOTES) ?></span>
                 </div>
                 <hr>
                 <h4>Posted comments</h4>
