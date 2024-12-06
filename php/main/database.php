@@ -1,5 +1,7 @@
 <?php
 
+require_once "../tools/resize_image.php";
+
 class User {
     public function __construct(string $username, string $first_name, string $second_name, string $password, string $role, array $comments) {
         $this->username = $username;
@@ -92,11 +94,13 @@ class Database {
     }
 
     // IMAGES
-    public function saveImage(array $image_data) {
-        $target_path = $this->file_folder_path."images/".uniqid("headerImg").$image_data["name"];
-        $success = move_uploaded_file($image_data["tmp_name"], $target_path);
-        if(!$success) return $this->file_folder_path."images/not_found.jpg";
-        return $target_path;
+    public function saveImage(array $image_data): string | NULL {
+        $new_name = uniqid("headerImg").$image_data["name"];
+        foreach(["small", "medium", "large"] as $size_type) {
+            $target_path = $this->file_folder_path."images/".$size_type."/".$new_name;
+            resize_image_to_type($image_data["tmp_name"], $size_type, $target_path);
+        }
+        return $new_name;
     }
 
     // CREATING MAIN DATA STRUCTURES
@@ -191,7 +195,12 @@ class Database {
 
     public function removeArticle(string $articleId) {
         $articles = $this->getFileContent("articles.json");
-        unlink($articles[$articleId]["image_path"]);
+
+        if(!isset($articles[$articleId])) return;
+        foreach(["large", "medium", "small"] as $size_type) {
+            $path = $this->file_folder_path."/images/".$size_type."/".$articles[$articleId]["image_path"];
+            if(file_exists($path)) unlink();
+        }
         unset($articles[$articleId]);
         $this->setFileContent("articles.json", $articles);
     }
@@ -278,6 +287,7 @@ class Database {
         $articles = $this->getFileContent("articles.json");
         $reversed_articles = array_reverse($articles, true);
         $groups = array_chunk($reversed_articles, $size, true);
+        if(sizeof($groups) == 0) return [];
         $target_group = $groups[$groupNumber-1];
         $group_with_objects = [];
         foreach($target_group as $id => $data) {

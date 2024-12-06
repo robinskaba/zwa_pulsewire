@@ -37,7 +37,7 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                 <ul>
                     <?php foreach($articles as $article): ?>
                         <li>
-                            <img src=<?= "../api/resize_image.php?img=".urlencode($article->image_path)."&width=300&height=150" ?> alt="article header image">
+                            <img src=<?= "../../database/images/medium/".$article->image_path ?> alt="article header image">
                             <h5>
                                 <a 
                                     href=<?= "article.php?id=".$article->id ?>
