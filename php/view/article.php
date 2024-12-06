@@ -59,10 +59,14 @@ if($validator->success()) {
                     </div>
                     <p id="summary"><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
+                    <?php
+                        if(isset($_SESSION["username"]) && $db->getUser($_SESSION["username"])->isAdmin()):
+                    ?>
                         <form action="../api/delete_article.php" method="POST">
                             <input type="text" name="id" value=<?= $articleId ?> hidden>
                             <input type="submit" value="Delete article">
                         </form>
+                    <?php endif; ?>
                 </article>
 
                 <hr>
