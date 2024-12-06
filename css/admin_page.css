@@ -53,9 +53,10 @@ select {
     margin-left: 0.5em;
     color: var(--primary-color);
 }
+
 option {
     color: black;
 }
-option.selected {
+option[selected] {
     color: var(--primary-color);
 }

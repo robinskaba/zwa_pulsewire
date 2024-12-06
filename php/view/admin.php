@@ -54,7 +54,6 @@ $users = $db->getUsers();
                                     ?>
                                         <option 
                                             value=<?= $role ?> 
-                                            class=<?= $role == $user->role ? "selected" : "" ?>
                                             <?= $role == $user->role ? "selected" : "" ?>
                                         >
                                             <?= ucfirst($role) ?>
