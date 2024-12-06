@@ -53,19 +53,20 @@ if($validator->success()) {
                     <h2>
                         <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                     </h2>
-                    <!-- <a href=<?= "../api/delete_article.php?id=".$articleId ?>>
-                        <img src="../../src/delete_24x24.png" alt="delete comment button">
-                    </a> -->
                     <div class="so">
                         <span class="date">Published at <?= $article->publish_date ?></span>
                         <a class="category"><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
                     </div>
                     <p id="summary"><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
-                    <form action="../api/delete_article.php" method="POST">
-                        <input type="text" name="id" value=<?= $articleId ?> hidden>
-                        <input type="submit" value="Delete article">
-                    </form>
+                    <?php
+                        if(isset($_SESSION["username"]) && $db->getUser($_SESSION["username"])->isAdmin()):
+                    ?>
+                        <form action="../api/delete_article.php" method="POST">
+                            <input type="text" name="id" value=<?= $articleId ?> hidden>
+                            <input type="submit" value="Delete article">
+                        </form>
+                    <?php endif; ?>
                 </article>
 
                 <hr>
