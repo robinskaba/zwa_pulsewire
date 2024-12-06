@@ -199,7 +199,7 @@ class Database {
         if(!isset($articles[$articleId])) return;
         foreach(["large", "medium", "small"] as $size_type) {
             $path = $this->file_folder_path."/images/".$size_type."/".$articles[$articleId]["image_path"];
-            if(file_exists($path)) unlink();
+            if(file_exists($path)) unlink($path);
         }
         unset($articles[$articleId]);
         $this->setFileContent("articles.json", $articles);

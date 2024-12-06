@@ -1,43 +1,36 @@
 /* article section */
-.article > div {
-    display: flex;
-    gap: 1.25em;
+article > img {
+    width: 50%;
+    max-height: 20em;
+    object-fit: contain;
+    margin-right: 1em;
+    float: left;
+    margin-bottom: 0.5em;
 }
 
-.article > div > img {
-    width: max-content;
-    height: max-content;
-}
-
-.article span, .article a {
+article span, article a {
     font-size: 90%;
     color: var(--primary-color);
 }
 
-.article-about {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25em;
-}
-
-.article-about > p {
-    margin: 0;
+#summary {
     font-size: 100%;
+    color: var(--primary-color);
 }
 
-.article > p {
+article > p {
     font-size: 90%;
     margin: 0.25em 0;
 }
 
-.inner-content > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
-@media (max-width: 1024px) {
-    .article > div {
+@media (max-width: 1350px) {
+    article {
+        display: flex;
         flex-direction: column;
+    }
+    article > img {
+        text-align: center;
+        margin: 0;
+        width: 100% !important;
     }
 }

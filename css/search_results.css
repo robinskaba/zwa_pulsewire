@@ -4,23 +4,30 @@ h6 {
     overflow: hidden;
 }
 
-.inner-content {
+ul {
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 0.25em;
 }
 
-.inner-content > a {
+ul > a {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.75em;
 }
-.inner-content > a:hover {
+ul > a:hover {
     text-decoration: none;
 }
 
-.inner-content > a > div {
+ul > a > img {
+    object-fit: contain;
+    width: 8em;
+    height: 5em;
+}
+
+ul > a > div {
     display: flex;
     flex: auto;
     flex-direction: column;
@@ -28,19 +35,19 @@ h6 {
     max-width: 100%;
 }
 
-.inner-content > a > div > div {
+ul > a > div > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.inner-content > a > div > div > span {
+ul > a > div > div > span {
     color: var(--primary-color);
     text-align: end;
     text-wrap: nowrap;
 }
 
-.inner-content > a > div > p {
+ul > a > div > p {
     overflow: hidden;
     height: 3em;
     font-size: 80%;
@@ -50,7 +57,7 @@ h6 {
 }
 
 @media (max-width: 600px) {
-    .inner-content > a {
+    ul > a {
         flex-direction: column;
     }
 }

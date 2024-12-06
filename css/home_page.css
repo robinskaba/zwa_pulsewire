@@ -11,13 +11,14 @@ img {
     text-align: center;
     max-width: 100%;
     object-fit: contain;
+    height: 50%;
 }
 
 li {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 0.3em;
+    justify-content: start;
+    gap: 0.15em;
 }
 
 li > h2 {
@@ -79,7 +80,7 @@ li span {
 @media(max-width: 1200px) {
     ul {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2.5em;
+        gap: 1.5em;
     }
 }
 @media(max-width: 600px) {

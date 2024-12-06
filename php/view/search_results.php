@@ -35,22 +35,24 @@ $articles = $db->getArticlesOfCategory($category);
             <div class="inner-content">
                 <h3><?= htmlspecialchars($category, ENT_QUOTES) ?> - articles</h3>
                 <hr>
-                <?php foreach($articles as $article): ?>
-                <a href=<?= "article.php?id=".$article->id ?>>
-                    <img 
-                        src=<?= "../../database/images/small/".$article->image_path ?>
-                        alt="article name header image"
-                    >
-                    <div>
+                <ul>
+                    <?php foreach($articles as $article): ?>
+                    <a href=<?= "article.php?id=".$article->id ?>>
+                        <img 
+                            src=<?= "../../database/images/small/".$article->image_path ?>
+                            alt="article name header image"
+                        >
                         <div>
-                            <h6><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h6>
-                            <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
+                            <div>
+                                <h6><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h6>
+                                <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
+                            </div>
+                            <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                         </div>
-                        <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
-                    </div>
-                </a>
-                <hr>
-                <?php endforeach; ?>
+                    </a>
+                    <hr>
+                    <?php endforeach; ?>
+                </ul>
             </div>
 
             <?php include "../../html/sidemenu.html" ?>
