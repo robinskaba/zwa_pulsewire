@@ -1,8 +1,10 @@
 <?php
 
 require_once __DIR__."/../../main/categories.php";
+require_once __DIR__."/../../main/database.php";
 
-$logged = isset($_SESSION["username"]);
+$db = new Database();
+$logged_user = $db->getUser($_SESSION["username"]);
 
 ?>
 
@@ -15,18 +17,15 @@ $logged = isset($_SESSION["username"]);
             <a class="page-title" href="index.php">PulseWire</a>
         </div>
         <div class="account-actions">
-            <?php if(!$logged): ?>
+            <?php if(!$logged_user): ?>
                 <a class="account-action" href="login.php">Login</a>
                 <a class="account-action" href="register.php">Register</a>
             <?php else: ?>
                 <?php 
-                    require_once __DIR__."/../../main/database.php";
-                    $db = new Database();
-                    $user = $db->getUser($_SESSION["username"]);
-                    if($user->isAdmin() || $user -> isWriter()):
+                    if($logged_user->isAdmin() || $logged_user -> isWriter()):
                 ?>
                     <a class="account-action" href="write.php">Write</a>
-                    <?php if($user->isAdmin()): ?>
+                    <?php if($logged_user->isAdmin()): ?>
                         <a class="account-action" href="admin.php">Admin</a>
                     <?php endif; ?>
                 <?php endif; ?>

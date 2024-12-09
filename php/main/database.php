@@ -261,7 +261,7 @@ class Database {
         return $comments;
     }
 
-    public function getArticle(string $id): Article {
+    public function getArticle(string $id): Article | null {
         $articles = $this->getFileContent("articles.json");
         if(!isset($articles[$id])) return null;
         

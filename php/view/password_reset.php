@@ -57,7 +57,7 @@ if($validator->success()) {
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>New password *
-                            <input type="text" name=<?= $P1_KEY ?> placeholder="New password" id="password_1" value="<?= htmlspecialchars($password_1) ?>" class=<?php $validator->errorClass($P1_KEY) ?>>
+                            <input type="password" name=<?= $P1_KEY ?> placeholder="New password" id="password_1" value="<?= htmlspecialchars($password_1) ?>" class=<?php $validator->errorClass($P1_KEY) ?>>
                         </label>
                         <label>Password again *
                             <input type="password" name=<?= $P2_KEY ?> placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password_2) ?>" class=<?php $validator->errorClass($P2_KEY) ?>>
