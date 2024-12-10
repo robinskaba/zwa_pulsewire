@@ -101,22 +101,18 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         <ul>
                             <?php foreach($comments as $comment): ?>
                             <li>
-                                <div class="so cv">
+                                <div class="comment-head">
                                     <?php $author = $db->getUser($comment->author); ?>
                                     <h6>
                                         <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
                                             <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                         </a>
                                     </h6>
-                                    <div class="comment-buttons">
-                                        <form action=<?= "article.php?id=".$articleId ?> method="POST">
-                                            <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
-                                            <input type="submit" value="Edit" name="edit-comment">
-                                            <input type="submit" value="Delete" name="delete-comment">
-                                        </form>
-                                        <!-- <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                        <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button"> -->
-                                    </div> 
+                                    <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
+                                        <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
+                                        <input type="submit" value="Edit" name="edit-comment">
+                                        <input type="submit" value="Delete" name="delete-comment">
+                                    </form>
                                 </div>
                                 <span><?= $comment->publish_date ?></span>
                                 <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>

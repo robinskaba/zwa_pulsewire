@@ -19,7 +19,6 @@ if(!$username || !$db->userExists($username)) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- TODO htmlspecialchars for title?? -->
         <title><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</title>
         <link rel="stylesheet" href="../../css/profile.css">
         <link rel="stylesheet" href="../../css/comments.css">

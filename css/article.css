@@ -23,6 +23,17 @@ article > p {
     margin: 0.25em 0;
 }
 
+article > form {
+    margin: 0.25em 0;
+}
+article > form > input {
+    padding: 0.5em 0 !important;
+}
+
+h4 {
+    margin-bottom: 0.35em !important;
+}
+
 @media (max-width: 1350px) {
     article {
         display: flex;
