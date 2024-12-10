@@ -4,7 +4,10 @@ require_once __DIR__."/../../main/categories.php";
 require_once __DIR__."/../../main/database.php";
 
 $db = new Database();
-$logged_user = $db->getUser($_SESSION["username"]);
+$logged_user = NULL;
+if(isset($_SESSION["username"])) {
+    $logged_user = $db->getUser($_SESSION["username"]);
+}
 
 ?>
 

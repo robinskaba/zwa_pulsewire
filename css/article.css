@@ -8,6 +8,10 @@ article > img {
     margin-bottom: 0.5em;
 }
 
+ul {
+    padding: 0;
+}
+
 article span, article a {
     font-size: 90%;
     color: var(--primary-color);

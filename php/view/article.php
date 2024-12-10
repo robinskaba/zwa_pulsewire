@@ -7,12 +7,6 @@ $db = new Database();
 
 $articleId = NULL;
 if(isset($_GET["id"])) $articleId = $_GET["id"];
-if(!$articleId || !$db->articleExists($articleId)) {
-    header("Location: page_not_found.php");
-} else {
-    $article = $db->getArticle($articleId);
-    $comments = $db->getCommentsFromIds($article->comments);
-}
 
 require_once "../main/validator.php";
 $validator = new Validator();
@@ -20,8 +14,15 @@ $comment_body = $validator->getFromPOST("comment-body");
 
 $validator->checkEmpty("comment-body", "Comment");
 
-if($validator->success()) {
-    $db->addComment("TODO-USERNAME", $articleId, $comment_body);
+if($validator->success() && isset($_SESSION["username"])) {
+    $db->addComment($_SESSION["username"], $articleId, $comment_body);
+}
+
+if(!$articleId || !$db->articleExists($articleId)) {
+    header("Location: page_not_found.php");
+} else {
+    $article = $db->getArticle($articleId);
+    $comments = $db->getCommentsFromIds($article->comments);
 }
 
 ?>
@@ -72,14 +73,16 @@ if($validator->success()) {
                 <hr>
                 
                 <div>
-                    <h4>Write a comment</h4>
-                    <form action="article.php" method="POST" id="new-comment-form">
-                        <span class="hidden">You can not post an empty comment!</span>
-                        <div>
-                            <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
-                            <input type="submit" name="submit" value="Post comment">
-                        </div>
-                    </form>
+                    <?php if($logged_user): ?>
+                        <h4>Write a comment</h4>
+                        <form action=<?= "article.php?id=".$articleId ?> method="POST" id="new-comment-form">
+                            <span class="hidden">You can not post an empty comment!</span>
+                            <div>
+                                <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
+                                <input type="submit" name="submit" value="Post comment">
+                            </div>
+                        </form>
+                    <?php endif; ?>
 
                     <h4>Comments</h4>
 

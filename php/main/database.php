@@ -159,6 +159,10 @@ class Database {
 
         $this->setFileContent("comments.json", $comments);
 
+        $articles = $this->getFileContent("articles.json");
+        array_push($articles[$articleId]["comments"], $id);
+        $this->setFileContent("articles.json", $articles);
+
         return $id;
     }
 
@@ -201,6 +205,15 @@ class Database {
             $path = $this->file_folder_path."/images/".$size_type."/".$articles[$articleId]["image_path"];
             if(file_exists($path)) unlink($path);
         }
+
+        $comments = $this->getFileContent("comments.json");
+
+        foreach($articles[$articleId]["comments"] as $comment_id) {
+            unset($comments[$comment_id]);
+        }
+
+        $this->setFileContent("comments.json", $comments);
+
         unset($articles[$articleId]);
         $this->setFileContent("articles.json", $articles);
     }

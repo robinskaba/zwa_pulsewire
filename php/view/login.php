@@ -55,7 +55,7 @@ if($validator->success()) {
                 </div>
 
                 <div class="form-wrap">
-                    <form action="" method="POST">
+                    <form action="login.php" method="POST">
                         <span id="required-fields-hint">* marked fields are required</span>
 
                         <label>Username *
