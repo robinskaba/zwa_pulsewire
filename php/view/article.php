@@ -12,10 +12,20 @@ require_once "../main/validator.php";
 $validator = new Validator();
 $comment_body = $validator->getFromPOST("comment-body");
 
-$validator->checkEmpty("comment-body", "Comment");
-
-if($validator->success() && isset($_SESSION["username"])) {
-    $db->addComment($_SESSION["username"], $articleId, $comment_body);
+if(isset($_POST["post-comment"]) && isset($_SESSION["username"])) {
+    $validator->checkEmpty("comment-body", "Comment");
+    if($validator->success()) {
+        $db->addComment($_SESSION["username"], $articleId, $comment_body);
+    }
+}
+if(isset($_SESSION["username"]) && isset($_POST["delete-comment"])) {
+    $comment_id = $_POST["comment-id"];
+    $logged_user = $db->getUser($_SESSION["username"]);
+    $comment = $db->getCommentById($comment_id);
+    $is_author = $comment->author == $logged_user->username;
+    if($is_author || $logged_user->isAdmin()) {
+        $db->removeComment($comment);
+    }
 }
 
 if(!$articleId || !$db->articleExists($articleId)) {
@@ -23,6 +33,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
 } else {
     $article = $db->getArticle($articleId);
     $comments = $db->getCommentsFromIds($article->comments);
+    echo sizeof($comments);
 }
 
 ?>
@@ -71,7 +82,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 </article>
 
                 <hr>
-                
+
                 <div>
                     <?php if($logged_user): ?>
                         <h4>Write a comment</h4>
@@ -79,7 +90,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                             <span class="hidden">You can not post an empty comment!</span>
                             <div>
                                 <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
-                                <input type="submit" name="submit" value="Post comment">
+                                <input type="submit" name="post-comment" value="Post comment">
                             </div>
                         </form>
                     <?php endif; ?>
@@ -98,8 +109,13 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                         </a>
                                     </h6>
                                     <div class="comment-buttons">
-                                        <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
-                                        <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button">
+                                        <form action=<?= "article.php?id=".$articleId ?> method="POST">
+                                            <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
+                                            <input type="submit" value="Edit" name="edit-comment">
+                                            <input type="submit" value="Delete" name="delete-comment">
+                                        </form>
+                                        <!-- <img src="../../src/delete_16x16.png" alt="delete comment button" class="delete-button">
+                                        <img src="../../src/edit_16x16.png" alt="edit comment button" class="edit-button"> -->
                                     </div> 
                                 </div>
                                 <span><?= $comment->publish_date ?></span>

@@ -17,7 +17,8 @@ function resize_image_to_type(string $original_path, string $size_type, string $
         case IMAGETYPE_PNG:
             $original_image = imagecreatefrompng($original_path);
             break;
-        default: throw new Exception("Server shouldn't have image of this type.");
+        default: 
+            throw new Exception("Server shouldn't have image of this type.");
     }
     imagecopyresized($resized_image, $original_image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
 

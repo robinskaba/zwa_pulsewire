@@ -93,6 +93,16 @@ class Database {
         );
     }
 
+    private function buildCommentObject($id, $data): Comment {
+        return new Comment(
+            $id,
+            $data["author"],
+            $data["articleId"],
+            $data["content"],
+            $data["publish_date"]
+        );
+    }
+
     // IMAGES
     public function saveImage(array $image_data): string | NULL {
         $new_name = uniqid("headerImg").$image_data["name"];
@@ -218,7 +228,7 @@ class Database {
             $author_username = $comments[$comment_id]["author"];
             $i = array_search($comment_id, $users[$author_username]["comments"]);
             unset($users[$author_username]["comments"][$i]);
-            unset($comments[$comment_id]);
+            unset($comments[array_search($comment_id, $comments)]);
         }
         $this->setFileContent("comments.json", $comments);
         $this->setFileContent("users.json", $users);
@@ -232,9 +242,10 @@ class Database {
         $users = $this->getFileContent("users.json");
 
         $i = array_search($comment_id, $articles[$comment->articleId]["comments"]);
-        unset($articles[$comment->articleId]["comments"][$i]);
+        unset($articles[$comment->articleId]["comments"][$comment->id]);
+
         $i = array_search($comment_id, $users[$comment->author]["comments"]);
-        unset($users[$comment->author]["comments"][$i]);
+        unset($users[$comment->author]["comments"][$comment->id]);
 
         $this->setFileContent("articles.json", $articles);
         $this->setFileContent("users.json", $users);
@@ -275,21 +286,23 @@ class Database {
         return $users;
     }
 
+    public function getCommentById(string $comment_id): Comment {
+        $comments = $this->getFileContent("comments.json");
+        $comment = $this->buildCommentObject($comment_id, $comments[$comment_id]);
+        return $comment;
+    }
+
     public function getCommentsFromIds(array $commentIds): array {
         $commentsFile = $this->getFileContent("comments.json");
 
         $comments = array();
+        echo sizeof($commentsFile);
         foreach($commentIds as $qId) {
             if(isset($commentsFile[$qId])) {
-                $comments[] = new Comment(
-                    $qId,
-                    $commentsFile[$qId]["author"],
-                    $commentsFile[$qId]["articleId"],
-                    $commentsFile[$qId]["content"],
-                    $commentsFile[$qId]["publish_date"]
-                );
+                $comments[] = $this->buildCommentObject($qId, $commentsFile[$qId]);
             }
         }
+        echo sizeof($comments);
 
         return $comments;
     }
