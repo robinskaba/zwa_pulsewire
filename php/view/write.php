@@ -2,7 +2,7 @@
 
 require_once "../main/session.php";
 
-if(!$logged_user || !$logged_user->isAdmin()) header("Location: page_not_found.php");
+if(!$logged_user || (!$logged_user->isWriter() && !$logged_user->isAdmin())) header("Location: page_not_found.php");
 
 require_once "../main/validator.php";
 $validator = new Validator();

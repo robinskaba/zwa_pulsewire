@@ -2,6 +2,8 @@
 
 require_once "../main/session.php";
 
+if($logged_user) header("Location: index.php");
+
 require_once "../main/validator.php";
 $validator = new Validator();
 
