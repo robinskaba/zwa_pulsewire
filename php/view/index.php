@@ -38,6 +38,10 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                     <?php foreach($articles as $article): ?>
                         <li>
                             <img src=<?= "../../database/images/medium/".$article->image_path ?> alt="article header image">
+                            <div class="article-metadata">
+                                <span class="date"><?= $article->publish_date ?></span>
+                                <span class="category"><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
+                            </div>
                             <h5>
                                 <a 
                                     href=<?= "article.php?id=".$article->id ?>
@@ -45,10 +49,6 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                                     <?= htmlspecialchars($article->title, true) ?>
                                 </a>
                             </h5>
-                            <div class="article-metadata">
-                                <span class="date"><?= $article->publish_date ?></span>
-                                <span class="category"><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
-                            </div>
                             <p><?= htmlspecialchars($article->summary, true) ?></p>
                         </li>
                     <?php endforeach; ?>

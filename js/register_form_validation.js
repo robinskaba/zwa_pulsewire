@@ -94,7 +94,7 @@ function password_again_check() {
 }
 password_field_1.addEventListener("blur", general_password_check);
 password_field_1.addEventListener("blur", password_again_check);
-password_field_2.addEventListener("blur", password_again_check);
+password_field_2.addEventListener("input", password_again_check);
 
 function check_on_submit(ev) {
     // total check on submit
