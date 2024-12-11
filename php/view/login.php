@@ -19,7 +19,7 @@ if($validator->success()) {
     $user = $db->getUser($username);
     if(!$user) {
         $validator->addError("username", "Incorrect username");
-    } elseif($user->password != $password) { // TODO check hashed password against hashed entered password
+    } elseif(password_verify($password, $user->password)) {
         $validator->addError("password", "Incorrect password");
     }
 }

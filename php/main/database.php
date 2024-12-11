@@ -143,7 +143,7 @@ class Database {
         $user_array = [
             "first_name"=>$first_name,
             "second_name"=>$second_name,
-            "password"=>$password, // TODO hashing
+            "password"=>password_hash($password, PASSWORD_DEFAULT),
             "role"=>"user",
             "comments"=>array()
         ];

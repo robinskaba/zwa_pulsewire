@@ -24,6 +24,7 @@ if ($validator->success()) {
     require_once "../main/database.php";
     $db = new Database();
     $db->addUser($username, $first_name, $second_name, $password1);
+    $_SESSION["username"] = $username;
 
     header("Location: profile.php?username=".$username);
 }

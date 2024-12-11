@@ -49,7 +49,7 @@ function requestUsernameAvailable(ev) {
     if(username_field.value.length < 1) return;
 
     let request = new XMLHttpRequest();
-    request.open("GET", "../php/exists_username.php?username="+username_field.value, true);
+    request.open("GET", "../api/exists_username.php?username="+username_field.value, true);
     request.addEventListener("load", handleResponse);
     request.send();
 }
