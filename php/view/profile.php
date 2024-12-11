@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+require_once "../main/session.php";
 
 require_once "../main/database.php";
 $db = new Database();
@@ -57,7 +57,7 @@ if(!$username || !$db->userExists($username)) {
                 <?php endif; ?>
             </div>
 
-            <?php include("../../html/sidemenu.html"); ?>          
+            <?php include("templates/side_menu.php"); ?>          
         </main>
     </body>
 </html>

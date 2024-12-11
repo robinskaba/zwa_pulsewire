@@ -1,1 +1,1 @@
-{"admin":{"first_name":"Mr","second_name":"Admin","password":"$2y$10$NDGcwqBdEyP1SC5C3pEGZ.I72feChYRTJpnc8ArNBmucrT8kH23HG","role":"admin","comments":[]}}
+{"admin":{"first_name":"Mr","second_name":"Admin","password":"$2y$10$NDGcwqBdEyP1SC5C3pEGZ.I72feChYRTJpnc8ArNBmucrT8kH23HG","role":"admin","comments":["commentId6759b49ab121e3.24797041"]},"robin":{"first_name":"Robin","second_name":"\u0160k\u00e1ba","password":"$2y$10$aKHEX4WuhGpUdv5aPeXC6.I09wHICv1shrVsizIfY02nO4VcQxBnC","role":"user","comments":["commentId6759b4d26c5058.60442957","commentId6759b4d71a5868.88608213"]}}

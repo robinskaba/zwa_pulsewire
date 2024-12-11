@@ -1,12 +1,12 @@
 <?php
 
-session_start();
+require_once "../main/session.php";
 
 $category = NULL;
 if(isset($_GET["category"])) $category = $_GET["category"];
 if(!$category) header("Location: page_not_found.php");
 
-// redirect if category not in variable declared in categories.php
+// redirectnout pokud kategorie neexistuje
 require_once "../main/categories.php";
 $category = ucfirst($category);
 if(!in_array($category, $CATEGORIES)) header("Location: page_not_found.php");
@@ -55,6 +55,6 @@ $articles = $db->getArticlesOfCategory($category);
                 </ul>
             </div>
 
-            <?php include "../../html/sidemenu.html" ?>
+            <?php include "templates/side_menu.php" ?>
     </body>
 </html>

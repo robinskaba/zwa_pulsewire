@@ -1,14 +1,7 @@
 <?php
 
 require_once __DIR__."/../../main/categories.php";
-require_once __DIR__."/../../main/database.php";
-
-$db = new Database();
-$logged_user = NULL;
-if(isset($_SESSION["username"])) {
-    $logged_user = $db->getUser($_SESSION["username"]);
-    
-}
+require_once __DIR__."/../../main/session.php";
 
 ?>
 
@@ -33,7 +26,7 @@ if(isset($_SESSION["username"])) {
                         <a class="account-action" href="admin.php">Admin</a>
                     <?php endif; ?>
                 <?php endif; ?>
-                <a class="account-action" href=<?= "profile.php?username=".$_SESSION["username"] ?>>Profile</a>
+                <a class="account-action" href=<?= "profile.php?username=".$logged_user->username ?>>Profile</a>
                 <a class="account-action" href=<?= "../api/log_out.php" ?>>Log out</a>
             <?php endif; ?>
             

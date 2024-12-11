@@ -1,8 +1,8 @@
 <?php
 
-session_start();
+require_once "../main/session.php";
 
-if(isset($_SESSION["username"])) header("Location: index.php");
+if($logged_user) header("Location: index.php");
 
 require_once "../main/validator.php";
 $validator = new Validator();
@@ -19,7 +19,7 @@ if($validator->success()) {
     $user = $db->getUser($username);
     if(!$user) {
         $validator->addError("username", "Incorrect username");
-    } elseif(password_verify($password, $user->password)) {
+    } elseif(!password_verify($password, $user->password)) {
         $validator->addError("password", "Incorrect password");
     }
 }
@@ -74,7 +74,7 @@ if($validator->success()) {
                 </span>
             </div>
 
-            <?php include("../../html/sidemenu.html") ?>
+            <?php include("templates/side_menu.php") ?>
         </main>
     </body>
 </html>

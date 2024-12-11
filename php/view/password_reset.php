@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+require_once "../main/session.php";
+
+if(!$logged_user || !$logged_user->isAdmin()) header("Location: page_not_found.php");
 
 $P1_KEY = "password_1";
 $P2_KEY = "password_2";
@@ -69,7 +71,7 @@ if($validator->success()) {
                 </div>
             </div>
 
-            <?php include("../../html/sidemenu.html") ?>
+            <?php include("templates/side_menu.php") ?>
         </main>
     </body>
 </html>

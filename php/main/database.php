@@ -296,13 +296,11 @@ class Database {
         $commentsFile = $this->getFileContent("comments.json");
 
         $comments = array();
-        echo sizeof($commentsFile);
         foreach($commentIds as $qId) {
             if(isset($commentsFile[$qId])) {
                 $comments[] = $this->buildCommentObject($qId, $commentsFile[$qId]);
             }
         }
-        echo sizeof($comments);
 
         return $comments;
     }

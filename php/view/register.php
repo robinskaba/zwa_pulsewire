@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+require_once "../main/session.php";
 
 require_once "../main/validator.php";
 $validator = new Validator();
@@ -86,6 +86,6 @@ if ($validator->success()) {
             </span>
         </div>
 
-        <?php include("../../html/sidemenu.html") ?>
+        <?php include("templates/side_menu.php") ?>
     </body>
 </html>

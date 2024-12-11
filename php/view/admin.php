@@ -1,20 +1,15 @@
 <?php
 
-session_start();
+require_once "../main/session.php";
 
-if(!isset($_SESSION["username"])) {
+// redirectnout, kdyby se nahodou nekdo dostal na tuhle stranku kdo neni admin nebo neni logged in
+if(!$logged_user || !$logged_user->isAdmin()) {
     header("Location: page_not_found.php");
     exit;
 }
 
 require_once "../main/database.php";
 $db = new Database();
-
-$logged_user = $db->getUser($_SESSION["username"]);
-if(!$logged_user->isAdmin()) {
-    header("Location: page_not_found.php");
-    exit;
-}
 
 $users = $db->getUsers();
 
@@ -71,6 +66,6 @@ $users = $db->getUsers();
                 </ul>
             </div>
 
-            <?php include "../../html/sidemenu.html" ?>
+            <?php include "templates/side_menu.php" ?>
     </body>
 </html>

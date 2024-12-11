@@ -1,8 +1,8 @@
 <?php
 
-$ARTICLES_PER_PAGE = 6;
+require_once "../main/session.php";
 
-session_start();
+$ARTICLES_PER_PAGE = 6;
 
 require_once "../main/database.php";
 $db = new Database();
@@ -66,7 +66,7 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                 </div>
             </div>
 
-            <?php include "../../html/sidemenu.html" ?>
+            <?php include "templates/side_menu.php" ?>
         </main>
     </body>
 </html>

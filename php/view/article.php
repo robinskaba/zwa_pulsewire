@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require_once "../main/session.php";
 
 require_once "../main/database.php";
 $db = new Database();
@@ -12,15 +12,14 @@ require_once "../main/validator.php";
 $validator = new Validator();
 $comment_body = $validator->getFromPOST("comment-body");
 
-if(isset($_POST["post-comment"]) && isset($_SESSION["username"])) {
+if(isset($_POST["post-comment"]) && $logged_user) {
     $validator->checkEmpty("comment-body", "Comment");
     if($validator->success()) {
-        $db->addComment($_SESSION["username"], $articleId, $comment_body);
+        $db->addComment($logged_user->username, $articleId, $comment_body);
     }
 }
-if(isset($_SESSION["username"]) && isset($_POST["delete-comment"])) {
+if($logged_user && isset($_POST["delete-comment"])) {
     $comment_id = $_POST["comment-id"];
-    $logged_user = $db->getUser($_SESSION["username"]);
     $comment = $db->getCommentById($comment_id);
     $is_author = $comment->author == $logged_user->username;
     if($is_author || $logged_user->isAdmin()) {
@@ -128,7 +127,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 </div>
             </div>
 
-            <?php include("../../html/sidemenu.html") ?>
+            <?php include("templates/side_menu.php") ?>
         </main>
     </body>
 </html>
