@@ -1,21 +1,34 @@
-let edit_buttons = document.querySelectorAll(".edit-button");
-let forms = document.querySelectorAll(".comment form");
+let edit_buttons = document.querySelectorAll("a.edit-button");
+let forms = document.querySelectorAll("li form");
 
 let form_template = document.querySelector("#new-comment-form");
-form_template.addEventListener("submit", handle_empty_form);
+if(form_template) form_template.addEventListener("submit", handle_empty_form);
 
 // replaces paragraph in comment with a form to edit the comment
 function update_to_form(event) {
-    let comment_div = event.target.closest(".comment");
-    let comment_paragraph = comment_div.querySelector("p");
-    let action_buttons = event.target.closest("div");
+    event.preventDefault();
+
+    let comment_id = event.target.id;
+    let li = event.target.closest("li");
+    let comment_paragraph = li.querySelector("p");
+    let action_buttons = event.target.closest("li form.comment-actions");
 
     action_buttons.classList.add("hidden");
     comment_paragraph.classList.add("hidden");
 
     let edit_form = form_template.cloneNode(true);
     edit_form.querySelector("textarea").value = comment_paragraph.textContent;
-    comment_div.appendChild(edit_form);
+
+    let id_reference = document.createElement("input");
+    id_reference.value = comment_id;
+    id_reference.name = "comment-id";
+    id_reference.setAttribute("type", "hidden");
+    edit_form.appendChild(id_reference);
+
+    li.appendChild(edit_form);
+
+    edit_form.querySelector("input[type=submit]").name = "edit-comment";
+
     edit_form.addEventListener("submit", submit_comment_edit);
 }
 
@@ -35,9 +48,9 @@ function handle_empty_form(event) {
 
 // changes comment back to normal if form passes
 function submit_comment_edit(event) {
-    let comment_div = event.target.closest(".comment");
-    let comment_paragraph = comment_div.querySelector("p");
-    let action_buttons = event.target.closest("div");
+    let comment = event.target.closest("li");
+    let comment_paragraph = comment.querySelector("p");
+    let action_buttons = event.target.closest("li form.comment-actions");
 
     let success = handle_empty_form(event);
     if (success) {

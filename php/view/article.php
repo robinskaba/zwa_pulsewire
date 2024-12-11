@@ -27,6 +27,21 @@ if($logged_user && isset($_POST["delete-comment"])) {
     }
 }
 
+// editnout komentar pokud je prihlaseny uzivatel a submit button byl pro edit
+if($logged_user && isset($_POST["edit-comment"])) {
+    // redirectnout kdyby nebyly zadane potrebne informace
+    if(!isset($_POST["comment-id"]) || !isset($_POST["comment-body"])) header("Location: page_not_found.php");
+    else {
+        $comment = $db->getCommentById($_POST["comment-id"]);
+        // editnout jen pokud autor komentare s danym ID se rovna prihlasenemu uzivateli
+        if($comment->author == $logged_user->username) {
+            $db->editComment($_POST["comment-id"], $_POST["comment-body"]);
+        } else {
+            header("Location: page_not_found.php");
+        }
+    }
+}
+
 if(!$articleId || !$db->articleExists($articleId)) {
     header("Location: page_not_found.php");
 } else {
@@ -110,7 +125,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                         <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
                                             <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
                                             <?php if($logged_user->username == $comment->author): ?>
-                                                <input type="submit" value="Edit" name="edit-comment">
+                                                <a class="edit-button" id=<?= $comment->id ?>>Edit</a>
                                             <?php endif; ?>
                                             <input type="submit" value="Delete" name="delete-comment">
                                         </form>

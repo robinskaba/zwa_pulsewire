@@ -30,7 +30,7 @@ div > form {
     margin-bottom: 0.25em;
 }
 
-input[type=submit] {
+input[type=submit], a.edit-button {
     font-size: 100%;
     font-family: var(--terciary-font-family);
     padding: 0.3em 0.75em;
@@ -42,7 +42,8 @@ input[type=submit] {
     transition-duration: 0.3s;
     display: block;
 }
-input[type=submit]:hover {
+input[type=submit]:hover, a.edit-button:hover {
+    text-decoration: none;
     background-color: var(--primary-color);
     color: white;
 }
