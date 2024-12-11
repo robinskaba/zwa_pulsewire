@@ -33,7 +33,6 @@ if(!$articleId || !$db->articleExists($articleId)) {
 } else {
     $article = $db->getArticle($articleId);
     $comments = $db->getCommentsFromIds($article->comments);
-    echo sizeof($comments);
 }
 
 ?>
@@ -108,11 +107,15 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                             <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                         </a>
                                     </h6>
-                                    <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
-                                        <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
-                                        <input type="submit" value="Edit" name="edit-comment">
-                                        <input type="submit" value="Delete" name="delete-comment">
-                                    </form>
+                                    <?php if($logged_user && ($logged_user->username == $comment->author || $logged_user->isAdmin())): ?>
+                                        <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
+                                            <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
+                                            <?php if($logged_user->username == $comment->author): ?>
+                                                <input type="submit" value="Edit" name="edit-comment">
+                                            <?php endif; ?>
+                                            <input type="submit" value="Delete" name="delete-comment">
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                                 <span><?= $comment->publish_date ?></span>
                                 <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
