@@ -15,6 +15,7 @@ require_once "../main/database.php";
 $db = new Database();
 $category = ucfirst($category);
 $articles = $db->getArticlesOfCategory($category);
+$articles = array_reverse($articles);
 
 ?>
 
