@@ -47,6 +47,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
 } else {
     $article = $db->getArticle($articleId);
     $comments = $db->getCommentsFromIds($article->comments);
+    $comments = array_reverse($comments);
 }
 
 ?>

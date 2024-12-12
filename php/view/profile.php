@@ -12,6 +12,7 @@ if(!$username || !$db->userExists($username)) {
 } else {
     $user = $db->getUser($username);
     $comments = $db->getCommentsFromIds($user->comments);
+    $comments = array_reverse($comments);
 }
 
 ?>
