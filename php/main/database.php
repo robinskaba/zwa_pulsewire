@@ -228,7 +228,7 @@ class Database {
             $author_username = $comments[$comment_id]["author"];
             $i = array_search($comment_id, $users[$author_username]["comments"]);
             unset($users[$author_username]["comments"][$i]);
-            unset($comments[array_search($comment_id, $comments)]);
+            unset($comments[$comment_id]);
         }
         $this->setFileContent("comments.json", $comments);
         $this->setFileContent("users.json", $users);
