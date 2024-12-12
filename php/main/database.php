@@ -241,10 +241,7 @@ class Database {
         $articles = $this->getFileContent("articles.json");
         $users = $this->getFileContent("users.json");
 
-        $i = array_search($comment_id, $articles[$comment->articleId]["comments"]);
         unset($articles[$comment->articleId]["comments"][$comment->id]);
-
-        $i = array_search($comment_id, $users[$comment->author]["comments"]);
         unset($users[$comment->author]["comments"][$comment->id]);
 
         $this->setFileContent("articles.json", $articles);
@@ -253,6 +250,32 @@ class Database {
         $comments = $this->getFileContent("comments.json");
         unset($comments[$comment->id]);
         $this->setFileContent("comments.json", $comments);
+    }
+
+    public function removeUser(User $user) {
+        $users = $this->getFileContent("users.json");
+
+        $comments = $this->getFileContent("comments.json");
+        $articles = $this->getFileContent("articles.json");
+        
+        if(!isset($users[$user->username])) return;
+
+        // delete comments and unlink from article
+        foreach($user->comments as $comment_id) {
+            $comment = $comments[$comment_id];
+
+            $articleId = $comment["articleId"];
+            $i = array_search($comment_id, $articles[$articleId]["comments"]);
+            unset($articles[$articleId]["comments"][$i]);
+
+            unset($comments[$comment_id]);
+        }
+
+        $this->setFileContent("comments.json", $comments);
+        $this->setFileContent("articles.json", $articles);
+
+        unset($users[$user->username]);
+        $this->setFileContent("users.json", $users);
     }
 
     // INFORMATIVE FUNCTIONS

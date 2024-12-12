@@ -25,18 +25,25 @@ li > div {
     gap: 0.5em;
 }
 
-li > div > a {
+li > div > a, li form > input[type=submit] {
     text-decoration: none;
     border: var(--thin-border-width) solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    font-family: var(--primary-font-family);
+    font-size: 100%;
     padding: 0.4em 1em;
     transition-duration: 0.3s;
+    height: 100%;
 }
-li > div > a:hover {
+
+li > div > a:hover, li form > input[type=submit]:hover {
     background-color: var(--primary-color);
+    cursor: pointer;
     text-decoration: none;
     color: white;
 }
-li > div > a.disabled {
+li > div > a.disabled, li form > input[type=submit]:disabled {
     border-color: gray;
     color: gray;
     background-color: #4b4b4b2c;

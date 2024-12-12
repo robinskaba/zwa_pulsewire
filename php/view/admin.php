@@ -11,6 +11,11 @@ if(!$logged_user || !$logged_user->isAdmin()) {
 require_once "../main/database.php";
 $db = new Database();
 
+if(isset($_POST["ban-user"]) && isset($_POST["username"]) && $logged_user->isAdmin()) {
+    $to_ban_username = $_POST["username"];
+    $db->removeUser($db->getUser($to_ban_username));
+}
+
 $users = $db->getUsers();
 
 ?>
@@ -58,8 +63,11 @@ $users = $db->getUsers();
                             </label>
                             
 
-                            <a href=<?= "password_reset.php?username=".$user->username ?>>Reset password</a>
-                            <a href="" class="disabled">Ban</a>
+                            <a href=<?= "password_reset.php?username=".htmlspecialchars($user->username, ENT_QUOTES) ?>>Reset password</a>
+                            <form action="admin.php" method="POST">
+                                <input type="hidden" name="username" value="<?= htmlspecialchars($user->username) ?>">
+                                <input type="submit" name="ban-user" value="Ban" <?= ($user->username == $logged_user->username) ? "disabled" : "" ?>>
+                            </form>
                         </div>
                     </li>
                     <?php endforeach; ?>
