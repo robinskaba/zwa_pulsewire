@@ -57,9 +57,21 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                     <?php if($current_page - 1 > 0): ?>
                         <a href=<?= "index.php?page=".(string) $current_page - 1 ?>>&lt;</a>
                     <?php endif; ?>
-                    <?php for($i = 1; $i <= $amount_of_pages; $i++): ?>
+
+                    <?php if($amount_of_pages > 7): ?>
+                        <span>...</span>
+                    <?php endif; ?>
+
+                    <?php
+                        $minLimit = ($current_page - 2 > 1) ? $current_page - 2 : 1;
+                        $maxLimit = ($current_page + 2 < $amount_of_pages) ? $current_page + 2 : $amount_of_pages;
+                        for($i = $minLimit; $i <= $maxLimit; $i++): 
+                    ?>
                         <a href=<?= "index.php?page=".(string) $i ?> <?= $i == $current_page ? "class=selected" : "" ?>><?= $i ?></a>
                     <?php endfor; ?>
+                    <?php if($amount_of_pages > 7): ?>
+                        <span>...</span>
+                    <?php endif; ?>
                     <?php if($current_page + 1 <= $amount_of_pages): ?>
                         <a href=<?= "index.php?page=".(string) $current_page + 1 ?>>&gt;</a>
                     <?php endif; ?>
