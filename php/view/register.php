@@ -11,7 +11,6 @@ $username = $validator->getFromPOST("username");
 $first_name = $validator->getFromPOST("first_name");
 $second_name = $validator->getFromPOST("second_name");
 $password1 = $validator->getFromPOST("password1");
-$password2 = $validator->getFromPOST("password2");
 
 $validator->checkLength(4, "username", "Username");
 $validator->checkIllegalChars("username", "Username");
@@ -37,7 +36,7 @@ if ($validator->success()) {
     <head>
         <title>Register for PulseWire</title>
         
-        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/error_handler.js" defer></script>
         <script src="../../js/register_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
@@ -73,10 +72,10 @@ if ($validator->success()) {
                             </label>
                         </div>
                         <label>Password *
-                            <input type="password" name="password1" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password1) ?>" class=<?php $validator->errorClass("password1") ?>>
+                            <input type="password" name="password1" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password1") ?>>
                         </label>
                         <label>Password again *
-                            <input type="password" name="password2" placeholder="Password again" id="password_2" value="<?= htmlspecialchars($password2) ?>" class=<?php $validator->errorClass("password2") ?>>
+                            <input type="password" name="password2" placeholder="Password again" id="password_2" value="" class=<?php $validator->errorClass("password2") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
                         <input type="submit" value="Register" name="submit">
@@ -84,7 +83,7 @@ if ($validator->success()) {
                 </div>
             
             <span>Do you already have an account? 
-                    <a href="login.html">Login</a>
+                    <a href="login.php">Login</a>
             </span>
         </div>
 

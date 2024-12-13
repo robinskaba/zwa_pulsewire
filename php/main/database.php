@@ -205,7 +205,7 @@ class Database {
         $users = $this->getFileContent("users.json");
 
         if (!isset($users[$username])) return;
-        $users[$username]["password"] = $new_password; // TODO hash pasword
+        $users[$username]["password"] = password_hash($new_password, PASSWORD_DEFAULT);
 
         $this->setFileContent("users.json", $users);
     }

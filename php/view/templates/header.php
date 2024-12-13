@@ -8,7 +8,7 @@ require_once __DIR__."/../../main/session.php";
 <header>
     <nav id="upper-nav">
         <div>
-            <a href="index.html">
+            <a href="../view/index.php">
                 <img src="../../src/logo_64x64.png" alt="pulsewire logo" id="page-logo">
             </a>
             <a class="page-title" href="index.php">PulseWire</a>

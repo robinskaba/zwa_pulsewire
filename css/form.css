@@ -58,7 +58,7 @@ input.error {
     border-width: var(--thin-border-width);
 }
 input:focus {
-    background-color: rgb(196, 196, 196);
+    background-color: rgb(196, 196, 196) !important;
     border-width: 0;
     outline: none;
 }

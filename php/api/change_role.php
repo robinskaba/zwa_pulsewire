@@ -1,6 +1,8 @@
 <?php
 
-if(isset($_POST["username"]) && isset($_POST["role"])) {
+require_once "../main/session.php";
+
+if(isset($_POST["username"]) && isset($_POST["role"]) && $logged_user && $logged_user->isAdmin()) {
     $username = $_POST["username"];
     $role = strtolower($_POST["role"]);
 

@@ -27,7 +27,9 @@ function update_to_form(event) {
 
     li.appendChild(edit_form);
 
-    edit_form.querySelector("input[type=submit]").name = "edit-comment";
+    let submit = edit_form.querySelector("input[type=submit]");
+    submit.name = "edit-comment";
+    submit.value = "Edit comment";
 
     edit_form.addEventListener("submit", submit_comment_edit);
 }

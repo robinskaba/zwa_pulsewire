@@ -36,7 +36,7 @@ if($validator->success()) {
     <head>
         <title>Log in to PulseWire</title>
         
-        <script src="../../js/field_error_handling.js" defer></script>
+        <script src="../../js/error_handler.js" defer></script>
         <script src="../../js/login_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
@@ -62,7 +62,7 @@ if($validator->success()) {
                             <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
                         </label>
                         <label>Password *
-                            <input type="password" name="password" placeholder="Password" id="password_1" value="<?= htmlspecialchars($password) ?>" class=<?php $validator->errorClass("password") ?>>
+                            <input type="password" name="password" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password") ?>>
                         </label>
                         <?= $validator->displayErrors() ?>
                         <input type="submit" value="Log in" name="submit">
@@ -70,7 +70,7 @@ if($validator->success()) {
                 </div>
                 
                 <span>New to PulseWire? 
-                    <a href="register.html">Create an account</a>
+                    <a href="register.php">Create an account</a>
                 </span>
             </div>
 

@@ -13,7 +13,7 @@ function username_length_check() {
 
     error_handler.run_issue(username.length < 4, username_length_message);
 
-    error_handler.errorify_element(username_field, [username_length_message, username_illegal_char_message]);
+    error_handler.errorify_element(username_field, [username_length_message, username_illegal_char_message, USERNAME_USED_MESSAGE]);
     error_handler.process_hint_messages();
 }
 function illegal_char_check() {
@@ -29,7 +29,7 @@ function illegal_char_check() {
     }
     error_handler.run_issue(!no_illegal_chars, username_illegal_char_message);
 
-    error_handler.errorify_element(username_field, [username_length_message, username_illegal_char_message]);
+    error_handler.errorify_element(username_field, [username_length_message, username_illegal_char_message, USERNAME_USED_MESSAGE]);
     error_handler.process_hint_messages();
 }
 username_field.addEventListener("input", illegal_char_check);
@@ -42,7 +42,7 @@ function handleResponse(ev) {
     let content = response.responseText;
 
     error_handler.run_issue(content == "true", USERNAME_USED_MESSAGE);
-    error_handler.errorify_element(username_field, USERNAME_USED_MESSAGE);
+    error_handler.errorify_element(username_field, [username_length_message, username_illegal_char_message, USERNAME_USED_MESSAGE]);
     error_handler.process_hint_messages();
 }
 function requestUsernameAvailable(ev) {
