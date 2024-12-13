@@ -105,7 +105,7 @@ class Database {
 
     // IMAGES
     public function saveImage(array $image_data): string | NULL {
-        $new_name = uniqid("headerImg").$image_data["name"];
+        $new_name = uniqid("headerImg").str_replace(' ', '', $image_data["name"]);
         foreach(["small", "medium", "large"] as $size_type) {
             $target_path = $this->file_folder_path."images/".$size_type."/".$new_name;
             resize_image_to_type($image_data["tmp_name"], $size_type, $target_path);
