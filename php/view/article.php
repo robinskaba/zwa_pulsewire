@@ -84,7 +84,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                     </h1>
                     <div>
                         <span>Published at <?= $article->publish_date ?></span>
-                        <a><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
+                        <a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a>
                     </div>
                     <p id="summary"><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
