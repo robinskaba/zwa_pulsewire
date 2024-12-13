@@ -14,6 +14,7 @@ $db = new Database();
 if(isset($_POST["ban-user"]) && isset($_POST["username"]) && $logged_user->isAdmin()) {
     $to_ban_username = $_POST["username"];
     $db->removeUser($db->getUser($to_ban_username));
+    header("Location: admin.php");
 }
 
 $users = $db->getUsers();

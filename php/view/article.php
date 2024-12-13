@@ -16,6 +16,7 @@ if(isset($_POST["post-comment"]) && $logged_user) {
     $validator->checkEmpty("comment-body", "Comment");
     if($validator->success()) {
         $db->addComment($logged_user->username, $articleId, $comment_body);
+        header("Location: article.php?id=".$articleId);
     }
 }
 if($logged_user && isset($_POST["delete-comment"])) {
@@ -24,6 +25,7 @@ if($logged_user && isset($_POST["delete-comment"])) {
     $is_author = $comment->author == $logged_user->username;
     if($is_author || $logged_user->isAdmin()) {
         $db->removeComment($comment);
+        header("Location: article.php?id=".$articleId);
     }
 }
 
@@ -36,6 +38,7 @@ if($logged_user && isset($_POST["edit-comment"])) {
         // editnout jen pokud autor komentare s danym ID se rovna prihlasenemu uzivateli
         if($comment->author == $logged_user->username) {
             $db->editComment($_POST["comment-id"], $_POST["comment-body"]);
+            header("Location: article.php?id=".$articleId);
         } else {
             header("Location: page_not_found.php");
         }
