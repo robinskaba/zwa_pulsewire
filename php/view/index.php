@@ -38,7 +38,7 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                 <ul>
                     <?php foreach($articles as $article): ?>
                         <li>
-                            <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="article header image">
+                            <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="<?= "Header image for article ".$article->title ?>">
                             <div>
                                 <span><?= $article->publish_date ?></span>
                                 <span><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>

@@ -77,7 +77,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 <article>
                     <img
                         src="<?= "../../database/images/large/".$article->image_path ?>" 
-                        alt="popis titulniho obrazku"
+                        alt="Header image for the article"
                     >
                     <h1>
                         <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
@@ -120,11 +120,15 @@ if(!$articleId || !$db->articleExists($articleId)) {
                             <li>
                                 <div>
                                     <?php $author = $db->getUser($comment->author); ?>
-                                    <h4>
-                                        <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
-                                            <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
-                                        </a>
-                                    </h4>
+                                    <div>
+                                        <h4>
+                                            <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
+                                                <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
+                                            </a>
+                                        </h4>
+                                        <span><?= $comment->publish_date ?></span>
+                                    </div>
+                                    
                                     <?php if($logged_user && ($logged_user->username == $comment->author || $logged_user->isAdmin())): ?>
                                         <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
                                             <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
@@ -135,7 +139,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                         </form>
                                     <?php endif; ?>
                                 </div>
-                                <span><?= $comment->publish_date ?></span>
+                                
                                 <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
                             </li>
                             <?php endforeach; ?>

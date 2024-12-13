@@ -9,7 +9,7 @@ require_once __DIR__."/../../main/session.php";
     <nav id="upper-nav">
         <div>
             <a href="../view/index.php">
-                <img src="../../src/logo_64x64.png" alt="pulsewire logo" id="page-logo">
+                <img src="../../src/logo_64x64.png" alt="PulseWire logo" id="page-logo">
             </a>
             <a class="page-title" href="index.php">PulseWire</a>
         </div>
@@ -31,7 +31,7 @@ require_once __DIR__."/../../main/session.php";
             <?php endif; ?>
             
         </div>
-        <img src="../../src/menu-icon.png" alt="open category menu" id="category-menu">
+        <img src="../../src/menu-icon.png" alt="Button for opening side menu" id="category-menu">
     </nav>
     <nav id="lower-nav">
         <?php foreach($CATEGORIES as $_category): ?>

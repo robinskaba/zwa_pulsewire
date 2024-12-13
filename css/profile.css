@@ -12,7 +12,10 @@ main > div > div {
 
 span > span {
     color: var(--primary-color);
-    font-size: 140%;
+    font-size: 100%;
+}
+main > div > div > span {
+    color: var(--secondary-color) !important;
 }
 
 hr {

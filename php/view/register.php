@@ -49,7 +49,7 @@ if ($validator->success()) {
             <div>
                 <div>
                     <h2>Register for</h2>
-                    <img src="../../src/logo_128x128.png" alt="page logo">
+                    <img src="../../src/logo_128x128.png" alt="PulseWire logo">
                     <h1 class="page-title">PulseWire</h1>
                 </div>
 

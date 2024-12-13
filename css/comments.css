@@ -1,5 +1,5 @@
 /* comment section */
-h3 {
+div > div > h3 {
     margin: 0.5em 0;
 }
 
@@ -84,6 +84,7 @@ li > div {
     align-items: center;
     justify-content: space-between;
 }
+
 .comment-actions {
     display: flex;
     flex-direction: row;
