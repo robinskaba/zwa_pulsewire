@@ -34,18 +34,18 @@ $articles = array_reverse($articles);
 
         <main>
             <div class="inner-content">
-                <h3><?= htmlspecialchars($category, ENT_QUOTES) ?> - articles</h3>
+                <h1><?= htmlspecialchars($category, ENT_QUOTES) ?></h1>
                 <hr>
                 <ul>
                     <?php foreach($articles as $article): ?>
                     <a href=<?= "article.php?id=".$article->id ?>>
                         <img 
-                            src=<?= "../../database/images/small/".$article->image_path ?>
+                            src="<?= "../../database/images/small/".$article->image_path ?>"
                             alt="article name header image"
                         >
                         <div>
                             <div>
-                                <h6><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h6>
+                                <h2><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h2>
                                 <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
                             </div>
                             <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>

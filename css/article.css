@@ -30,7 +30,7 @@ article > form > input {
     padding: 0.5em 0 !important;
 }
 
-h4 {
+h3 {
     margin-bottom: 0.35em !important;
 }
 
@@ -43,5 +43,6 @@ h4 {
         text-align: center;
         margin: 0;
         width: 100% !important;
+        margin-bottom: 0.5em;
     }
 }

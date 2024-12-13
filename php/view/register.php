@@ -83,7 +83,7 @@ if ($validator->success()) {
                 </div>
             
             <span>Do you already have an account? 
-                    <a href="login.php">Login</a>
+                <a href="login.php">Login</a>
             </span>
         </div>
 

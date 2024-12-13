@@ -50,7 +50,7 @@ if ($validator->success()) {
 
         <main>
             <div class="inner-content">
-                <h2>Create an article</h2>
+                <h1>Write an article</h1>
                 <form action="write.php" method="POST" enctype="multipart/form-data">
                     <span id="required-fields-hint">* marked fields are required</span>
 

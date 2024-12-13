@@ -39,9 +39,9 @@ $users = $db->getUsers();
 
         <main>
             <div class="inner-content">
-                <h3>Admin controls</h3>
+                <h1>Admin controls</h1>
                 <hr>
-                <h4>Registered users</h4>
+                <h2>Registered users</h2>
                 <ul>
                     <?php foreach($users as $user): ?>
                     <li>

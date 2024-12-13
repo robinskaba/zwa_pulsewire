@@ -31,15 +31,15 @@ if(!$username || !$db->userExists($username)) {
 
         <main>
             <div class="inner-content">   
-                <h2><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</h2>
-                <h4>Profile information</h4>
+                <h1><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</h1>
+                <h2>Profile information</h2>
                 <div class="profile-information">
                     <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
                     <span><span>Second name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
                     <span><span>Role: </span><?= htmlspecialchars($user->role, ENT_QUOTES) ?></span>
                 </div>
                 <hr>
-                <h4>Posted comments</h4>
+                <h2>Posted comments</h2>
                 <?php if(sizeof($comments) > 0): ?>
                     <ul>
                         <?php foreach($comments as $comment): ?>
@@ -47,7 +47,7 @@ if(!$username || !$db->userExists($username)) {
                             <?php
                                 $parent_article = $db->getArticle($comment->articleId);
                             ?>
-                            <h5><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h5>
+                            <h3><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h3>
                             <span><?= $comment->publish_date ?></span>
                             <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
                         </li>

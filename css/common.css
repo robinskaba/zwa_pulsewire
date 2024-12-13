@@ -22,29 +22,22 @@ body {
     background-color: white;
 }
 
-h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--primary-font-family);
     color: var(--primary-color);
     margin: 0;
 }
+
 h1 {
-    font-family: var(--primary-font-family);
-    margin: 0;
-    font-size: 250%;
-}
-h2 {
-    font-size: 215%;
-}
-h3 {
     font-size: 175%;
 }
-h4 {
+h2 {
     font-size: 150%;
 }
-h5 {
+h3 {
     font-size: 125%;
 }
-h6 {
+h4 {
     font-size: 110%;
 }
 a, p, span {

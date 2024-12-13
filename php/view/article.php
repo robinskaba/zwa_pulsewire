@@ -76,12 +76,12 @@ if(!$articleId || !$db->articleExists($articleId)) {
             <div class="inner-content">
                 <article>
                     <img
-                        src=<?= "../../database/images/large/".$article->image_path ?> 
+                        src="<?= "../../database/images/large/".$article->image_path ?>" 
                         alt="popis titulniho obrazku"
                     >
-                    <h2>
+                    <h1>
                         <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
-                    </h2>
+                    </h1>
                     <div class="so">
                         <span class="date">Published at <?= $article->publish_date ?></span>
                         <a class="category"><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
@@ -102,7 +102,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
 
                 <div>
                     <?php if($logged_user): ?>
-                        <h4>Write a comment</h4>
+                        <h3>Write a comment</h3>
                         <form action=<?= "article.php?id=".$articleId ?> method="POST" id="new-comment-form">
                             <span class="hidden">You can not post an empty comment!</span>
                             <div>
@@ -112,7 +112,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         </form>
                     <?php endif; ?>
 
-                    <h4>Comments</h4>
+                    <h2>Comments</h2>
 
                     <?php if(sizeof($comments) > 0): ?>
                         <ul>

@@ -37,8 +37,8 @@ if($validator->success()) {
     <head>
         <title>Password reset</title>
         
-        <!-- <script src="../../js/error_handler.js" defer></script>
-        <script src="../../js/password_reset_validation.js" defer></script> -->
+        <script src="../../js/error_handler.js" defer></script>
+        <script src="../../js/password_reset_validation.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
 
@@ -50,7 +50,7 @@ if($validator->success()) {
         <main>
             <div class="inner-content">
                 <div class="form-heading">
-                    <h2 class="form-headline">Reset password for <?= htmlspecialchars($username, true) ?></h2>
+                    <h1 class="form-headline">Reset password for <?= htmlspecialchars($username, true) ?></h1>
                 </div>
 
                 <div class="form-wrap">
