@@ -5,7 +5,7 @@ require_once __DIR__."/../../main/session.php";
 
 ?>
 
-<div class="side-menu">
+<div id="side-menu">
 
     <?php if(!$logged_user): ?>
         <a href="login.php">Login</a>

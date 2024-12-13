@@ -61,18 +61,19 @@ nav > div {
     gap: 1em;
 }
 
-.account-actions > a, .side-menu > a {
+.account-actions > a, #side-menu > a {
     color: var(--secondary-color);
     font-size: 120%;
     font-family: var(--primary-font-family);
     font-style: italic;
 }
 
-.side-menu a.category {
+#side-menu a.category {
     color: var(--primary-color);
+    font-style: normal;
 }
 
-.side-menu {
+#side-menu {
     z-index: 1;
     display: flex;
     position: fixed;

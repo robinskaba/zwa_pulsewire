@@ -1,4 +1,4 @@
-let side_menu = document.querySelector("div.side-menu");
+let side_menu = document.querySelector("div#side-menu");
 let menu_icon = document.querySelector("#category-menu");
 
 let menu_open = false;
