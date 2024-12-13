@@ -16,6 +16,7 @@ if(isset($_GET["page"])) {
         header("Location: page_not_found.php");
     }
 }
+if($current_page > $amount_of_pages) header("Location: page_not_found.php");
 
 $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
 
