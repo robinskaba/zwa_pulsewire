@@ -26,19 +26,17 @@ $users = $db->getUsers();
 <html lang="en">
     <head>
         <title>Administrator's page</title>
+        <?php include "../../html/metadata.html" ?>
 
         <script src="../../js/admin.js" defer></script>
-
         <link rel="stylesheet" href="../../css/admin_page.css">
-
-        <?php include "../../html/metadata.html" ?>
     </head>
 
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
+            <div>
                 <h1>Admin controls</h1>
                 <hr>
                 <h2>Registered users</h2>
@@ -47,7 +45,7 @@ $users = $db->getUsers();
                     <li>
                         <a href=<?= "profile.php?username=".$user->username ?> id="username-anchor"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
                         <div>
-                            <label class="cv">Select role: 
+                            <label>Select role: 
                                 <select>
                                     <?php
                                         $roles = ["user", "writer", "admin"];

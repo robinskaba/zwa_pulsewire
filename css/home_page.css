@@ -36,13 +36,7 @@ li > p {
     overflow: hidden;
 }
 
-li > div.image-frame {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-}
-
-li > div.article-metadata {
+li > div {
     display: flex;
     justify-content: space-between;
 }
@@ -52,20 +46,20 @@ li span {
     font-size: 90%;
 }
 
-.page-links {
+#page-links {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.page-links a {
+#page-links a {
     margin: 0 0.25em;
-    color: var(--terciary-color);
+    color: var(--secondary-color);
 }
-.page-links a:hover {
+#page-links a:hover {
     color: var(--primary-color);
     text-decoration: none;
 }
-.page-links a.selected {
+#page-links a.selected {
     color: var(--primary-color);
     font-weight: bold;
 }

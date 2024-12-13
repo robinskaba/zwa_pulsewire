@@ -26,22 +26,22 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
 <html lang="en">
     <head>
         <title>PulseWire</title>
-        <link rel="stylesheet" href="../../css/home_page.css">
         <?php include "../../html/metadata.html" ?>
+        <link rel="stylesheet" href="../../css/home_page.css">
     </head>
     <body>
         <?php include "templates/header.php" ?>
     
         <main>
-            <div class="inner-content">
+            <div>
                 <h1>Welcome to PulseWire</h1>
                 <ul>
                     <?php foreach($articles as $article): ?>
                         <li>
                             <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="article header image">
-                            <div class="article-metadata">
-                                <span class="date"><?= $article->publish_date ?></span>
-                                <span class="category"><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
+                            <div>
+                                <span><?= $article->publish_date ?></span>
+                                <span><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
                             </div>
                             <h2>
                                 <a 
@@ -54,7 +54,7 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <div class="page-links">
+                <div id="page-links">
                     <?php if($current_page - 1 > 0): ?>
                         <a href=<?= "index.php?page=".(string) $current_page - 1 ?>>&lt;</a>
                     <?php endif; ?>

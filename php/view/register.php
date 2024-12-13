@@ -35,52 +35,49 @@ if ($validator->success()) {
 <html lang="en">
     <head>
         <title>Register for PulseWire</title>
-        
+        <?php include("../../html/metadata.html") ?>
+
         <script src="../../js/error_handler.js" defer></script>
         <script src="../../js/register_form_validation.js" defer></script>
-
+        
         <link rel="stylesheet" href="../../css/form.css">
-
-        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
-                <div class="form-heading">
-                    <h2 class="form-headline">Register for</h2>
+            <div>
+                <div>
+                    <h2>Register for</h2>
                     <img src="../../src/logo_128x128.png" alt="page logo">
                     <h1 class="page-title">PulseWire</h1>
                 </div>
 
-                <div class="form-wrap">
-                    <form action="register.php" method="POST">
-                        <span id="required-fields-hint">* marked fields are required</span>
+                <form action="register.php" method="POST">
+                    <span id="required-fields-hint">* marked fields are required</span>
 
-                        <label>Username *
-                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
+                    <label>Username *
+                        <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
+                    </label>
+                    
+                    <div>
+                        <label>First Name *
+                            <input type="text" name="first_name" placeholder="First Name" id="first_name" value="<?= htmlspecialchars($first_name) ?>" class=<?php $validator->errorClass("first_name") ?>>
                         </label>
                         
-                        <div>
-                            <label>First Name *
-                                <input type="text" name="first_name" placeholder="First Name" id="first_name" value="<?= htmlspecialchars($first_name) ?>" class=<?php $validator->errorClass("first_name") ?>>
-                            </label>
-                            
-                            <label>Second Name *
-                                <input type="text" name="second_name" placeholder="Second Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>" class=<?php $validator->errorClass("second_name") ?>>
-                            </label>
-                        </div>
-                        <label>Password *
-                            <input type="password" name="password1" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password1") ?>>
+                        <label>Second Name *
+                            <input type="text" name="second_name" placeholder="Second Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>" class=<?php $validator->errorClass("second_name") ?>>
                         </label>
-                        <label>Password again *
-                            <input type="password" name="password2" placeholder="Password again" id="password_2" value="" class=<?php $validator->errorClass("password2") ?>>
-                        </label>
-                        <?= $validator->displayErrors() ?>
-                        <input type="submit" value="Register" name="submit">
-                    </form>
-                </div>
+                    </div>
+                    <label>Password *
+                        <input type="password" name="password1" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password1") ?>>
+                    </label>
+                    <label>Password again *
+                        <input type="password" name="password2" placeholder="Password again" id="password_2" value="" class=<?php $validator->errorClass("password2") ?>>
+                    </label>
+                    <?= $validator->displayErrors() ?>
+                    <input type="submit" value="Register" name="submit">
+                </form>
             
             <span>Do you already have an account? 
                 <a href="login.php">Login</a>

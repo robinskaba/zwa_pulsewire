@@ -2,8 +2,7 @@
 
 :root {
     --primary-color: #c00202;
-    --secondary-color: #5c001e;
-    --terciary-color: #2B2024;
+    --secondary-color: #2B2024;
     --background-color: #ffffff;
 
     --primary-font-family: "Playfair Display", "Times New Roman", serif;
@@ -60,37 +59,14 @@ textarea {
     resize: none;
 }
 
-/* Centering items in divs */
-.cv {
-    display: flex;
-    align-items: center;
-}
-.hv {
-    display: flex;
-    justify-content: center;
-}
-.so {
-    display: flex;
-    justify-content: space-between;
-}
-.db {
-    display: block;
-}
-.jr {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: right;
-}
 .hidden {
     display: none;
 }
 
-/* Text aligns */
 .tr {
     text-align: right;
 }
 
-/* Anchors */
 a {
     text-decoration: none;
 }
@@ -105,7 +81,7 @@ main {
     justify-content: center;
     padding: 1.5em 0;
 }
-.inner-content {
+main > div {
     width: 70%;
     padding: 1.5em;
     background-color: var(--background-color);
@@ -124,19 +100,19 @@ form > span.error-hint {
 }
 
 @media print {
-    .inner-content {
+    main > div {
         width: 97.5%;
         box-shadow: none;
     }
 }
 
 @media (max-width: 1024px) {
-    .inner-content {
+    main > div {
         width: 80%;
     }
 }
 @media (max-width: 720px) {
-    .inner-content {
+    main > div {
         width: 90%;
     }
 }

@@ -61,19 +61,19 @@ if(!$articleId || !$db->articleExists($articleId)) {
     <head>
         <title>PulseWire - <?= htmlspecialchars($article->title, ENT_QUOTES) ?></title>
 
+        <?php include("../../html/metadata.html") ?>
+
         <script src="../../js/comments.js" defer></script>
 
         <link rel="stylesheet" href="../../css/article.css">
         <link rel="stylesheet" href="../../css/comments.css">
-
-        <?php include("../../html/metadata.html") ?>
     </head>
 
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
+            <div>
                 <article>
                     <img
                         src="<?= "../../database/images/large/".$article->image_path ?>" 
@@ -82,9 +82,9 @@ if(!$articleId || !$db->articleExists($articleId)) {
                     <h1>
                         <?= htmlspecialchars($article->title, ENT_QUOTES); ?>
                     </h1>
-                    <div class="so">
-                        <span class="date">Published at <?= $article->publish_date ?></span>
-                        <a class="category"><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
+                    <div>
+                        <span>Published at <?= $article->publish_date ?></span>
+                        <a><?= htmlspecialchars($article->category, ENT_QUOTES) ?></a>
                     </div>
                     <p id="summary"><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
@@ -106,7 +106,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         <form action=<?= "article.php?id=".$articleId ?> method="POST" id="new-comment-form">
                             <span class="hidden">You can not post an empty comment!</span>
                             <div>
-                                <textarea name="comment-body" id="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
+                                <textarea name="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
                                 <input type="submit" name="post-comment" value="Post comment">
                             </div>
                         </form>
@@ -118,13 +118,13 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         <ul>
                             <?php foreach($comments as $comment): ?>
                             <li>
-                                <div class="comment-head">
+                                <div>
                                     <?php $author = $db->getUser($comment->author); ?>
-                                    <h6>
+                                    <h4>
                                         <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
                                             <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                         </a>
-                                    </h6>
+                                    </h4>
                                     <?php if($logged_user && ($logged_user->username == $comment->author || $logged_user->isAdmin())): ?>
                                         <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
                                             <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">

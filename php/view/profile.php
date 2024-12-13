@@ -21,19 +21,18 @@ if(!$username || !$db->userExists($username)) {
 <html lang="en">
     <head>
         <title><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</title>
+        <?php include("../../html/metadata.html"); ?>
         <link rel="stylesheet" href="../../css/profile.css">
         <link rel="stylesheet" href="../../css/comments.css">
-
-        <?php include("../../html/metadata.html"); ?>
     </head>
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">   
+            <div>   
                 <h1><?= htmlspecialchars($username, ENT_QUOTES) ?>'s profile</h1>
                 <h2>Profile information</h2>
-                <div class="profile-information">
+                <div>
                     <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
                     <span><span>Second name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
                     <span><span>Role: </span><?= htmlspecialchars($user->role, ENT_QUOTES) ?></span>

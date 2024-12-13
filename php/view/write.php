@@ -36,20 +36,19 @@ if ($validator->success()) {
 <html lang="en">
     <head>
         <title>Write an article</title>
-        
+        <?php include("../../html/metadata.html") ?>
+
         <script src="../../js/error_handler.js" defer></script>
         <script src="../../js/write_article_handler.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
         <link rel="stylesheet" href="../../css/write_article.css">
-        
-        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
+            <div>
                 <h1>Write an article</h1>
                 <form action="write.php" method="POST" enctype="multipart/form-data">
                     <span id="required-fields-hint">* marked fields are required</span>
@@ -72,7 +71,7 @@ if ($validator->success()) {
                             <?php endforeach; ?>
                         </select>
                         <label id="image-upload"><span>Upload header image *</span>
-                            <input type="file" name="article-image" id="article-image" accept="image/png, image/jpeg" class=<?php $validator->errorClass("article-image") ?>>
+                            <input type="file" name="article-image" accept="image/png, image/jpeg" class=<?php $validator->errorClass("article-image") ?>>
                         </label>
                     </div>
 

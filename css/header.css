@@ -19,7 +19,7 @@ main {
 }
 
 .page-title {
-    color: var(--terciary-color);
+    color: var(--secondary-color);
     font-weight: lighter;
     margin: 0 0.5em;
     font-family: var(--primary-font-family);
@@ -61,11 +61,15 @@ nav > div {
     gap: 1em;
 }
 
-.account-action {
-    color: var(--terciary-color);
+.account-actions > a, .side-menu > a {
+    color: var(--secondary-color);
     font-size: 120%;
-    font-family: var(--terciary-font-family);
+    font-family: var(--primary-font-family);
     font-style: italic;
+}
+
+.side-menu a.category {
+    color: var(--primary-color);
 }
 
 .side-menu {

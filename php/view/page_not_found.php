@@ -15,7 +15,7 @@ require_once "../main/session.php";
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
+            <div>
                 <h1>404 - Page not found</h1>
                 <span>An error has occurred. Please return to the <a href="index.php">homepage</a>.</span>
             </div>

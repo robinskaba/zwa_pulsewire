@@ -1,4 +1,4 @@
-.inner-content {
+main > div {
     gap: 1em;
 }
 
@@ -58,13 +58,16 @@ textarea.error, #image-upload:has(.error) {
 #article-body {
     font-size: 95%;
 }
-#article-image {
+#image-upload > input {
     display: none;
 }
 select {
     height: 100%;
     padding: 0 0.5em;
     color: var(--primary-color);
+}
+form {
+    margin: 0;
 }
 form > div {
     justify-content: center;

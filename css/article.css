@@ -29,12 +29,16 @@ article > form {
 article > form > input {
     padding: 0.5em 0 !important;
 }
+article > div {
+    display: flex;
+    justify-content: space-between;
+}
 
-h3 {
+h2, h3 {
     margin-bottom: 0.35em !important;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1050px) {
     article {
         display: flex;
         flex-direction: column;

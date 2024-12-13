@@ -1,23 +1,20 @@
-.inner-content {
+main > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.75em;
 }
 
-.form-heading {
+main > div > div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.form-wrap {
-    margin: 0 27.5%;
-}
-
 form {
     display: flex;
     flex-direction: column;
+    margin: 0 22.5%;
     gap: 0.4em;
 }
 
@@ -30,10 +27,10 @@ form > div > label {
     width: 48%;
 }
 
-.form-headline {
+h2 {
     font-size: 225%;
     font-weight: 600;
-    margin: 0 0.5em 0 0.3em;
+    margin: 0 0.75em 0 0.3em;
 }
 
 label {
@@ -46,7 +43,7 @@ label {
 }
 
 input {
-    border: 0px solid var(--terciary-color);
+    border: 0px solid var(--primary-color);
     border-radius: 0.25em;
     background-color: #D3D3D399;
     padding: 1em 0.75em;

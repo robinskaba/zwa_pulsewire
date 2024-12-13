@@ -1,4 +1,4 @@
-.inner-content {
+main > div {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
@@ -53,6 +53,8 @@ li > div > a.disabled, li form > input[type=submit]:disabled {
 label {
     font-size: 110%;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
 }
 select {
     border-color: var(--primary-color);

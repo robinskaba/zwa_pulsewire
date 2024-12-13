@@ -24,16 +24,14 @@ $articles = array_reverse($articles);
 <html lang="en">
     <head>
         <title>Articles: <?= htmlspecialchars($category, ENT_QUOTES) ?></title>
-
-        <link rel="stylesheet" href="../../css/search_results.css">
-
         <?php include "../../html/metadata.html" ?>
+        <link rel="stylesheet" href="../../css/search_results.css">
     </head>
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
+            <div>
                 <h1><?= htmlspecialchars($category, ENT_QUOTES) ?></h1>
                 <hr>
                 <ul>

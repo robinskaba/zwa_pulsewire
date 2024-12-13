@@ -36,39 +36,37 @@ if($validator->success()) {
     <head>
         <title>Log in to PulseWire</title>
         
+        <?php include("../../html/metadata.html") ?>
+
         <script src="../../js/error_handler.js" defer></script>
         <script src="../../js/login_form_validation.js" defer></script>
 
         <link rel="stylesheet" href="../../css/form.css">
-
-        <?php include("../../html/metadata.html") ?>
     </head>
     <body>
         <?php include "templates/header.php" ?>
 
         <main>
-            <div class="inner-content">
-                <div class="form-heading">
-                    <h2 class="form-headline">Log in to</h2>
+            <div>
+                <div>
+                    <h2>Log in to</h2>
                     <img src="../../src/logo_128x128.png" alt="page logo">
                     <h1 class="page-title">PulseWire</h1>
                 </div>
 
-                <div class="form-wrap">
-                    <form action="login.php" method="POST">
-                        <span id="required-fields-hint">* marked fields are required</span>
+                <form action="login.php" method="POST">
+                    <span id="required-fields-hint">* marked fields are required</span>
 
-                        <label>Username *
-                            <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
-                        </label>
-                        <label>Password *
-                            <input type="password" name="password" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password") ?>>
-                        </label>
-                        <?= $validator->displayErrors() ?>
-                        <input type="submit" value="Log in" name="submit">
-                    </form>
-                </div>
-                
+                    <label>Username *
+                        <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
+                    </label>
+                    <label>Password *
+                        <input type="password" name="password" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password") ?>>
+                    </label>
+                    <?= $validator->displayErrors() ?>
+                    <input type="submit" value="Log in" name="submit">
+                </form>
+            
                 <span>New to PulseWire? 
                     <a href="register.php">Create an account</a>
                 </span>
