@@ -36,24 +36,26 @@ $articles = array_reverse($articles);
                 <hr>
                 <ul>
                     <?php foreach($articles as $article): ?>
-                    <a href=<?= "article.php?id=".$article->id ?>>
-                        <img 
-                            src="<?= "../../database/images/small/".$article->image_path ?>"
-                            alt="<?= "Header image for article ".$article->title ?>"
-                        >
-                        <div>
-                            <div>
-                                <h2><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h2>
-                                <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
-                            </div>
-                            <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
-                        </div>
-                    </a>
-                    <hr>
+                        <li>
+                            <a href="<?= "article.php?id=".$article->id ?>">
+                                <img 
+                                    src="<?= "../../database/images/small/".$article->image_path ?>"
+                                    alt="<?= "Header image for article ".$article->title ?>"
+                                >
+                                <div>
+                                    <div>
+                                        <h2><?= htmlspecialchars($article->title, ENT_QUOTES) ?></h2>
+                                        <span><?= htmlspecialchars($article->publish_date, ENT_QUOTES) ?></span>
+                                    </div>
+                                    <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
+                                </div>
+                            </a>
+                            <hr>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
-
-            <?php include "templates/side_menu.php" ?>
+                <?php include "templates/side_menu.php" ?>
+            </main>
     </body>
 </html>

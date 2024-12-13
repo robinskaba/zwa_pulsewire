@@ -19,13 +19,13 @@ require_once __DIR__."/../../main/session.php";
                 <a href="admin.php">Admin</a>
             <?php endif; ?>
         <?php endif; ?>
-        <a href=<?= "profile.php?username=".$logged_user->username ?>>Profile</a>
+        <a href="<?= "profile.php?username=".$logged_user->username ?>">Profile</a>
         <a href=<?= "../api/log_out.php" ?>>Log out</a>
     <?php endif; ?>    
 
     <hr>
 
     <?php foreach($CATEGORIES as $_category): ?>
-        <a class="category" href=<?= "search_results.php?category=".$_category ?>><?= $_category ?></a>
+        <a class="category" href="<?= "search_results.php?category=".$_category ?>"><?= $_category ?></a>
     <?php endforeach; ?>
 </div>

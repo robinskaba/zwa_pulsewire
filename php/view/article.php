@@ -84,7 +84,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                     </h1>
                     <div>
                         <span>Published at <?= $article->publish_date ?></span>
-                        <a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a>
+                        <a href="<?= "search_results.php?category=".$article->category ?>"><?= $article->category ?></a>
                     </div>
                     <p id="summary"><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                     <p><?= htmlspecialchars($article->body, ENT_QUOTES) ?></p>    
@@ -101,9 +101,11 @@ if(!$articleId || !$db->articleExists($articleId)) {
                 <hr>
 
                 <div>
+                    <h2>Comments</h2>
+                    
                     <?php if($logged_user): ?>
                         <h3>Write a comment</h3>
-                        <form action=<?= "article.php?id=".$articleId ?> method="POST" id="new-comment-form">
+                        <form action="<?= "article.php?id=".$articleId ?>" method="POST" id="new-comment-form">
                             <span class="hidden">You can not post an empty comment!</span>
                             <div>
                                 <textarea name="comment-body" placeholder="A comment about the article..." rows="2"></textarea>
@@ -112,8 +114,6 @@ if(!$articleId || !$db->articleExists($articleId)) {
                         </form>
                     <?php endif; ?>
 
-                    <h2>Comments</h2>
-
                     <?php if(sizeof($comments) > 0): ?>
                         <ul>
                             <?php foreach($comments as $comment): ?>
@@ -121,16 +121,16 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                 <div>
                                     <?php $author = $db->getUser($comment->author); ?>
                                     <div>
-                                        <h4>
+                                        <h3>
                                             <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
                                                 <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                             </a>
-                                        </h4>
+                                        </h3>
                                         <span><?= $comment->publish_date ?></span>
                                     </div>
                                     
                                     <?php if($logged_user && ($logged_user->username == $comment->author || $logged_user->isAdmin())): ?>
-                                        <form action=<?= "article.php?id=".$articleId ?> method="POST" class="comment-actions">
+                                        <form action="<?= "article.php?id=".$articleId ?>" method="POST" class="comment-actions">
                                             <input type="text" name="comment-id" hidden value="<?= $comment->id ?>">
                                             <?php if($logged_user->username == $comment->author): ?>
                                                 <a class="edit-button" id=<?= $comment->id ?>>Edit</a>

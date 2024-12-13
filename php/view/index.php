@@ -41,11 +41,11 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                             <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="<?= "Header image for article ".$article->title ?>">
                             <div>
                                 <span><?= $article->publish_date ?></span>
-                                <span><a href=<?= "search_results.php?category=".$article->category ?>><?= $article->category ?></a></span>
+                                <span><a href="<?= "search_results.php?category=".$article->category ?>"><?= $article->category ?></a></span>
                             </div>
                             <h2>
                                 <a 
-                                    href=<?= "article.php?id=".$article->id ?>
+                                    href="<?= "article.php?id=".$article->id ?>"
                                 >
                                     <?= htmlspecialchars($article->title, true) ?>
                                 </a>
@@ -61,7 +61,7 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
 
                         if($current_page - 1 > 0): 
                     ?>
-                        <a href=<?= "index.php?page=".(string) $current_page - 1 ?>>&lt;</a>
+                        <a href="<?= "index.php?page=".(string) $current_page - 1 ?>">&lt;</a>
                     <?php endif; ?>
 
                     <?php if($minLimit > 1): ?>
@@ -72,13 +72,13 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                         
                         for($i = $minLimit; $i <= $maxLimit; $i++): 
                     ?>
-                        <a href=<?= "index.php?page=".(string) $i ?> <?= $i == $current_page ? "class=selected" : "" ?>><?= $i ?></a>
+                        <a href="<?= 'index.php?page='.(string) $i ?>" <?= $i == $current_page ? 'class=selected' : '' ?>><?= $i ?></a>
                     <?php endfor; ?>
                     <?php if($maxLimit < $amount_of_pages): ?>
                         <span>...</span>
                     <?php endif; ?>
                     <?php if($current_page + 1 <= $amount_of_pages): ?>
-                        <a href=<?= "index.php?page=".(string) $current_page + 1 ?>>&gt;</a>
+                        <a href="<?= "index.php?page=".(string) $current_page + 1 ?>">&gt;</a>
                     <?php endif; ?>
                 </div>
             </div>

@@ -16,7 +16,7 @@ class Validator {
         if (isset($this->errors[$key])) {
             $recorded_errors = $this->errors[$key];
             if (sizeof($recorded_errors) > 0) {
-                echo "error";
+                echo "class=error";
                 return;
             } 
         }
@@ -24,7 +24,7 @@ class Validator {
     }
 
     public function displayErrors() {
-        $message = "The server has denied your request because of the following reasons<hr>";
+        $message = "";
         foreach($this->errors as $field => $recorded_errors) {
             foreach($recorded_errors as $i => $error_message) {
                 if($field == "password2" && $i == sizeof($recorded_errors)-1) $message = $message.$error_message;
@@ -34,6 +34,7 @@ class Validator {
 
         $class = $this->all_empty ? "hidden" : "";
 
+        echo "<span class=".$class.">The server has denied your request because of the following reasons</span><hr class=".$class.">";
         echo "<span id=error-hint class=".$class.">".$message."</span>";
     }
 

@@ -58,10 +58,10 @@ if($validator->success()) {
                     <span id="required-fields-hint">* marked fields are required</span>
 
                     <label>Username *
-                        <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" class=<?php $validator->errorClass("username") ?>>
+                        <input type="text" name="username" placeholder="username" id="username" value="<?= htmlspecialchars($username) ?>" <?php $validator->errorClass("username") ?>>
                     </label>
                     <label>Password *
-                        <input type="password" name="password" placeholder="Password" id="password_1" value="" class=<?php $validator->errorClass("password") ?>>
+                        <input type="password" name="password" placeholder="Password" id="password_1" value="" <?php $validator->errorClass("password") ?>>
                     </label>
                     <?= $validator->displayErrors() ?>
                     <input type="submit" value="Log in" name="submit">

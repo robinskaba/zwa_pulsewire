@@ -52,14 +52,14 @@ if($validator->success()) {
                     <h1>Reset password for <?= htmlspecialchars($username, true) ?></h1>
                 </div>
 
-                <form action="" method="POST">
+                <form action="password_reset.php" method="POST">
                     <span id="required-fields-hint">* marked fields are required</span>
 
                     <label>New password *
-                        <input type="password" name=<?= $P1_KEY ?> placeholder="New password" id="password_1" value="" class=<?php $validator->errorClass($P1_KEY) ?>>
+                        <input type="password" name=<?= $P1_KEY ?> placeholder="New password" id="password_1" value="" <?php $validator->errorClass($P1_KEY) ?>>
                     </label>
                     <label>Password again *
-                        <input type="password" name=<?= $P2_KEY ?> placeholder="Password again" id="password_2" value="" class=<?php $validator->errorClass($P2_KEY) ?>>
+                        <input type="password" name=<?= $P2_KEY ?> placeholder="Password again" id="password_2" value="" <?php $validator->errorClass($P2_KEY) ?>>
                     </label>
                     <?= $validator->displayErrors() ?>
                     

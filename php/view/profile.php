@@ -47,7 +47,7 @@ if(!$username || !$db->userExists($username)) {
                                 $parent_article = $db->getArticle($comment->articleId);
                             ?>
                             <div>
-                                <h3><a href=<?= "article.php?id=".$parent_article->id ?>><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h3>
+                                <h3><a href="<?= "article.php?id=".$parent_article->id ?>"><?= htmlspecialchars($parent_article->title, ENT_QUOTES) ?></a></h3>
                                 <span><?= $comment->publish_date ?></span>
                             </div>
                             <p><?= htmlspecialchars($comment->content, ENT_QUOTES) ?></p>
