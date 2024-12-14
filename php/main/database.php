@@ -241,8 +241,11 @@ class Database {
         $articles = $this->getFileContent("articles.json");
         $users = $this->getFileContent("users.json");
 
-        unset($articles[$comment->articleId]["comments"][$comment->id]);
-        unset($users[$comment->author]["comments"][$comment->id]);
+        $i = array_search($comment->id, $articles[$comment->articleId]["comments"]);
+        unset($articles[$comment->articleId]["comments"][$i]);
+
+        $i = array_search($comment->id, $users[$comment->author]["comments"]);
+        unset($users[$comment->author]["comments"][$i]);
 
         $this->setFileContent("articles.json", $articles);
         $this->setFileContent("users.json", $users);
