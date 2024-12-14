@@ -66,3 +66,9 @@ ul > li > a > div > p {
         flex-direction: column;
     }
 }
+
+@media print {
+    li img {
+        display: none;
+    }
+}

@@ -79,11 +79,12 @@ if ($validator->success()) {
                     <?= $validator->displayErrors() ?>
                     <input type="submit" value="Register" name="submit">
                 </form>
+
+                <span>Do you already have an account? 
+                    <a href="login.php">Login</a>
+                </span>
             </div>
             
-            <span>Do you already have an account? 
-                <a href="login.php">Login</a>
-            </span>
             <?php include("templates/side_menu.php") ?>
         </main>
     </body>

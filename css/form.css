@@ -103,7 +103,14 @@ span {
 
 @media print {
     input {
-        border: var(--thin-border-width) solid gray;
+        border-width: var(--thin-border-width) !important;
+        border-color: gray;
+    }
+    input.error {
+        border-color: red;
+    }
+    input:disabled {
+        border: var(--thin-border-width) solid gray !important;
     }
 }
 

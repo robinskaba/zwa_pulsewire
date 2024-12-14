@@ -36,7 +36,6 @@ function error_handler() {
                 this.detected_issues = this.detected_issues.filter(element => element != issue);
             }
         }
-        console.log(has_issue_recorded, this.detected_issues);
     };
     this.errorify_element = function (element, possible_issues) {
         if (!Array.isArray(possible_issues)) {
@@ -50,8 +49,7 @@ function error_handler() {
                 break;
             }
         }
-        console.log("found issue", any_issue_found);
-    
+  
         if (any_issue_found) {
             element.classList.add("error");
         } else {
