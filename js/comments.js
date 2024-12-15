@@ -4,8 +4,15 @@ let forms = document.querySelectorAll("li form");
 let form_template = document.querySelector("#new-comment-form");
 if(form_template) form_template.addEventListener("submit", handle_empty_form);
 
+let edited_comment = null;
+
 // replaces paragraph in comment with a form to edit the comment
 function update_to_form(event) {
+    if(edited_comment) {
+        return;
+    }
+    edited_comment = true;
+
     event.preventDefault();
 
     let comment_id = event.target.id;
@@ -59,6 +66,7 @@ function submit_comment_edit(event) {
         action_buttons.classList.remove("hidden");
         comment_paragraph.classList.remove("hidden");
         form.remove();
+        edited_comment = null;
     }
 }
 
