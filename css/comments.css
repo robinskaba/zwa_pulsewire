@@ -94,3 +94,15 @@ li > div {
     align-items: center;
     gap: 0.25em;
 }
+
+@media (max-width: 600px) {
+    form > div > input {
+        padding-top: 0.05em !important;
+        padding-bottom: 0.05em !important;
+        font-size: 80% !important;
+        text-wrap: wrap;
+    }
+    form > input {
+        font-size: 80% !important;
+    }
+}

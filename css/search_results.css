@@ -62,8 +62,14 @@ ul > li > a > div > p {
 }
 
 @media (max-width: 600px) {
-    ul > a {
-        flex-direction: column;
+    li > a, li > a > div > div {
+        flex-direction: column !important;
+    }
+    li > a > div > div > span {
+        text-align: start !important;
+    }
+    li > a > div > p {
+        height: 4em !important;
     }
 }
 

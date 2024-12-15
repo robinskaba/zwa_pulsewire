@@ -69,3 +69,18 @@ option {
 option[selected] {
     color: var(--primary-color);
 }
+
+@media (max-width: 600px) {
+    li > div {
+        flex-direction: column;
+    }
+    li > div > a, li input {
+        width: 100%;
+    }
+    li select {
+        height: 2em;
+    }
+    li > a {
+        font-size: 150%;
+    }
+}

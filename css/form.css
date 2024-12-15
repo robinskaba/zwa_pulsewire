@@ -114,11 +114,11 @@ span {
     }
 }
 
-@media (max-width: 720px) {
-    .form-heading {
+@media (max-width: 600px) {
+    main > div > div {
         flex-direction: column;
     }
-    .form-wrap {
-        margin: 0 15%;
+    main > div > form {
+        margin: 0 5%;
     }
 }

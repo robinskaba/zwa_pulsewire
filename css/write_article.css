@@ -76,3 +76,16 @@ form > div {
 form > div > label {
     width: auto;
 }
+
+@media (max-width: 600px) {
+    form > div {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    form > div > label, form > div > select, form > div > input {
+        width: 100%;
+    }
+    form > div > label {
+        text-align: center;
+    }
+}
