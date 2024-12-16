@@ -36,7 +36,7 @@ function update_to_form(event) {
 
     let submit = edit_form.querySelector("input[type=submit]");
     submit.name = "edit-comment";
-    submit.value = "Edit comment";
+    submit.value = "Post edited";
 
     edit_form.addEventListener("submit", submit_comment_edit);
 }

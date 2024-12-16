@@ -14,6 +14,7 @@ $validator->checkEmpty("username", "Username");
 $validator->checkEmpty("password", "Password");
 
 if($validator->success()) {
+    $username = str_replace(" ", "", $username);
     require_once "../main/database.php";
     $db = new Database();
     $user = $db->getUser($username);

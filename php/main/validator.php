@@ -89,7 +89,7 @@ class Validator {
         if (!isset($_POST[$request_key])) return;
 
         if (!ctype_alnum($_POST[$request_key])) {
-            $this->addError($request_key, $message_prefix." can only contain letters and numbers");
+            $this->addError($request_key, $message_prefix." can only contain English letters and numbers");
         }
     }
 
