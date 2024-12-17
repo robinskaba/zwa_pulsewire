@@ -28,7 +28,7 @@ if($validator->success()) {
     $db = new Database();
     $db->changePassword($username, $password_1);
     header("Location: admin.php");
-}
+} 
 
 ?>
 
@@ -52,7 +52,7 @@ if($validator->success()) {
                     <h1>Reset password for <?= htmlspecialchars($username, true) ?></h1>
                 </div>
 
-                <form action="password_reset.php" method="POST">
+                <form action="<?= "password_reset.php?username=".$username ?>" method="POST">
                     <span id="required-fields-hint">* marked fields are required</span>
 
                     <label>New password *
