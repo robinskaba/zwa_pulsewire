@@ -34,7 +34,7 @@ if(!$username || !$db->userExists($username)) {
                 <h2>Profile information</h2>
                 <div>
                     <span><span>First name: </span><?= htmlspecialchars($user->first_name, ENT_QUOTES) ?></span>
-                    <span><span>Second name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
+                    <span><span>Family name: </span><?= htmlspecialchars($user->second_name, ENT_QUOTES) ?></span>
                     <span><span>Role: </span><?= htmlspecialchars($user->role, ENT_QUOTES) ?></span>
                 </div>
                 <hr>

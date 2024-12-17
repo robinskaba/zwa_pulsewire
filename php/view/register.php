@@ -16,7 +16,7 @@ $validator->checkLength(4, "username", "Username");
 $validator->checkIllegalChars("username", "Username");
 $validator->checkUserExists("username");
 $validator->checkEmpty("first_name", "First name");
-$validator->checkEmpty("second_name", "Second name");
+$validator->checkEmpty("second_name", "Family name");
 $validator->checkLength(8, "password1", "Password");
 $validator->checkContainsNumber("password1", "Password");
 $validator->checkMatch($password1, "password2", "Passwords");
@@ -66,8 +66,8 @@ if ($validator->success()) {
                             <input type="text" name="first_name" placeholder="First Name" id="first_name" value="<?= htmlspecialchars($first_name) ?>" <?php $validator->errorClass("first_name") ?>>
                         </label>
                         
-                        <label>Second Name *
-                            <input type="text" name="second_name" placeholder="Second Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>" <?php $validator->errorClass("second_name") ?>>
+                        <label>Family Name *
+                            <input type="text" name="second_name" placeholder="Family Name" id="second_name" value="<?= htmlspecialchars($second_name) ?>" <?php $validator->errorClass("second_name") ?>>
                         </label>
                     </div>
                     <label>Password *
