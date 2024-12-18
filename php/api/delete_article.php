@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Soubor provede odstranění článku z databáze.
+ * @author Robin Škába
+ */
+
 require_once "../main/session.php";
 require_once "../main/database.php";
 $db = new Database();

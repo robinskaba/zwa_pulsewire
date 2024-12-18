@@ -1,5 +1,16 @@
 <?php 
 
+/**
+ * Soubor s podpornou funkcí pro databázi k práci s obrázky.
+ * @author Robin Škába
+ */
+
+ /**
+  * Změní velikost daného obrázku na danou velikost, nastaví mu správný typ a uloží ho na danou cestu.
+    * @param string $original_path Cesta k původnímu obrázku.
+    * @param string $size_type Typ velikosti obrázku, který se má změnit - nová velikost se načte z konfiguračního souboru.
+    * @param string $save_path Cesta, kam se má uložit nový obrázek.
+  */
 function resize_image_to_type(string $original_path, string $size_type, string $save_path) {
     list($original_width, $original_height, $image_type) = getimagesize($original_path);
 

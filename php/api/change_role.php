@@ -2,6 +2,7 @@
 
 /**
  * Endpoint pro admin.js, který při POST requestu změní roli uživatele.
+ * @author Robin Škába
  */
 
 require_once "../main/session.php";

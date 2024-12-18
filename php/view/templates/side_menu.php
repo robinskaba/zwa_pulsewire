@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Tento soubor obsahuje boční menu, které se zobrazuje na každé stránce v zobrazení na mobilech.
+ * @author Robin Škába
+ */
+
 require_once __DIR__."/../../main/categories.php";
 require_once __DIR__."/../../main/session.php";
 

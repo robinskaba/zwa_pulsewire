@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Soubor zjistí zda existuje uživatel s uživatelským jménem zadaným v GET dotazu.
+ * Slouží pro AJAXové ověření, zda je uživatelské jméno dostupné.
+ * @author Robin Škába
+ */
+
 require_once "../main/database.php";
 $db = new Database();
 

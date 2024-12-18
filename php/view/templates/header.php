@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Soubor obsahuje hlavičku stránky, která se zobrazuje na každé stránce.
+ * @author Robin Škába
+ */
+
 require_once __DIR__."/../../main/categories.php";
 require_once __DIR__."/../../main/session.php";
 
