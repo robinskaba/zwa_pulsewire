@@ -30,6 +30,9 @@ function resize_image_to_type(string $original_path, string $size_type, string $
             imagepng($resized_image, $save_path);
             break;
     }
+
+    imagedestroy($resized_image);
+    imagedestroy($original_image);
 }
 
 ?>
