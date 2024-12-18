@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Endpoint pro admin.js, který při POST requestu změní roli uživatele.
+ */
+
 require_once "../main/session.php";
 
 if(isset($_POST["username"]) && isset($_POST["role"]) && $logged_user && $logged_user->isAdmin()) {

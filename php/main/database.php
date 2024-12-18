@@ -1,8 +1,21 @@
 <?php
 
+/**
+ * Databáze pro server PulseWire.
+ * @author Robin Škába
+ */
+
 require_once "../tools/resize_image.php";
 
+/**
+ * Třída reprezentující jednotlivého uživatele.
+ * Je návratovou hodnotou mnoha funkcí databáze, aby ostatní php soubory nemusely znát strukturu uživatele v databázi.
+ */
 class User {
+    /**
+     * Konstruktor pro třídu User.
+     * @param $username Uživatelské jméno uživatele
+     */
     public function __construct(string $username, string $first_name, string $second_name, string $password, string $role, array $comments) {
         $this->username = $username;
         $this->first_name = $first_name;
