@@ -6,8 +6,6 @@
  * @author Robin Škába
  */
 
-require_once "../main/session.php";
-
 /**
  * Vyžaduje objekt databáze pro načtení dat o žádaném uživateli.
  * @var Database $db Objekt databáze

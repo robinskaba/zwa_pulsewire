@@ -5,8 +5,6 @@
  * @author Robin Škába
  */
 
-require_once "../main/session.php";
-
 /**
  * @var string $category Název kategorie získaný z GET dotazu.
  */
