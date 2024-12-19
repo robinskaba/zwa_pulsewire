@@ -54,11 +54,11 @@ if ($validator->success()) {
                     <span id="required-fields-hint">* marked fields are required</span>
 
                     <label for="article-title">Title *</label>
-                    <textarea name="article-title" id="article-title" rows="1" class=<?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title, ENT_QUOTES) ?></textarea>
+                    <textarea name="article-title" id="article-title" rows="1" <?php $validator->errorClass("article-title") ?>><?= htmlspecialchars($title, ENT_QUOTES) ?></textarea>
                     <label for="article-summary">Summary *</label>
-                    <textarea name="article-summary" id="article-summary" rows="3" class=<?php $validator->errorClass("article-summary") ?>><?= htmlspecialchars($summary, ENT_QUOTES) ?></textarea>
+                    <textarea name="article-summary" id="article-summary" rows="3" <?php $validator->errorClass("article-summary") ?>><?= htmlspecialchars($summary, ENT_QUOTES) ?></textarea>
                     <label for="article-body">Content *</label>
-                    <textarea name="article-body" id="article-body" rows="10" class=<?php $validator->errorClass("article-body") ?>><?= htmlspecialchars($body, ENT_QUOTES) ?></textarea>
+                    <textarea name="article-body" id="article-body" rows="10" <?php $validator->errorClass("article-body") ?>><?= htmlspecialchars($body, ENT_QUOTES) ?></textarea>
                     
                     <div>
                         <label for="article-category">Category *</label>
@@ -71,7 +71,7 @@ if ($validator->success()) {
                             <?php endforeach; ?>
                         </select>
                         <label id="image-upload"><span>Upload header image *</span>
-                            <input type="file" name="article-image" accept="image/png, image/jpeg" class=<?php $validator->errorClass("article-image") ?>>
+                            <input type="file" name="article-image" accept="image/png, image/jpeg" <?php $validator->errorClass("article-image") ?>>
                         </label>
                     </div>
 
