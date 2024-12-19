@@ -7,7 +7,6 @@
  */
 
 require_once __DIR__."/../../main/categories.php";
-require_once __DIR__."/../../main/session.php";
 
 ?>
 
