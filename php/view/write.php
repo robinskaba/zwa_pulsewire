@@ -17,7 +17,7 @@ $validator->checkEmpty("article-title", "Title");
 $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
 
-$validator->checkFileSize("article-image", 50, 3000000, "Header image");
+$validator->checkFileSize("article-image", 50, 4000000, "Header image");
 $validator->checkFileIsOfType("article-image", ["image/png", "image/jpeg"], "Header image");
 
 if ($validator->success()) {
