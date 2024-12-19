@@ -6,6 +6,9 @@
  * @author Robin Škába
  */
 
+/**
+ * Vyžaduje sessions.php pro získání informace o klientovi.
+ */
 require_once "../main/session.php";
 
 /**
