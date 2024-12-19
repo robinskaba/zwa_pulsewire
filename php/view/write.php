@@ -27,7 +27,6 @@ $title = $validator->getFromPOST("article-title");
 $summary = $validator->getFromPOST("article-summary");
 $body = $validator->getFromPOST("article-body");
 $category = $validator->getFromPOST("article-category");
-$image = $validator->recordErrorsForField("article-image");
 
 /**
  * Logika validace textových polí.

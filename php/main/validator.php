@@ -61,15 +61,6 @@ class Validator {
     }
 
     /**
-     * Vytvoří prázdné pole pro zaznamenání chyb pro určité formulářové pole.
-     * @param string $key Klíč formulářového pole.
-     */
-    public function recordErrorsForField(string $key) {
-        // init array for recording errors
-        $this->errors[$key] = array();
-    }
-
-    /**
      * Přidá chybové hlášení do pole chyb pro určité formulářové pole.
      * @param string $field Klíč formulářového pole.
      * @param string $message Chybové hlášení.
@@ -84,7 +75,7 @@ class Validator {
      * @return string Hodnota daného klíče z formulářového pole (nebo-li $_POST proměnné).
      */
     public function getFromPOST(string $request_key): string {
-        $this->recordErrorsForField($request_key);
+        $this->errors[$request_key] = array();
 
         // check if key in post body
         if (isset($_POST[$request_key])) {
