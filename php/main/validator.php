@@ -29,6 +29,7 @@ class Validator {
     /**
      * Nastaví poli formuláře třídu error, pokud byla zaznamenána chyba.
      * Funkce by měla být volaná přímo pomocí PHP v HTML tagu pole.
+     * @param string $key Klíč pro pole chyb - name formluřávolého pole
      */
     public function errorClass($key) {
         if (isset($this->errors[$key])) {
