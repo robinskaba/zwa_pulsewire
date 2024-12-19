@@ -2,6 +2,7 @@
 
 /**
  * Soubor obsahuje hlavičku stránky, která se zobrazuje na každé stránce.
+ * V závislosti na informace o klientovi získaného z session.php se mu zobrazí různé možnosti.
  * @author Robin Škába
  */
 

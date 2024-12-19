@@ -1,12 +1,29 @@
 <?php
 
+/**
+ * Tento soubor obsahuje stránku, která umožňuje administrátorovi nastavit nové heslo pro uživatele.
+ * @author Robin Škába
+ */
+
+/**
+ * Vyžaduje session.php pro získání informací o přihlášeném uživateli.
+ */
 require_once "../main/session.php";
 
+// redirectnout, kdyby se nahodou nekdo dostal na tuhle stranku kdo neni admin
 if(!$logged_user || !$logged_user->isAdmin()) header("Location: page_not_found.php");
 
+/**
+ * @var string $P1_KEY Klíč formulářového pole pro první heslo.
+ * @var string $P2_KEY Klíč formulářového pole pro znovuzadané heslo.
+ */
 $P1_KEY = "password_1";
 $P2_KEY = "password_2";
 
+
+/**
+ * @var string $username Uživatelské jméno uživatele, pro kterého se má heslo resetovat.
+ */
 $username = "";
 if(isset($_GET["username"])) {
     $username = $_GET["username"];
@@ -14,15 +31,26 @@ if(isset($_GET["username"])) {
     header("Location: page_not_found.php");
 }
 
+/**
+ * Vyžaduje objekt validátoru z validator.php pro validaci formulářových polí.
+ * @var Validator $validator Objekt validátoru
+ * @var string $password_1 První heslo z formuláře.
+ */
 require_once "../main/validator.php";
 $validator = new Validator();
 
 $password_1 = $validator->getFromPOST($P1_KEY);
 
+/**
+ * Validace formulářových polí validátorem.
+ */
 $validator->checkLength(8, $P1_KEY, "Password");
 $validator->checkContainsNumber($P1_KEY, "Password");
 $validator->checkMatch($password_1, $P2_KEY, "Passwords");
 
+/**
+ * V případě, že validátor schválí daná data, změní se heslo uživatele v databázi.
+ */
 if($validator->success()) {
     require_once "../main/database.php";
     $db = new Database();

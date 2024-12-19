@@ -1,16 +1,31 @@
 <?php
 
+/**
+ * Tento soubor obsahuje stránku a logiku, která zobrazuje všechny články v dané kategorii.
+ * @author Robin Škába
+ */
+
 require_once "../main/session.php";
 
+/**
+ * @var string $category Název kategorie získaný z GET dotazu.
+ */
 $category = NULL;
 if(isset($_GET["category"])) $category = $_GET["category"];
 if(!$category) header("Location: page_not_found.php");
 
-// redirectnout pokud kategorie neexistuje
+/**
+ * Vyžaduje categories.php pro získání všech kategorií a případný redirect, pokud kategorie neexistuje.
+ */
 require_once "../main/categories.php";
 $category = ucfirst($category);
 if(!in_array($category, $CATEGORIES)) header("Location: page_not_found.php");
 
+/**
+ * Vyžaduje databází pro práci s články.
+ * @var Database $db Objekt databáze
+ * @var Article[] $articles Články v dané kategorii
+ */
 require_once "../main/database.php";
 $db = new Database();
 $category = ucfirst($category);

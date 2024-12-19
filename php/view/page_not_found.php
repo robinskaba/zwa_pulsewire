@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Tento soubor obsahuje stránku, která se zobrazí, pokud uživatel zadal neexistující URL adresu, nebo adresu, na kterou nemá přístup.
+ * @author Robin Škába
+ */
+
 require_once "../main/session.php";
 
 ?>

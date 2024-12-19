@@ -1,9 +1,24 @@
 <?php 
 
-require_once "../main/session.php";
+/**
+ * Tento soubor obsahuje logiku registrace (ověření dat) a formulář pro registraci uživatele.
+ * Uživatel je přesměrován na svůj profil po úspěšné registraci.
+ */
 
+ /**
+  * Vyžaduje session.php pro získání informací o přihlášeném uživateli a zabránění přihlášeným uživatelům vstup na tuto stránku.
+  */
+require_once "../main/session.php";
 if($logged_user) header("Location: index.php");
 
+/**
+ * Vyžaduje objekt validátoru z validator.php pro validaci formulářových polí.
+ * @var Validator $validator Objekt validátoru
+ * @var string $username Uživatelské jméno z formuláře.
+ * @var string $first_name Křestní jméno z formuláře.
+ * @var string $second_name Příjmení z formuláře.
+ * @var string $password1 Heslo z formuláře.
+ */
 require_once "../main/validator.php";
 $validator = new Validator();
 
@@ -12,6 +27,9 @@ $first_name = $validator->getFromPOST("first_name");
 $second_name = $validator->getFromPOST("second_name");
 $password1 = $validator->getFromPOST("password1");
 
+/**
+ * Logika ověření registrace.
+ */
 $validator->checkLength(4, "username", "Username");
 $validator->checkIllegalChars("username", "Username");
 $validator->checkUserExists("username");
@@ -21,6 +39,9 @@ $validator->checkLength(8, "password1", "Password");
 $validator->checkContainsNumber("password1", "Password");
 $validator->checkMatch($password1, "password2", "Passwords");
 
+/**
+ * V případě, že validátor schválí daná data, uživatel je zaregistrován a přesměrován na svůj profil.
+ */
 if ($validator->success()) {
     require_once "../main/database.php";
     $db = new Database();

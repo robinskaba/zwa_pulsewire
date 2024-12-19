@@ -1,9 +1,25 @@
 <?php
 
-require_once "../main/session.php";
+/**
+ * Tento soubor obsahuje formulář a logiku pro psaní nového článku.
+ * Uživatel je přesměrován na stránku s novým článkem, pokud je úspěšně napsán.
+ * @author Robin Škába
+ */
 
+/**
+ * Vyžaduje session.php pro získání informací o přihlášeném uživateli, a případný redirect, pokud nemá právo psát články.
+ */
+require_once "../main/session.php";
 if(!$logged_user || (!$logged_user->isWriter() && !$logged_user->isAdmin())) header("Location: page_not_found.php");
 
+/**
+ * Vyžaduje objekt validátoru z validator.php pro validaci formulářových polí.
+ * @var Validator $validator Objekt validátoru
+ * @var string $title Titulek článku z formuláře.
+ * @var string $summary Shrnutí článku z formuláře.
+ * @var string $body Obsah článku z formuláře.
+ * @var string $category Kategorie článku z formuláře.
+ */
 require_once "../main/validator.php";
 $validator = new Validator();
 
@@ -13,13 +29,23 @@ $body = $validator->getFromPOST("article-body");
 $category = $validator->getFromPOST("article-category");
 $image = $validator->recordErrorsForField("article-image");
 
+/**
+ * Logika validace textových polí.
+ */
 $validator->checkEmpty("article-title", "Title");
 $validator->checkEmpty("article-summary", "Summary");
 $validator->checkEmpty("article-body", "Content");
 
+/**
+ * Logika validace obrázku.
+ */
 $validator->checkFileSize("article-image", 50, 4000000, "Header image");
 $validator->checkFileIsOfType("article-image", ["image/png", "image/jpeg"], "Header image");
 
+/**
+ * V případě, že validátor schválí daná data, uloží se obrázek a článek do databáze.
+ * @var string $image_path Relativní cesta k obrázku v databázi.
+ */
 if ($validator->success()) {
     require_once "../main/database.php";
     $db = new Database();

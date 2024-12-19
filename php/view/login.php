@@ -1,18 +1,40 @@
 <?php
 
+/**
+ * Tento soubor obsahuje formulář pro přihlášení uživatele, logiku ověření a zpracování dat.
+ * Uživatel je přesměrován na domovskou stránku, pokud je přihlášen.
+ * @author Robin Škába
+ */
+
+/**
+ * Vyžaduje session.php pro získání informací o přihlášeném uživateli.
+ */
 require_once "../main/session.php";
 
 if($logged_user) header("Location: index.php");
 
+/**
+ * Vyžaduje objekt validátoru z validator.php pro validaci formulářových polí.
+ * @var Validator $validator Objekt validátoru
+ * @var string $username Uživatelské jméno z formuláře.
+ * @var string $password Heslo z formuláře.
+ */
 require_once "../main/validator.php";
 $validator = new Validator();
 
 $username = $validator->getFromPOST("username");
 $password = $validator->getFromPOST("password");
 
+/**
+ * Logika ověření uživatele.
+ */
 $validator->checkEmpty("username", "Username");
 $validator->checkEmpty("password", "Password");
 
+/**
+ * V případě, že validátor schválí daná data, ověří se, že data odpovídají některému uživateli v databázi.
+ * Pokud ne, tak validátor přidá chybu.
+ */
 if($validator->success()) {
     $username = str_replace(" ", "", $username);
     require_once "../main/database.php";
@@ -25,6 +47,9 @@ if($validator->success()) {
     }
 }
 
+/**
+ * V případě, že v předchozím kroku nedošlo k chybě, uživatel je přihlášen a přesměrován na domovskou stránku.
+ */
 if($validator->success()) {
     $_SESSION["username"] = $username;
     header("Location: index.php");

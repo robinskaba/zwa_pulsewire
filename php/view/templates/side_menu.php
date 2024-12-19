@@ -2,6 +2,7 @@
 
 /**
  * Tento soubor obsahuje boční menu, které se zobrazuje na každé stránce v zobrazení na mobilech.
+ * V závislosti na informace o klientovi získaného z session.php se mu zobrazí různé možnosti.
  * @author Robin Škába
  */
 

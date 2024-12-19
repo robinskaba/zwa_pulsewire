@@ -1,10 +1,26 @@
 <?php 
 
+/**
+ * Tento soubor obsahuje stránku, která zobrazuje profil uživatele. 
+ * Zobrazuje informace o uživateli a jeho komentáře s odkazy na příslušné články.
+ * @author Robin Škába
+ */
+
 require_once "../main/session.php";
 
+/**
+ * Vyžaduje objekt databáze pro načtení dat o žádaném uživateli.
+ * @var Database $db Objekt databáze
+ * @var string $username Uživatelské jméno uživatele, jehož profil se má zobrazit.
+ */
 require_once "../main/database.php";
 $db = new Database();
 
+/**
+ * Logika načtení informací o uživateli.
+ * @var User $user Uživatel, jehož profil se má zobrazit.
+ * @var Comment[] $comments Komentáře uživatele.
+ */
 $username = NULL;
 if (isset($_GET["username"])) $username = $_GET["username"];
 if(!$username || !$db->userExists($username)) {

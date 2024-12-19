@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Tento soubor obsahuje logiku a strukturu stránky pro administrátora.
+ * Administrátor může měnit role uživatelů, resetovat jejich hesla a banovat je.
+ * @author Robin Škába
+ */
+
+/**
+ * Vyžaduje session.php pro získání informací o přihlášeném uživateli.
+ */
 require_once "../main/session.php";
 
 // redirectnout, kdyby se nahodou nekdo dostal na tuhle stranku kdo neni admin nebo neni logged in
@@ -8,6 +17,9 @@ if(!$logged_user || !$logged_user->isAdmin()) {
     exit;
 }
 
+/**
+ * Vyžaduje databází pro odstranění uživatele.
+ */
 require_once "../main/database.php";
 $db = new Database();
 
@@ -17,6 +29,9 @@ if(isset($_POST["ban-user"]) && isset($_POST["username"]) && $logged_user->isAdm
     header("Location: admin.php");
 }
 
+/**
+ * @var User[] $users Všichni uživatelé v databázi.
+ */
 $users = $db->getUsers();
 
 ?>
@@ -48,6 +63,9 @@ $users = $db->getUsers();
                             <label>Select role: 
                                 <select>
                                     <?php
+                                        /**
+                                         * Předem definované možné role uživatele.
+                                         */
                                         $roles = ["user", "writer", "admin"];
                                         foreach($roles as $role):
                                     ?>

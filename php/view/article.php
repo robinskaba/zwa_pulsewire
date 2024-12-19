@@ -1,17 +1,40 @@
 <?php
 
+/**
+ * Tento soubor obsahuje logiku a strukturu stránky zobrazující článek a komentáře k němu.
+ * Umožňuje také i práci s komentáři - jejich přidání, editaci a smazání.
+ * @author Robin Škába
+ */
+
+/**
+ * Vyžaduje session.php pro získání informací o přihlášeném uživateli.
+ */
 require_once "../main/session.php";
 
+/**
+ * Vyžaduje databází pro práci s články a komentáři.
+ * @var Database $db Objekt databáze
+ */
 require_once "../main/database.php";
 $db = new Database();
 
+/**
+ * @var string $articleId ID článku, který se má zobrazit - nastaven v GET dotaz.
+ */
 $articleId = NULL;
 if(isset($_GET["id"])) $articleId = $_GET["id"];
 
+/**
+ * Vyžaduje objekt validátoru z validator.php pro validaci formulářových polí.
+ * @var Validator $validator Objekt validátoru
+ */
 require_once "../main/validator.php";
 $validator = new Validator();
 $comment_body = $validator->getFromPOST("comment-body");
 
+/**
+ * Logika vytvoření komentáře.
+ */
 if(isset($_POST["post-comment"]) && $logged_user) {
     $validator->checkEmpty("comment-body", "Comment");
     if($validator->success()) {
@@ -19,6 +42,10 @@ if(isset($_POST["post-comment"]) && $logged_user) {
         header("Location: article.php?id=".$articleId);
     }
 }
+
+/**
+ * Logika smazání komentáře.
+ */
 if($logged_user && isset($_POST["delete-comment"])) {
     $comment_id = $_POST["comment-id"];
     $comment = $db->getCommentById($comment_id);
@@ -29,7 +56,9 @@ if($logged_user && isset($_POST["delete-comment"])) {
     }
 }
 
-// editnout komentar pokud je prihlaseny uzivatel a submit button byl pro edit
+/**
+ * Logika editace komentáře.
+ */
 if($logged_user && isset($_POST["edit-comment"])) {
     // redirectnout kdyby nebyly zadane potrebne informace
     if(!isset($_POST["comment-id"]) || !isset($_POST["comment-body"])) header("Location: page_not_found.php");
@@ -45,6 +74,9 @@ if($logged_user && isset($_POST["edit-comment"])) {
     }
 }
 
+/**
+ * Načtení informací o žádaném článku. V případě, že neexistuje, je uživatel přesměrován na stránku 404.
+ */
 if(!$articleId || !$db->articleExists($articleId)) {
     header("Location: page_not_found.php");
 } else {
