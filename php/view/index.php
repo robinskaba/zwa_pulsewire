@@ -6,6 +6,8 @@
  * @author Robin Škába
  */
 
+require_once "../main/session.php";
+
 /**
  * @var int $ARTICLES_PER_PAGE Počet článků na jedné stránce.
  */

@@ -5,6 +5,8 @@
  * @author Robin Škába
  */
 
+require_once "../main/session.php";
+
 ?>
 
 <!DOCTYPE html>
