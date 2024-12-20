@@ -24,7 +24,7 @@ require_once __DIR__."/../../main/categories.php";
                 <a href="admin.php">Admin</a>
             <?php endif; ?>
         <?php endif; ?>
-        <a href="<?= "profile.php?username=".$logged_user->username ?>">Profile</a>
+        <a href="<?= "profile.php?username=".htmlspecialchars($logged_user->username) ?>">Profile</a>
         <a href=<?= "../api/log_out.php" ?>>Log out</a>
     <?php endif; ?>    
 

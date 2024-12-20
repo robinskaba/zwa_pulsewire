@@ -77,7 +77,7 @@ if($validator->success()) {
         <main>
             <div>
                 <div>
-                    <h1>Reset password for <?= htmlspecialchars($username, true) ?></h1>
+                    <h1>Reset password for <?= htmlspecialchars($username, ENT_QUOTES) ?></h1>
                 </div>
 
                 <form action="<?= "password_reset.php?username=".$username ?>" method="POST">

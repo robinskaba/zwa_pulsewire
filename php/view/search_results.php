@@ -58,7 +58,7 @@ $articles = array_reverse($articles);
                             <a href="<?= "article.php?id=".$article->id ?>">
                                 <img 
                                     src="<?= "../../database/images/small/".$article->image_path ?>"
-                                    alt="<?= "Header image for article ".$article->title ?>"
+                                    alt="<?= "Header image for article ".htmlspecialchars($article->title) ?>"
                                 >
                                 <div>
                                     <div>

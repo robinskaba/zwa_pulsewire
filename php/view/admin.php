@@ -58,7 +58,7 @@ $users = $db->getUsers();
                 <ul>
                     <?php foreach($users as $user): ?>
                     <li>
-                        <a href="<?= "profile.php?username=".$user->username ?>"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
+                        <a href="<?= "profile.php?username=".htmlspecialchars($user->username) ?>"><?= htmlspecialchars($user->username, ENT_QUOTES) ?></a>
                         <div>
                             <label>Select role: 
                                 <select>
@@ -80,7 +80,7 @@ $users = $db->getUsers();
                             </label>
                             
 
-                            <a href="<?= "password_reset.php?username=".htmlspecialchars($user->username, ENT_QUOTES) ?>">Reset password</a>
+                            <a href="<?= "password_reset.php?username=".htmlspecialchars($user->username) ?>">Reset password</a>
                             <form action="admin.php" method="POST">
                                 <input type="hidden" name="username" value="<?= htmlspecialchars($user->username) ?>">
                                 <input type="submit" name="ban-user" value="Ban" <?= ($user->username == $logged_user->username) ? "disabled" : "" ?>>

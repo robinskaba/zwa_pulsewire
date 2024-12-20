@@ -154,7 +154,7 @@ if(!$articleId || !$db->articleExists($articleId)) {
                                     <?php $author = $db->getUser($comment->author); ?>
                                     <div>
                                         <h3>
-                                            <a href="profile.php?username=<?= htmlspecialchars($author->username, ENT_QUOTES) ?>">
+                                            <a href="profile.php?username=<?= htmlspecialchars($author->username) ?>">
                                                 <?= htmlspecialchars($author->first_name." ".$author->second_name, ENT_QUOTES); ?>
                                             </a>
                                         </h3>

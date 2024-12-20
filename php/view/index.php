@@ -59,19 +59,17 @@ $articles = $db->getGroupOfArticles($current_page, $ARTICLES_PER_PAGE);
                 <ul>
                     <?php foreach($articles as $article): ?>
                         <li>
-                            <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="<?= "Header image for article ".$article->title ?>">
+                            <img src="<?= "../../database/images/medium/".$article->image_path ?>" alt="<?= "Header image for article ".htmlspecialchars($article->title) ?>">
                             <div>
                                 <span><?= $article->publish_date ?></span>
                                 <span><a href="<?= "search_results.php?category=".$article->category ?>"><?= $article->category ?></a></span>
                             </div>
                             <h2>
-                                <a 
-                                    href="<?= "article.php?id=".$article->id ?>"
-                                >
-                                    <?= htmlspecialchars($article->title, true) ?>
+                                <a href="<?= "article.php?id=".$article->id ?>">
+                                    <?= htmlspecialchars($article->title, ENT_QUOTES) ?>
                                 </a>
                             </h2>
-                            <p><?= htmlspecialchars($article->summary, true) ?></p>
+                            <p><?= htmlspecialchars($article->summary, ENT_QUOTES) ?></p>
                         </li>
                     <?php endforeach; ?>
                 </ul>
