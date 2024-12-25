@@ -51,23 +51,15 @@ function handle_empty_form(event) {
         error_field.classList.remove("hidden");
         event.preventDefault();
     }
-
-    return !empty;
 }
 
 // changes comment back to normal if form passes
 function submit_comment_edit(event) {
     let comment = event.target.closest("li");
     let comment_paragraph = comment.querySelector("p");
-    let action_buttons = event.target.closest("li form.comment-actions");
+    let action_buttons = comment.querySelector("form.comment-actions");
 
-    let success = handle_empty_form(event);
-    if (success) {
-        action_buttons.classList.remove("hidden");
-        comment_paragraph.classList.remove("hidden");
-        form.remove();
-        edited_comment = null;
-    }
+    handle_empty_form(event);
 }
 
 // adding event to trigger edit when edit button clicked
